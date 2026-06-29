@@ -19,12 +19,12 @@ namespace KeyPayV2.Sg.Functions
         Task<List<SgLocationModel>> ListEmployeeLocationsAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         List<SgLocationModel> ListBusinessLocations(int businessId, ODataQuery oDataQuery = null);
         Task<List<SgLocationModel>> ListBusinessLocationsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateLocation(int businessId, SgLocationModel location);
-        Task CreateLocationAsync(int businessId, SgLocationModel location, CancellationToken cancellationToken = default);
+        SgLocationModel CreateLocation(int businessId, SgLocationModel location);
+        Task<SgLocationModel> CreateLocationAsync(int businessId, SgLocationModel location, CancellationToken cancellationToken = default);
         SgSingleLocationModel GetLocationById(int businessId, int id);
         Task<SgSingleLocationModel> GetLocationByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        void UpdateLocation(int businessId, int id, SgLocationModel location);
-        Task UpdateLocationAsync(int businessId, int id, SgLocationModel location, CancellationToken cancellationToken = default);
+        SgLocationModel UpdateLocation(int businessId, int id, SgLocationModel location);
+        Task<SgLocationModel> UpdateLocationAsync(int businessId, int id, SgLocationModel location, CancellationToken cancellationToken = default);
         void DeleteLocation(int businessId, int id);
         Task DeleteLocationAsync(int businessId, int id, CancellationToken cancellationToken = default);
     }
@@ -86,9 +86,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a business location.
         /// </remarks>
-        public void CreateLocation(int businessId, SgLocationModel location)
+        public SgLocationModel CreateLocation(int businessId, SgLocationModel location)
         {
-            ApiRequest($"/business/{businessId}/location", location, Method.Post);
+            return ApiRequest<SgLocationModel,SgLocationModel>($"/business/{businessId}/location", location, Method.Post);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a business location.
         /// </remarks>
-        public Task CreateLocationAsync(int businessId, SgLocationModel location, CancellationToken cancellationToken = default)
+        public Task<SgLocationModel> CreateLocationAsync(int businessId, SgLocationModel location, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/location", location, Method.Post, cancellationToken);
+            return ApiRequestAsync<SgLocationModel,SgLocationModel>($"/business/{businessId}/location", location, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -130,9 +130,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public void UpdateLocation(int businessId, int id, SgLocationModel location)
+        public SgLocationModel UpdateLocation(int businessId, int id, SgLocationModel location)
         {
-            ApiRequest($"/business/{businessId}/location/{id}", location, Method.Put);
+            return ApiRequest<SgLocationModel,SgLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put);
         }
 
         /// <summary>
@@ -141,9 +141,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public Task UpdateLocationAsync(int businessId, int id, SgLocationModel location, CancellationToken cancellationToken = default)
+        public Task<SgLocationModel> UpdateLocationAsync(int businessId, int id, SgLocationModel location, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
+            return ApiRequestAsync<SgLocationModel,SgLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
         }
 
         /// <summary>

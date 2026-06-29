@@ -27,16 +27,16 @@ namespace KeyPayV2.Nz.Functions
         Task<Dictionary<string, IList<NzLeaveAllowanceModel>>> GetLeaveAllowancesForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         List<NzLeaveAllowanceTemplateModel> ListLeaveAllowanceTemplates(int businessId, ODataQuery oDataQuery = null);
         Task<List<NzLeaveAllowanceTemplateModel>> ListLeaveAllowanceTemplatesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateLeaveAllowanceTemplate(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate);
-        Task CreateLeaveAllowanceTemplateAsync(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default);
-        NzLeaveAllowanceTemplateModel GetLeaveAllowanceTemplateById(int businessId, int id);
-        Task<NzLeaveAllowanceTemplateModel> GetLeaveAllowanceTemplateByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        void UpdateLeaveAllowanceTemplate(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate);
-        Task UpdateLeaveAllowanceTemplateAsync(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default);
-        void DeleteLeaveAllowanceTemplate(int businessId, int id);
-        Task DeleteLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default);
+        NzLeaveAllowanceTemplateModel CreateLeaveAllowanceTemplate(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate);
+        Task<NzLeaveAllowanceTemplateModel> CreateLeaveAllowanceTemplateAsync(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default);
         void ReapplyLeaveAllowanceTemplate(int businessId, int id);
         Task ReapplyLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default);
+        NzLeaveAllowanceTemplateModel GetLeaveAllowanceTemplateById(int businessId, int id);
+        Task<NzLeaveAllowanceTemplateModel> GetLeaveAllowanceTemplateByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
+        NzLeaveAllowanceTemplateModel UpdateLeaveAllowanceTemplate(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate);
+        Task<NzLeaveAllowanceTemplateModel> UpdateLeaveAllowanceTemplateAsync(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default);
+        void DeleteLeaveAllowanceTemplate(int businessId, int id);
+        Task DeleteLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default);
     }
     public class LeaveAllowanceFunction : BaseFunction, ILeaveAllowanceFunction
     {
@@ -182,9 +182,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Creates a new leave allowance template for the business.
         /// </remarks>
-        public void CreateLeaveAllowanceTemplate(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate)
+        public NzLeaveAllowanceTemplateModel CreateLeaveAllowanceTemplate(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate)
         {
-            ApiRequest($"/business/{businessId}/leaveallowancetemplate", leaveAllowanceTemplate, Method.Post);
+            return ApiRequest<NzLeaveAllowanceTemplateModel,NzLeaveAllowanceTemplateModel>($"/business/{businessId}/leaveallowancetemplate", leaveAllowanceTemplate, Method.Post);
         }
 
         /// <summary>
@@ -193,9 +193,31 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Creates a new leave allowance template for the business.
         /// </remarks>
-        public Task CreateLeaveAllowanceTemplateAsync(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default)
+        public Task<NzLeaveAllowanceTemplateModel> CreateLeaveAllowanceTemplateAsync(int businessId, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/leaveallowancetemplate", leaveAllowanceTemplate, Method.Post, cancellationToken);
+            return ApiRequestAsync<NzLeaveAllowanceTemplateModel,NzLeaveAllowanceTemplateModel>($"/business/{businessId}/leaveallowancetemplate", leaveAllowanceTemplate, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Reapply Leave Allowance Template
+        /// </summary>
+        /// <remarks>
+        /// Reapply the leave allowance template with the specified ID.
+        /// </remarks>
+        public void ReapplyLeaveAllowanceTemplate(int businessId, int id)
+        {
+            ApiRequest($"/business/{businessId}/leaveallowancetemplate/reapply/{id}", Method.Post);
+        }
+
+        /// <summary>
+        /// Reapply Leave Allowance Template
+        /// </summary>
+        /// <remarks>
+        /// Reapply the leave allowance template with the specified ID.
+        /// </remarks>
+        public Task ReapplyLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/leaveallowancetemplate/reapply/{id}", Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -226,9 +248,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Updates the leave allowance template with the specified ID.
         /// </remarks>
-        public void UpdateLeaveAllowanceTemplate(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate)
+        public NzLeaveAllowanceTemplateModel UpdateLeaveAllowanceTemplate(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate)
         {
-            ApiRequest($"/business/{businessId}/leaveallowancetemplate/{id}", leaveAllowanceTemplate, Method.Put);
+            return ApiRequest<NzLeaveAllowanceTemplateModel,NzLeaveAllowanceTemplateModel>($"/business/{businessId}/leaveallowancetemplate/{id}", leaveAllowanceTemplate, Method.Put);
         }
 
         /// <summary>
@@ -237,9 +259,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Updates the leave allowance template with the specified ID.
         /// </remarks>
-        public Task UpdateLeaveAllowanceTemplateAsync(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default)
+        public Task<NzLeaveAllowanceTemplateModel> UpdateLeaveAllowanceTemplateAsync(int businessId, int id, NzLeaveAllowanceTemplateModel leaveAllowanceTemplate, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/leaveallowancetemplate/{id}", leaveAllowanceTemplate, Method.Put, cancellationToken);
+            return ApiRequestAsync<NzLeaveAllowanceTemplateModel,NzLeaveAllowanceTemplateModel>($"/business/{businessId}/leaveallowancetemplate/{id}", leaveAllowanceTemplate, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -262,28 +284,6 @@ namespace KeyPayV2.Nz.Functions
         public Task DeleteLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/leaveallowancetemplate/{id}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Reapply Leave Allowance Template
-        /// </summary>
-        /// <remarks>
-        /// Reapply the leave allowance template with the specified ID.
-        /// </remarks>
-        public void ReapplyLeaveAllowanceTemplate(int businessId, int id)
-        {
-            ApiRequest($"/business/{businessId}/leaveallowancetemplate/reapply/{id}", Method.Post);
-        }
-
-        /// <summary>
-        /// Reapply Leave Allowance Template
-        /// </summary>
-        /// <remarks>
-        /// Reapply the leave allowance template with the specified ID.
-        /// </remarks>
-        public Task ReapplyLeaveAllowanceTemplateAsync(int businessId, int id, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/leaveallowancetemplate/reapply/{id}", Method.Post, cancellationToken);
         }
     }
 }

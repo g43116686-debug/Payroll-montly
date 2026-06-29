@@ -11,6 +11,8 @@ namespace KeyPayV2.Uk.Models.Timesheets
     public class UkTimesheetLineModel
     {
         public bool LocationIsDeleted { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public LeaveUnitTypeEnum? UnitType { get; set; }
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public DateTime? StartTime { get; set; }
@@ -36,5 +38,6 @@ namespace KeyPayV2.Uk.Models.Timesheets
         public Attachment Attachment { get; set; }
         public string SubmittedByUser { get; set; }
         public IList<Int32> DimensionValueIds { get; set; }
+        public string LeaveRequestId { get; set; }
     }
 }

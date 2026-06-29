@@ -15,70 +15,10 @@ namespace KeyPayV2.Uk.Functions
 {
     public interface IManagerFunction
     {
-        void DownloadDocument(int businessId, int employeeId, int documentId);
-        Task DownloadDocumentAsync(int businessId, int employeeId, int documentId, CancellationToken cancellationToken = default);
-        ManagerExpenseRequestModel CreateExpenseRequest(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest);
-        Task<ManagerExpenseRequestModel> CreateExpenseRequestAsync(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default);
-        ManagerExpenseRequestModel GetExpenseRequest(int businessId, int employeeId, int expenseRequestId);
-        Task<ManagerExpenseRequestModel> GetExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
-        ManagerExpenseRequestModel EditExpenseRequest(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest);
-        Task<ManagerExpenseRequestModel> EditExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default);
-        void DeleteExpenseRequest(int businessId, int employeeId, int expenseRequestId);
-        Task DeleteExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
-        ManagerExpenseRequestModel ApproveExpenseRequest(int businessId, int employeeId, int expenseRequestId);
-        Task<ManagerExpenseRequestModel> ApproveExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
-        AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request);
-        Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default);
-        ManagerExpenseRequestModel DeclineExpenseRequest(int businessId, int employeeId, int expenseRequestId, DeclineReason reason);
-        Task<ManagerExpenseRequestModel> DeclineExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, DeclineReason reason, CancellationToken cancellationToken = default);
-        ExpenseReferenceData GetExpensesReferenceData(int businessId, int employeeId);
-        Task<ExpenseReferenceData> GetExpensesReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel CreateLeaveRequest(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication);
-        Task<ManagerLeaveRequestModel> CreateLeaveRequestAsync(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel GetLeaveRequestById(int businessId, int employeeId, int leaveRequestId);
-        Task<ManagerLeaveRequestModel> GetLeaveRequestByIdAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel UpdateLeaveRequest(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication);
-        Task<ManagerLeaveRequestModel> UpdateLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel DeleteLeaveRequest(int businessId, int employeeId, int leaveRequestId);
-        Task<ManagerLeaveRequestModel> DeleteLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel ApproveLeaveRequest(int businessId, int employeeId, int leaveRequestId);
-        Task<ManagerLeaveRequestModel> ApproveLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        DocumentFile GetLeaveRequestAttachment(int businessId, int employeeId, int leaveRequestId);
-        Task<DocumentFile> GetLeaveRequestAttachmentAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        ManagerLeaveRequestModel DeclineLeaveRequest(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason);
-        Task<ManagerLeaveRequestModel> DeclineLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason, CancellationToken cancellationToken = default);
-        List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId, int employeeId, int leaveRequestId);
-        Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId);
-        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request);
-        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default);
-        List<ManagerLeaveCategoryModel> ListLeaveCategories(int businessId, int employeeId);
-        Task<List<ManagerLeaveCategoryModel>> ListLeaveCategoriesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId, EstimateLeaveHoursQueryModel request);
-        Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default);
-        ManagerUnavailabilityModel CreateUnavailability(int businessId, int employeeId, UnavailabilityEditModel model);
-        Task<ManagerUnavailabilityModel> CreateUnavailabilityAsync(int businessId, int employeeId, UnavailabilityEditModel model, CancellationToken cancellationToken = default);
-        ManagerUnavailabilityModel UpdateUnavailability(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model);
-        Task<ManagerUnavailabilityModel> UpdateUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model, CancellationToken cancellationToken = default);
-        void DeleteUnavailability(int businessId, int employeeId, int unavailabilityId);
-        Task DeleteUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, CancellationToken cancellationToken = default);
-        ManagerTimesheetLineModel GetTimesheet(int businessId, int employeeId, int timesheetId);
-        Task<ManagerTimesheetLineModel> GetTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
-        ManagerTimesheetLineModel EditTimesheet(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet);
-        Task<ManagerTimesheetLineModel> EditTimesheetAsync(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet, CancellationToken cancellationToken = default);
-        void DeleteTimesheet(int businessId, int employeeId, int timesheetId);
-        Task DeleteTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
-        ManagerTimesheetLineModel ApproveTimesheet(int businessId, int employeeId, int timesheetId);
-        Task<ManagerTimesheetLineModel> ApproveTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
-        ManagerTimesheetLineModel RejectTimesheet(int businessId, int employeeId, int timesheetId);
-        Task<ManagerTimesheetLineModel> RejectTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
-        UkTimesheetReferenceData GetTimesheetReferenceData(int businessId, int employeeId);
-        Task<UkTimesheetReferenceData> GetTimesheetReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         ManagerDashboardModel GetDashboard(int businessId);
         Task<ManagerDashboardModel> GetDashboardAsync(int businessId, CancellationToken cancellationToken = default);
-        void GetEmployeeProfileImage(int businessId, int employeeId);
-        Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        byte[] GetEmployeeProfileImage(int businessId, int employeeId);
+        Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         ProfileImageMetadata SetEmployeeProfileImage(int businessId, int employeeId);
         Task<ProfileImageMetadata> SetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         void DeleteEmployeeProfileImage(int businessId, int employeeId);
@@ -103,6 +43,16 @@ namespace KeyPayV2.Uk.Functions
         Task<List<ExpenseTaxCode>> ListTaxCodesAsync(int businessId, CancellationToken cancellationToken = default);
         List<TimeAndAttendanceKioskModel> GetKiosks(int businessId);
         Task<List<TimeAndAttendanceKioskModel>> GetKiosksAsync(int businessId, CancellationToken cancellationToken = default);
+        List<UkTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model);
+        Task<List<UkTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default);
+        List<TimesheetLineModel> GetBusinessTimesheets(int businessId, ODataQuery oDataQuery = null);
+        Task<List<TimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        IndividualTimesheetLineModel CreateKioskTimesheetLine(int businessId, IndividualTimesheetLineModel request);
+        Task<IndividualTimesheetLineModel> CreateKioskTimesheetLineAsync(int businessId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
+        IndividualTimesheetLineModel UpdateKioskTimesheetLine(int businessId, int timesheetLineId, IndividualTimesheetLineModel request);
+        Task<IndividualTimesheetLineModel> UpdateKioskTimesheetLineAsync(int businessId, int timesheetLineId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
+        IndividualTimesheetLineModel UpdateCommentsInATimesheet(int businessId, string timesheetLineId, TimesheetLineCommentsModel request);
+        Task<IndividualTimesheetLineModel> UpdateCommentsInATimesheetAsync(int businessId, string timesheetLineId, TimesheetLineCommentsModel request, CancellationToken cancellationToken = default);
         TimeAndAttendanceKioskModel GetKioskById(int businessId, int id);
         Task<TimeAndAttendanceKioskModel> GetKioskByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
         KioskEmployeeModel ChangePin(int businessId, int kioskId, ChangeKioskPinModel model);
@@ -117,8 +67,8 @@ namespace KeyPayV2.Uk.Functions
         Task<KioskEmployeeModel> ClockInEmployeeAsync(int businessId, int kioskId, ClockOnModel request, CancellationToken cancellationToken = default);
         KioskEmployeeModel DiscardCurrentShift(int businessId, int kioskId, ClockOffModel request);
         Task<KioskEmployeeModel> DiscardCurrentShiftAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default);
-        void SendPinResetEmail(int businessId, PinResetModel model, string kioskId);
-        Task SendPinResetEmailAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default);
+        void SendPinResetEmail(int businessId, string kioskId, PinResetModel model);
+        Task SendPinResetEmailAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default);
         KioskEmployeeModel EndBreak(int businessId, int kioskId, EndBreakModel request);
         Task<KioskEmployeeModel> EndBreakAsync(int businessId, int kioskId, EndBreakModel request, CancellationToken cancellationToken = default);
         UkTimeAndAttendanceLookupDataModel GetEmployeeLookupData(int businessId, int employeeId, int kioskId);
@@ -129,30 +79,20 @@ namespace KeyPayV2.Uk.Functions
         Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default);
         ShiftNoteViewModel AddNoteToShift(int businessId, int kioskId, int shiftId, AddNoteModel model);
         Task<ShiftNoteViewModel> AddNoteToShiftAsync(int businessId, int kioskId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default);
+        void MarkShiftNotesRead(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model);
+        Task MarkShiftNotesReadAsync(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default);
         void DeleteNoteFromShift(int businessId, int kioskId, int shiftId, int noteId);
         Task DeleteNoteFromShiftAsync(int businessId, int kioskId, int shiftId, int noteId, CancellationToken cancellationToken = default);
-        void MarkShiftNotesRead(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId);
-        Task MarkShiftNotesReadAsync(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId, CancellationToken cancellationToken = default);
-        void SendPinResetSms(int businessId, PinResetModel model, string kioskId);
-        Task SendPinResetSmsAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default);
+        void SendPinResetSms(int businessId, string kioskId, PinResetModel model);
+        Task SendPinResetSmsAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default);
         List<BasicKioskEmployeeModel> ListKioskStaff(int businessId, int kioskId);
         Task<List<BasicKioskEmployeeModel>> ListKioskStaffAsync(int businessId, int kioskId, CancellationToken cancellationToken = default);
         List<BasicKioskEmployeeModel> ListKioskStaff(int businessId, int kioskId, ListKioskStaffQueryModel request);
         Task<List<BasicKioskEmployeeModel>> ListKioskStaffAsync(int businessId, int kioskId, ListKioskStaffQueryModel request, CancellationToken cancellationToken = default);
-        void AddAnEmployee(int businessId, int kioskId, KioskCreateEmployeeModel model);
-        Task AddAnEmployeeAsync(int businessId, int kioskId, KioskCreateEmployeeModel model, CancellationToken cancellationToken = default);
+        BasicKioskEmployeeModel AddAnEmployee(int businessId, int kioskId, KioskCreateEmployeeModel model);
+        Task<BasicKioskEmployeeModel> AddAnEmployeeAsync(int businessId, int kioskId, KioskCreateEmployeeModel model, CancellationToken cancellationToken = default);
         KioskEmployeeModel StartBreak(int businessId, int kioskId, StartBreakModel request);
         Task<KioskEmployeeModel> StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default);
-        List<UkTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model);
-        Task<List<UkTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default);
-        List<TimesheetLineModel> GetBusinessTimesheets(int businessId, ODataQuery oDataQuery = null);
-        Task<List<TimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateKioskTimesheetLine(int businessId, IndividualTimesheetLineModel request);
-        Task CreateKioskTimesheetLineAsync(int businessId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
-        void UpdateKioskTimesheetLine(int businessId, int timesheetLineId, IndividualTimesheetLineModel request);
-        Task UpdateKioskTimesheetLineAsync(int businessId, int timesheetLineId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
-        void UpdateCommentsInATimesheet(int businessId, TimesheetLineCommentsModel request, string timesheetLineId);
-        Task UpdateCommentsInATimesheetAsync(int businessId, TimesheetLineCommentsModel request, string timesheetLineId, CancellationToken cancellationToken = default);
         List<ManagerLeaveRequestModel> ListLeaveRequests(int businessId);
         Task<List<ManagerLeaveRequestModel>> ListLeaveRequestsAsync(int businessId, CancellationToken cancellationToken = default);
         List<ManagerLeaveRequestModel> ListLeaveRequests(int businessId, ListLeaveRequestsQueryModel request);
@@ -163,6 +103,8 @@ namespace KeyPayV2.Uk.Functions
         Task<List<ManagerLeaveEmployeeModel>> ListLeaveEmployeesAsync(int businessId, CancellationToken cancellationToken = default);
         List<LocationModel> ListLeaveLocations(int businessId);
         Task<List<LocationModel>> ListLeaveLocationsAsync(int businessId, CancellationToken cancellationToken = default);
+        List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId);
+        Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, CancellationToken cancellationToken = default);
         List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId, OverlappingLeaveRequestsQueryModel request);
         Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, OverlappingLeaveRequestsQueryModel request, CancellationToken cancellationToken = default);
         List<LocationModel> ListEmployeeLocations(int businessId, ODataQuery oDataQuery = null);
@@ -173,22 +115,10 @@ namespace KeyPayV2.Uk.Functions
         Task<List<UkRosterShiftGenerateTimesheetModel>> GetRosterShiftsAsync(int businessId, CancellationToken cancellationToken = default);
         List<UkRosterShiftGenerateTimesheetModel> GetRosterShifts(int businessId, GetRosterShiftsQueryModel request);
         Task<List<UkRosterShiftGenerateTimesheetModel>> GetRosterShiftsAsync(int businessId, GetRosterShiftsQueryModel request, CancellationToken cancellationToken = default);
-        void CreateRosterShift(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request);
-        Task CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request, CancellationToken cancellationToken = default);
-        UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request);
-        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request, CancellationToken cancellationToken = default);
-        UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request);
-        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default);
-        List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request);
-        Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request, CancellationToken cancellationToken = default);
-        ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId);
-        Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, CancellationToken cancellationToken = default);
-        ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request);
-        Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request, CancellationToken cancellationToken = default);
-        void UpdateRosterShift(int businessId, RosterShiftEditModel shiftModel, int rosterShiftId, UpdateRosterShiftQueryModel request);
-        Task UpdateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, int rosterShiftId, UpdateRosterShiftQueryModel request, CancellationToken cancellationToken = default);
-        void StubShiftTimesheets(int businessId, int rosterShiftId, StubRosterShiftViewModel model);
-        Task StubShiftTimesheetsAsync(int businessId, int rosterShiftId, StubRosterShiftViewModel model, CancellationToken cancellationToken = default);
+        UkEssRosterShiftModel CreateRosterShift(int businessId, RosterShiftEditModel shiftModel);
+        Task<UkEssRosterShiftModel> CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CancellationToken cancellationToken = default);
+        UkEssRosterShiftModel CreateRosterShift(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request);
+        Task<UkEssRosterShiftModel> CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request, CancellationToken cancellationToken = default);
         List<ManagerRosterEmployeeModel> ListRosterEmployees(int businessId);
         Task<List<ManagerRosterEmployeeModel>> ListRosterEmployeesAsync(int businessId, CancellationToken cancellationToken = default);
         List<LocationModel> ListRosterLocations(int businessId);
@@ -201,696 +131,116 @@ namespace KeyPayV2.Uk.Functions
         Task<List<ManagerRosterEmployeeModel>> ListManagerRosterEmployeesAsync(int businessId, CancellationToken cancellationToken = default);
         List<RosterShiftRole> GetTheListOfRolesAvailable(int businessId);
         Task<List<RosterShiftRole>> GetTheListOfRolesAvailableAsync(int businessId, CancellationToken cancellationToken = default);
+        UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId);
+        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request);
+        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request, CancellationToken cancellationToken = default);
+        UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId);
+        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request);
+        Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default);
+        List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId);
+        Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request);
+        Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request, CancellationToken cancellationToken = default);
+        ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId);
+        Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, CancellationToken cancellationToken = default);
+        ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request);
+        Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request, CancellationToken cancellationToken = default);
+        UkEssRosterShiftModel UpdateRosterShift(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel);
+        Task<UkEssRosterShiftModel> UpdateRosterShiftAsync(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, CancellationToken cancellationToken = default);
+        UkEssRosterShiftModel UpdateRosterShift(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, UpdateRosterShiftQueryModel request);
+        Task<UkEssRosterShiftModel> UpdateRosterShiftAsync(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, UpdateRosterShiftQueryModel request, CancellationToken cancellationToken = default);
+        void StubShiftTimesheets(int businessId, int rosterShiftId, StubRosterShiftViewModel model);
+        Task StubShiftTimesheetsAsync(int businessId, int rosterShiftId, StubRosterShiftViewModel model, CancellationToken cancellationToken = default);
         TimesheetRoundingRulesModel GetRoundingRules(int businessId);
         Task<TimesheetRoundingRulesModel> GetRoundingRulesAsync(int businessId, CancellationToken cancellationToken = default);
         void SetRoundingRules(int businessId, TimesheetRoundingRulesModel roundingRules);
         Task SetRoundingRulesAsync(int businessId, TimesheetRoundingRulesModel roundingRules, CancellationToken cancellationToken = default);
+        UkIndividualTimesheetLineModel CreateTimesheetLine(int businessId, UkIndividualTimesheetLineModel request);
+        Task<UkIndividualTimesheetLineModel> CreateTimesheetLineAsync(int businessId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
         PagedResultModel<ManagerTimesheetLineModel> GetBusinessTimesheets(int businessId);
         Task<PagedResultModel<ManagerTimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, CancellationToken cancellationToken = default);
         PagedResultModel<ManagerTimesheetLineModel> GetBusinessTimesheets(int businessId, GetBusinessTimesheetsQueryModel request);
         Task<PagedResultModel<ManagerTimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, GetBusinessTimesheetsQueryModel request, CancellationToken cancellationToken = default);
-        UkIndividualTimesheetLineModel CreateTimesheetLine(int businessId, UkIndividualTimesheetLineModel request);
-        Task<UkIndividualTimesheetLineModel> CreateTimesheetLineAsync(int businessId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
-        UkIndividualTimesheetLineModel UpdateTimesheetLine(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request);
-        Task<UkIndividualTimesheetLineModel> UpdateTimesheetLineAsync(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
         List<ManagerEmployeeGroup> ListEmployeeGroups(int businessId);
         Task<List<ManagerEmployeeGroup>> ListEmployeeGroupsAsync(int businessId, CancellationToken cancellationToken = default);
         List<ManagerTimesheetEmployeeModel> ListTimesheetEmployees(int businessId);
         Task<List<ManagerTimesheetEmployeeModel>> ListTimesheetEmployeesAsync(int businessId, CancellationToken cancellationToken = default);
         List<LocationModel> ListTimesheetLocations(int businessId);
         Task<List<LocationModel>> ListTimesheetLocationsAsync(int businessId, CancellationToken cancellationToken = default);
+        UkIndividualTimesheetLineModel UpdateTimesheetLine(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request);
+        Task<UkIndividualTimesheetLineModel> UpdateTimesheetLineAsync(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default);
+        void DownloadDocument(int businessId, int employeeId, int documentId);
+        Task DownloadDocumentAsync(int businessId, int employeeId, int documentId, CancellationToken cancellationToken = default);
+        ManagerExpenseRequestModel CreateExpenseRequest(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest);
+        Task<ManagerExpenseRequestModel> CreateExpenseRequestAsync(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default);
+        ExpenseReferenceData GetExpensesReferenceData(int businessId, int employeeId);
+        Task<ExpenseReferenceData> GetExpensesReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        ManagerExpenseRequestModel GetExpenseRequest(int businessId, int employeeId, int expenseRequestId);
+        Task<ManagerExpenseRequestModel> GetExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        ManagerExpenseRequestModel EditExpenseRequest(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest);
+        Task<ManagerExpenseRequestModel> EditExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default);
+        void DeleteExpenseRequest(int businessId, int employeeId, int expenseRequestId);
+        Task DeleteExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        ManagerExpenseRequestModel ApproveExpenseRequest(int businessId, int employeeId, int expenseRequestId);
+        Task<ManagerExpenseRequestModel> ApproveExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId);
+        Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, CancellationToken cancellationToken = default);
+        AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request);
+        Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default);
+        ManagerExpenseRequestModel DeclineExpenseRequest(int businessId, int employeeId, int expenseRequestId, DeclineReason reason);
+        Task<ManagerExpenseRequestModel> DeclineExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, DeclineReason reason, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel CreateLeaveRequest(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication);
+        Task<ManagerLeaveRequestModel> CreateLeaveRequestAsync(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default);
+        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId);
+        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request);
+        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default);
+        List<ManagerLeaveCategoryModel> ListLeaveCategories(int businessId, int employeeId);
+        Task<List<ManagerLeaveCategoryModel>> ListLeaveCategoriesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId);
+        Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId, EstimateLeaveHoursQueryModel request);
+        Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel GetLeaveRequestById(int businessId, int employeeId, int leaveRequestId);
+        Task<ManagerLeaveRequestModel> GetLeaveRequestByIdAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel DeleteLeaveRequest(int businessId, int employeeId, int leaveRequestId);
+        Task<ManagerLeaveRequestModel> DeleteLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel UpdateLeaveRequest(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication);
+        Task<ManagerLeaveRequestModel> UpdateLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel ApproveLeaveRequest(int businessId, int employeeId, int leaveRequestId);
+        Task<ManagerLeaveRequestModel> ApproveLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        DocumentFile GetLeaveRequestAttachment(int businessId, int employeeId, int leaveRequestId);
+        Task<DocumentFile> GetLeaveRequestAttachmentAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        ManagerLeaveRequestModel DeclineLeaveRequest(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason);
+        Task<ManagerLeaveRequestModel> DeclineLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason, CancellationToken cancellationToken = default);
+        List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId, int employeeId, int leaveRequestId);
+        Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        ManagerUnavailabilityModel CreateUnavailability(int businessId, int employeeId, UnavailabilityEditModel model);
+        Task<ManagerUnavailabilityModel> CreateUnavailabilityAsync(int businessId, int employeeId, UnavailabilityEditModel model, CancellationToken cancellationToken = default);
+        ManagerUnavailabilityModel UpdateUnavailability(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model);
+        Task<ManagerUnavailabilityModel> UpdateUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model, CancellationToken cancellationToken = default);
+        void DeleteUnavailability(int businessId, int employeeId, int unavailabilityId);
+        Task DeleteUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, CancellationToken cancellationToken = default);
+        UkTimesheetReferenceData GetTimesheetReferenceData(int businessId, int employeeId);
+        Task<UkTimesheetReferenceData> GetTimesheetReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        ManagerTimesheetLineModel GetTimesheet(int businessId, int employeeId, int timesheetId);
+        Task<ManagerTimesheetLineModel> GetTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
+        ManagerTimesheetLineModel EditTimesheet(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet);
+        Task<ManagerTimesheetLineModel> EditTimesheetAsync(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet, CancellationToken cancellationToken = default);
+        void DeleteTimesheet(int businessId, int employeeId, int timesheetId);
+        Task DeleteTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
+        ManagerTimesheetLineModel ApproveTimesheet(int businessId, int employeeId, int timesheetId);
+        Task<ManagerTimesheetLineModel> ApproveTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
+        ManagerTimesheetLineModel RejectTimesheet(int businessId, int employeeId, int timesheetId);
+        Task<ManagerTimesheetLineModel> RejectTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default);
         List<UkAvailableBusinessModel> ListBusinesses();
         Task<List<UkAvailableBusinessModel>> ListBusinessesAsync(CancellationToken cancellationToken = default);
     }
     public class ManagerFunction : BaseFunction, IManagerFunction
     {
         public ManagerFunction(ApiRequestExecutor api) : base(api) {}
-
-        /// <summary>
-        /// Download Document
-        /// </summary>
-        /// <remarks>
-        /// Downloads the document with the specified ID so long as it is visible to the manager.
-        /// </remarks>
-        public void DownloadDocument(int businessId, int employeeId, int documentId)
-        {
-            ApiRequest($"/business/{businessId}/manager/{employeeId}/document/download/{documentId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Download Document
-        /// </summary>
-        /// <remarks>
-        /// Downloads the document with the specified ID so long as it is visible to the manager.
-        /// </remarks>
-        public Task DownloadDocumentAsync(int businessId, int employeeId, int documentId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/document/download/{documentId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create expense request
-        /// </summary>
-        /// <remarks>
-        /// Creates an expense request for the employee
-        /// </remarks>
-        public ManagerExpenseRequestModel CreateExpenseRequest(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest)
-        {
-            return ApiRequest<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense", expenseRequest, Method.Post);
-        }
-
-        /// <summary>
-        /// Create expense request
-        /// </summary>
-        /// <remarks>
-        /// Creates an expense request for the employee
-        /// </remarks>
-        public Task<ManagerExpenseRequestModel> CreateExpenseRequestAsync(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense", expenseRequest, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get expense request
-        /// </summary>
-        /// <remarks>
-        /// Gets the expense request  with the specified ID.
-        /// </remarks>
-        public ManagerExpenseRequestModel GetExpenseRequest(int businessId, int employeeId, int expenseRequestId)
-        {
-            return ApiRequest<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get expense request
-        /// </summary>
-        /// <remarks>
-        /// Gets the expense request  with the specified ID.
-        /// </remarks>
-        public Task<ManagerExpenseRequestModel> GetExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Edit Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Edits the Expense Request with the specified ID.
-        /// </remarks>
-        public ManagerExpenseRequestModel EditExpenseRequest(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest)
-        {
-            return ApiRequest<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", expenseRequest, Method.Put);
-        }
-
-        /// <summary>
-        /// Edit Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Edits the Expense Request with the specified ID.
-        /// </remarks>
-        public Task<ManagerExpenseRequestModel> EditExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", expenseRequest, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the Expense Request with the specified ID.
-        /// </remarks>
-        public void DeleteExpenseRequest(int businessId, int employeeId, int expenseRequestId)
-        {
-            ApiRequest($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the Expense Request with the specified ID.
-        /// </remarks>
-        public Task DeleteExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Approve Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Approves the Expense Request with the specified ID.
-        /// </remarks>
-        public ManagerExpenseRequestModel ApproveExpenseRequest(int businessId, int employeeId, int expenseRequestId)
-        {
-            return ApiRequest<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/approve", Method.Post);
-        }
-
-        /// <summary>
-        /// Approve Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Approves the Expense Request with the specified ID.
-        /// </remarks>
-        public Task<ManagerExpenseRequestModel> ApproveExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/approve", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads an attachment to the expense request with the specified ID.
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request)
-        {
-            return ApiFileRequest<AttachmentModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", file, Method.Put);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads an attachment to the expense request with the specified ID.
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiFileRequestAsync<AttachmentModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", file, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Decline Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Declines the Expense Request with the specified ID.
-        /// </remarks>
-        public ManagerExpenseRequestModel DeclineExpenseRequest(int businessId, int employeeId, int expenseRequestId, DeclineReason reason)
-        {
-            return ApiRequest<ManagerExpenseRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/decline", reason, Method.Post);
-        }
-
-        /// <summary>
-        /// Decline Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Declines the Expense Request with the specified ID.
-        /// </remarks>
-        public Task<ManagerExpenseRequestModel> DeclineExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, DeclineReason reason, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerExpenseRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/decline", reason, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get expenses reference data
-        /// </summary>
-        /// <remarks>
-        /// Gets the Tax Codes, Expense Categories, and Locations for this Employee.
-        /// </remarks>
-        public ExpenseReferenceData GetExpensesReferenceData(int businessId, int employeeId)
-        {
-            return ApiRequest<ExpenseReferenceData>($"/business/{businessId}/manager/{employeeId}/expense/reference", Method.Get);
-        }
-
-        /// <summary>
-        /// Get expenses reference data
-        /// </summary>
-        /// <remarks>
-        /// Gets the Tax Codes, Expense Categories, and Locations for this Employee.
-        /// </remarks>
-        public Task<ExpenseReferenceData> GetExpensesReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ExpenseReferenceData>($"/business/{businessId}/manager/{employeeId}/expense/reference", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Creates a new leave request.
-        /// </remarks>
-        public ManagerLeaveRequestModel CreateLeaveRequest(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication)
-        {
-            return ApiRequest<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest", leaveApplication, Method.Post);
-        }
-
-        /// <summary>
-        /// Create Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Creates a new leave request.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> CreateLeaveRequestAsync(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest", leaveApplication, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Leave Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a leave request with the specified ID.
-        /// </remarks>
-        public ManagerLeaveRequestModel GetLeaveRequestById(int businessId, int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Leave Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a leave request with the specified ID.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> GetLeaveRequestByIdAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the leave request with the specified ID.
-        /// </remarks>
-        public ManagerLeaveRequestModel UpdateLeaveRequest(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication)
-        {
-            return ApiRequest<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", leaveApplication, Method.Post);
-        }
-
-        /// <summary>
-        /// Update Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the leave request with the specified ID.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> UpdateLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", leaveApplication, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the leave request with the specified ID.
-        /// </remarks>
-        public ManagerLeaveRequestModel DeleteLeaveRequest(int businessId, int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the leave request with the specified ID.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> DeleteLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Approve Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Approves the leave request with the specified ID.
-        /// </remarks>
-        public ManagerLeaveRequestModel ApproveLeaveRequest(int businessId, int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/approve", Method.Post);
-        }
-
-        /// <summary>
-        /// Approve Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Approves the leave request with the specified ID.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> ApproveLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/approve", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Leave Request Attachment
-        /// </summary>
-        /// <remarks>
-        /// Gets the file for an employee leave request by ID.
-        /// </remarks>
-        public DocumentFile GetLeaveRequestAttachment(int businessId, int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<DocumentFile>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/attachment", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Leave Request Attachment
-        /// </summary>
-        /// <remarks>
-        /// Gets the file for an employee leave request by ID.
-        /// </remarks>
-        public Task<DocumentFile> GetLeaveRequestAttachmentAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<DocumentFile>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/attachment", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Decline Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Declines the leave request with the specified ID.
-        /// </remarks>
-        public ManagerLeaveRequestModel DeclineLeaveRequest(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason)
-        {
-            return ApiRequest<ManagerLeaveRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/decline", declineReason, Method.Post);
-        }
-
-        /// <summary>
-        /// Decline Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Declines the leave request with the specified ID.
-        /// </remarks>
-        public Task<ManagerLeaveRequestModel> DeclineLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/decline", declineReason, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Overlapping Leave Requests
-        /// </summary>
-        /// <remarks>
-        /// Lists all the overlapping leave requests for the given date range.
-        /// </remarks>
-        public List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId, int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/overlapping", Method.Get);
-        }
-
-        /// <summary>
-        /// Overlapping Leave Requests
-        /// </summary>
-        /// <remarks>
-        /// Lists all the overlapping leave requests for the given date range.
-        /// </remarks>
-        public Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/overlapping", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Leave Balances
-        /// </summary>
-        /// <remarks>
-        /// Gets the leave balances for the employee.
-        /// </remarks>
-        public List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId)
-        {
-            return ApiRequest<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Leave Balances
-        /// </summary>
-        /// <remarks>
-        /// Gets the leave balances for the employee.
-        /// </remarks>
-        public Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Leave Balances
-        /// </summary>
-        /// <remarks>
-        /// Gets the leave balances for the employee.
-        /// </remarks>
-        public List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request)
-        {
-            return ApiRequest<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances?asAtDate={(request.AsAtDate.HasValue ? request.AsAtDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Leave Balances
-        /// </summary>
-        /// <remarks>
-        /// Gets the leave balances for the employee.
-        /// </remarks>
-        public Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances?asAtDate={(request.AsAtDate.HasValue ? request.AsAtDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Leave Categories
-        /// </summary>
-        /// <remarks>
-        /// Lists all of the leave categories for this employee.
-        /// </remarks>
-        public List<ManagerLeaveCategoryModel> ListLeaveCategories(int businessId, int employeeId)
-        {
-            return ApiRequest<List<ManagerLeaveCategoryModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/categories", Method.Get);
-        }
-
-        /// <summary>
-        /// List Leave Categories
-        /// </summary>
-        /// <remarks>
-        /// Lists all of the leave categories for this employee.
-        /// </remarks>
-        public Task<List<ManagerLeaveCategoryModel>> ListLeaveCategoriesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<ManagerLeaveCategoryModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/categories", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Estimate Leave Hours
-        /// </summary>
-        /// <remarks>
-        /// Estimates the number of hours of leave required based on date and leave category.
-        /// </remarks>
-        public ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId, EstimateLeaveHoursQueryModel request)
-        {
-            return ApiRequest<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&leaveCategoryId={request.LeaveCategoryId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Estimate Leave Hours
-        /// </summary>
-        /// <remarks>
-        /// Estimates the number of hours of leave required based on date and leave category.
-        /// </remarks>
-        public Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&leaveCategoryId={request.LeaveCategoryId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Create an unavailability for an employee.
-        /// </remarks>
-        public ManagerUnavailabilityModel CreateUnavailability(int businessId, int employeeId, UnavailabilityEditModel model)
-        {
-            return ApiRequest<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Create Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Create an unavailability for an employee.
-        /// </remarks>
-        public Task<ManagerUnavailabilityModel> CreateUnavailabilityAsync(int businessId, int employeeId, UnavailabilityEditModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Updates the unavailability with the specified ID.
-        /// </remarks>
-        public ManagerUnavailabilityModel UpdateUnavailability(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model)
-        {
-            return ApiRequest<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Updates the unavailability with the specified ID.
-        /// </remarks>
-        public Task<ManagerUnavailabilityModel> UpdateUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Deletes the unavailability with the specified ID.
-        /// </remarks>
-        public void DeleteUnavailability(int businessId, int employeeId, int unavailabilityId)
-        {
-            ApiRequest($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Unavailability
-        /// </summary>
-        /// <remarks>
-        /// Deletes the unavailability with the specified ID.
-        /// </remarks>
-        public Task DeleteUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get timesheet
-        /// </summary>
-        /// <remarks>
-        /// Gets the timesheet with the specified ID.
-        /// </remarks>
-        public ManagerTimesheetLineModel GetTimesheet(int businessId, int employeeId, int timesheetId)
-        {
-            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get timesheet
-        /// </summary>
-        /// <remarks>
-        /// Gets the timesheet with the specified ID.
-        /// </remarks>
-        public Task<ManagerTimesheetLineModel> GetTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Edit Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Edits the timesheet with the specified ID.
-        /// classificationId field left unspecified or null will not be changed.
-        /// To update classificationId field provide the new value, to specifically clear a value use "0".
-        /// </remarks>
-        public ManagerTimesheetLineModel EditTimesheet(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet)
-        {
-            return ApiRequest<ManagerTimesheetLineModel,ManagerTimesheetSubmitModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post);
-        }
-
-        /// <summary>
-        /// Edit Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Edits the timesheet with the specified ID.
-        /// classificationId field left unspecified or null will not be changed.
-        /// To update classificationId field provide the new value, to specifically clear a value use "0".
-        /// </remarks>
-        public Task<ManagerTimesheetLineModel> EditTimesheetAsync(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerTimesheetLineModel,ManagerTimesheetSubmitModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Deletes the timesheet with the specified ID.
-        /// </remarks>
-        public void DeleteTimesheet(int businessId, int employeeId, int timesheetId)
-        {
-            ApiRequest($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Deletes the timesheet with the specified ID.
-        /// </remarks>
-        public Task DeleteTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Approve Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Approves the timesheet with the specified ID.
-        /// </remarks>
-        public ManagerTimesheetLineModel ApproveTimesheet(int businessId, int employeeId, int timesheetId)
-        {
-            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/approve", Method.Post);
-        }
-
-        /// <summary>
-        /// Approve Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Approves the timesheet with the specified ID.
-        /// </remarks>
-        public Task<ManagerTimesheetLineModel> ApproveTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/approve", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Reject Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Rejects the timesheet with the specified ID.
-        /// </remarks>
-        public ManagerTimesheetLineModel RejectTimesheet(int businessId, int employeeId, int timesheetId)
-        {
-            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/reject", Method.Post);
-        }
-
-        /// <summary>
-        /// Reject Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Rejects the timesheet with the specified ID.
-        /// </remarks>
-        public Task<ManagerTimesheetLineModel> RejectTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/reject", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get timesheet reference data
-        /// </summary>
-        /// <remarks>
-        /// Gets the Work Types, Shift Conditions, Locations, and Reporting Dimension Values (if enabled) for this Employee.
-        /// </remarks>
-        public UkTimesheetReferenceData GetTimesheetReferenceData(int businessId, int employeeId)
-        {
-            return ApiRequest<UkTimesheetReferenceData>($"/business/{businessId}/manager/{employeeId}/timesheet/reference", Method.Get);
-        }
-
-        /// <summary>
-        /// Get timesheet reference data
-        /// </summary>
-        /// <remarks>
-        /// Gets the Work Types, Shift Conditions, Locations, and Reporting Dimension Values (if enabled) for this Employee.
-        /// </remarks>
-        public Task<UkTimesheetReferenceData> GetTimesheetReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkTimesheetReferenceData>($"/business/{businessId}/manager/{employeeId}/timesheet/reference", Method.Get, cancellationToken);
-        }
 
         /// <summary>
         /// Get Dashboard
@@ -920,9 +270,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public void GetEmployeeProfileImage(int businessId, int employeeId)
+        public byte[] GetEmployeeProfileImage(int businessId, int employeeId)
         {
-            ApiRequest($"/business/{businessId}/manager/employee/{employeeId}/image", Method.Get);
+            return ApiByteArrayRequest($"/business/{businessId}/manager/employee/{employeeId}/image", Method.Get);
         }
 
         /// <summary>
@@ -931,9 +281,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        public Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/manager/employee/{employeeId}/image", Method.Get, cancellationToken);
+            return ApiByteArrayRequestAsync($"/business/{businessId}/manager/employee/{employeeId}/image", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1086,7 +436,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public PagedResultModel<ManagerExpenseRequestModel> GetBusinessExpenseRequests(int businessId, GetBusinessExpenseRequestsQueryModel request)
         {
-            return ApiRequest<PagedResultModel<ManagerExpenseRequestModel>>($"/business/{businessId}/manager/expense?status={request.Status}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&employeeId={request.EmployeeId}&locationId={request.LocationId}&expenseCategoryId={request.ExpenseCategoryId}&groupBy={request.GroupBy}&currentPage={request.CurrentPage}&pageSize={request.PageSize}", Method.Get);
+            return ApiRequest<PagedResultModel<ManagerExpenseRequestModel>>($"/business/{businessId}/manager/expense?Status={request.Status}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&ExpenseCategoryId={request.ExpenseCategoryId}&GroupBy={request.GroupBy}&CurrentPage={request.CurrentPage}&PageSize={request.PageSize}", Method.Get);
         }
 
         /// <summary>
@@ -1097,7 +447,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<PagedResultModel<ManagerExpenseRequestModel>> GetBusinessExpenseRequestsAsync(int businessId, GetBusinessExpenseRequestsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<PagedResultModel<ManagerExpenseRequestModel>>($"/business/{businessId}/manager/expense?status={request.Status}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&employeeId={request.EmployeeId}&locationId={request.LocationId}&expenseCategoryId={request.ExpenseCategoryId}&groupBy={request.GroupBy}&currentPage={request.CurrentPage}&pageSize={request.PageSize}", Method.Get, cancellationToken);
+            return ApiRequestAsync<PagedResultModel<ManagerExpenseRequestModel>>($"/business/{businessId}/manager/expense?Status={request.Status}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&ExpenseCategoryId={request.ExpenseCategoryId}&GroupBy={request.GroupBy}&CurrentPage={request.CurrentPage}&PageSize={request.PageSize}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1208,6 +558,122 @@ namespace KeyPayV2.Uk.Functions
         public Task<List<TimeAndAttendanceKioskModel>> GetKiosksAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<TimeAndAttendanceKioskModel>>($"/business/{businessId}/manager/kiosk", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public List<UkTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model)
+        {
+            return ApiRequest<List<UkTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/manager/kiosk/shifts", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public Task<List<UkTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/manager/kiosk/shifts", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Business Timesheets
+        /// </summary>
+        /// <remarks>
+        /// Retrieves all timesheets that the manager has access to for the specified business.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<TimesheetLineModel> GetBusinessTimesheets(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<TimesheetLineModel>>($"/business/{businessId}/manager/kiosk/timesheet{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Business Timesheets
+        /// </summary>
+        /// <remarks>
+        /// Retrieves all timesheets that the manager has access to for the specified business.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<TimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<TimesheetLineModel>>($"/business/{businessId}/manager/kiosk/timesheet{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create kiosk timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Create an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public IndividualTimesheetLineModel CreateKioskTimesheetLine(int businessId, IndividualTimesheetLineModel request)
+        {
+            return ApiRequest<IndividualTimesheetLineModel,IndividualTimesheetLineModel>($"/business/{businessId}/manager/kiosk/timesheet", request, Method.Post);
+        }
+
+        /// <summary>
+        /// Create kiosk timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Create an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public Task<IndividualTimesheetLineModel> CreateKioskTimesheetLineAsync(int businessId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<IndividualTimesheetLineModel,IndividualTimesheetLineModel>($"/business/{businessId}/manager/kiosk/timesheet", request, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update kiosk timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public IndividualTimesheetLineModel UpdateKioskTimesheetLine(int businessId, int timesheetLineId, IndividualTimesheetLineModel request)
+        {
+            return ApiRequest<IndividualTimesheetLineModel,IndividualTimesheetLineModel>($"/business/{businessId}/manager/kiosk/timesheet/{timesheetLineId}", request, Method.Put);
+        }
+
+        /// <summary>
+        /// Update kiosk timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public Task<IndividualTimesheetLineModel> UpdateKioskTimesheetLineAsync(int businessId, int timesheetLineId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<IndividualTimesheetLineModel,IndividualTimesheetLineModel>($"/business/{businessId}/manager/kiosk/timesheet/{timesheetLineId}", request, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update comments in a timesheet
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line with comments
+        /// </remarks>
+        public IndividualTimesheetLineModel UpdateCommentsInATimesheet(int businessId, string timesheetLineId, TimesheetLineCommentsModel request)
+        {
+            return ApiRequest<IndividualTimesheetLineModel,TimesheetLineCommentsModel>($"/business/{businessId}/manager/kiosk/timesheetcomments/{timesheetLineId}", request, Method.Put);
+        }
+
+        /// <summary>
+        /// Update comments in a timesheet
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line with comments
+        /// </remarks>
+        public Task<IndividualTimesheetLineModel> UpdateCommentsInATimesheetAsync(int businessId, string timesheetLineId, TimesheetLineCommentsModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<IndividualTimesheetLineModel,TimesheetLineCommentsModel>($"/business/{businessId}/manager/kiosk/timesheetcomments/{timesheetLineId}", request, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -1374,7 +840,7 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by email.
         /// </remarks>
-        public void SendPinResetEmail(int businessId, PinResetModel model, string kioskId)
+        public void SendPinResetEmail(int businessId, string kioskId, PinResetModel model)
         {
             ApiRequest($"/business/{businessId}/manager/kiosk/{kioskId}/emailreset", model, Method.Post);
         }
@@ -1385,7 +851,7 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by email.
         /// </remarks>
-        public Task SendPinResetEmailAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task SendPinResetEmailAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/manager/kiosk/{kioskId}/emailreset", model, Method.Post, cancellationToken);
         }
@@ -1464,7 +930,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public List<ShiftNoteViewModel> GetShiftNotes(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request)
         {
-            return ApiRequest<List<ShiftNoteViewModel>>($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get);
+            return ApiRequest<List<ShiftNoteViewModel>>($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get);
         }
 
         /// <summary>
@@ -1475,7 +941,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1501,6 +967,28 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
+        /// Mark Shift Notes Read
+        /// </summary>
+        /// <remarks>
+        /// Marks some shift notes as either read or unread.
+        /// </remarks>
+        public void MarkShiftNotesRead(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model)
+        {
+            ApiRequest($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Mark Shift Notes Read
+        /// </summary>
+        /// <remarks>
+        /// Marks some shift notes as either read or unread.
+        /// </remarks>
+        public Task MarkShiftNotesReadAsync(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
         /// Delete Note from Shift
         /// </summary>
         /// <remarks>
@@ -1523,34 +1011,12 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Mark Shift Notes Read
-        /// </summary>
-        /// <remarks>
-        /// Marks some shift notes as either read or unread.
-        /// </remarks>
-        public void MarkShiftNotesRead(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId)
-        {
-            ApiRequest($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Mark Shift Notes Read
-        /// </summary>
-        /// <remarks>
-        /// Marks some shift notes as either read or unread.
-        /// </remarks>
-        public Task MarkShiftNotesReadAsync(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
         /// Send PIN Reset SMS
         /// </summary>
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by SMS. Note that the current business must have SMS notifications enabled.
         /// </remarks>
-        public void SendPinResetSms(int businessId, PinResetModel model, string kioskId)
+        public void SendPinResetSms(int businessId, string kioskId, PinResetModel model)
         {
             ApiRequest($"/business/{businessId}/manager/kiosk/{kioskId}/smsreset", model, Method.Post);
         }
@@ -1561,7 +1027,7 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by SMS. Note that the current business must have SMS notifications enabled.
         /// </remarks>
-        public Task SendPinResetSmsAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task SendPinResetSmsAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/manager/kiosk/{kioskId}/smsreset", model, Method.Post, cancellationToken);
         }
@@ -1616,9 +1082,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Quickly add an employee with minimal details and kiosk enabled. If the employee already exists, the kiosk will be enabled for that employee.
         /// </remarks>
-        public void AddAnEmployee(int businessId, int kioskId, KioskCreateEmployeeModel model)
+        public BasicKioskEmployeeModel AddAnEmployee(int businessId, int kioskId, KioskCreateEmployeeModel model)
         {
-            ApiRequest($"/business/{businessId}/manager/kiosk/{kioskId}/staff", model, Method.Post);
+            return ApiRequest<BasicKioskEmployeeModel,KioskCreateEmployeeModel>($"/business/{businessId}/manager/kiosk/{kioskId}/staff", model, Method.Post);
         }
 
         /// <summary>
@@ -1627,9 +1093,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Quickly add an employee with minimal details and kiosk enabled. If the employee already exists, the kiosk will be enabled for that employee.
         /// </remarks>
-        public Task AddAnEmployeeAsync(int businessId, int kioskId, KioskCreateEmployeeModel model, CancellationToken cancellationToken = default)
+        public Task<BasicKioskEmployeeModel> AddAnEmployeeAsync(int businessId, int kioskId, KioskCreateEmployeeModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/{kioskId}/staff", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<BasicKioskEmployeeModel,KioskCreateEmployeeModel>($"/business/{businessId}/manager/kiosk/{kioskId}/staff", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -1652,122 +1118,6 @@ namespace KeyPayV2.Uk.Functions
         public Task<KioskEmployeeModel> StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<KioskEmployeeModel,StartBreakModel>($"/business/{businessId}/manager/kiosk/{kioskId}/startbreak", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Shifts
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public List<UkTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model)
-        {
-            return ApiRequest<List<UkTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/manager/kiosk/shifts", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Shifts
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public Task<List<UkTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<UkTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/manager/kiosk/shifts", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Business Timesheets
-        /// </summary>
-        /// <remarks>
-        /// Retrieves all timesheets that the manager has access to for the specified business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<TimesheetLineModel> GetBusinessTimesheets(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<TimesheetLineModel>>($"/business/{businessId}/manager/kiosk/timesheet{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Business Timesheets
-        /// </summary>
-        /// <remarks>
-        /// Retrieves all timesheets that the manager has access to for the specified business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<TimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<TimesheetLineModel>>($"/business/{businessId}/manager/kiosk/timesheet{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create kiosk timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Create an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public void CreateKioskTimesheetLine(int businessId, IndividualTimesheetLineModel request)
-        {
-            ApiRequest($"/business/{businessId}/manager/kiosk/timesheet", request, Method.Post);
-        }
-
-        /// <summary>
-        /// Create kiosk timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Create an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public Task CreateKioskTimesheetLineAsync(int businessId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/timesheet", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update kiosk timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public void UpdateKioskTimesheetLine(int businessId, int timesheetLineId, IndividualTimesheetLineModel request)
-        {
-            ApiRequest($"/business/{businessId}/manager/kiosk/timesheet/{timesheetLineId}", request, Method.Put);
-        }
-
-        /// <summary>
-        /// Update kiosk timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public Task UpdateKioskTimesheetLineAsync(int businessId, int timesheetLineId, IndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/timesheet/{timesheetLineId}", request, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update comments in a timesheet
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line with comments
-        /// </remarks>
-        public void UpdateCommentsInATimesheet(int businessId, TimesheetLineCommentsModel request, string timesheetLineId)
-        {
-            ApiRequest($"/business/{businessId}/manager/kiosk/timesheetcomments/{timesheetLineId}", request, Method.Put);
-        }
-
-        /// <summary>
-        /// Update comments in a timesheet
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line with comments
-        /// </remarks>
-        public Task UpdateCommentsInATimesheetAsync(int businessId, TimesheetLineCommentsModel request, string timesheetLineId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/kiosk/timesheetcomments/{timesheetLineId}", request, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -1800,7 +1150,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public List<ManagerLeaveRequestModel> ListLeaveRequests(int businessId, ListLeaveRequestsQueryModel request)
         {
-            return ApiRequest<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest?status={request.Status}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&leaveCategoryId={request.LeaveCategoryId}&locationId={request.LocationId}&employeeId={request.EmployeeId}&groupBy={request.GroupBy}&restrictOverlappingLeave={request.RestrictOverlappingLeave}", Method.Get);
+            return ApiRequest<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest?Status={request.Status}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&LeaveCategoryId={request.LeaveCategoryId}&LocationId={request.LocationId}&EmployeeId={request.EmployeeId}&GroupBy={request.GroupBy}&RestrictOverlappingLeave={request.RestrictOverlappingLeave}", Method.Get);
         }
 
         /// <summary>
@@ -1811,7 +1161,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<List<ManagerLeaveRequestModel>> ListLeaveRequestsAsync(int businessId, ListLeaveRequestsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest?status={request.Status}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&leaveCategoryId={request.LeaveCategoryId}&locationId={request.LocationId}&employeeId={request.EmployeeId}&groupBy={request.GroupBy}&restrictOverlappingLeave={request.RestrictOverlappingLeave}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest?Status={request.Status}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&LeaveCategoryId={request.LeaveCategoryId}&LocationId={request.LocationId}&EmployeeId={request.EmployeeId}&GroupBy={request.GroupBy}&RestrictOverlappingLeave={request.RestrictOverlappingLeave}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1878,6 +1228,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<List<LocationModel>> ListLeaveLocationsAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<LocationModel>>($"/business/{businessId}/manager/leaverequest/locations", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Overlapping Leave Requests
+        /// </summary>
+        /// <remarks>
+        /// Lists all the overlapping leave requests for the given date range.
+        /// </remarks>
+        public List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId)
+        {
+            return ApiRequest<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest/overlapping", Method.Get);
+        }
+
+        /// <summary>
+        /// Overlapping Leave Requests
+        /// </summary>
+        /// <remarks>
+        /// Lists all the overlapping leave requests for the given date range.
+        /// </remarks>
+        public Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/leaverequest/overlapping", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1984,7 +1356,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public List<UkRosterShiftGenerateTimesheetModel> GetRosterShifts(int businessId, GetRosterShiftsQueryModel request)
         {
-            return ApiRequest<List<UkRosterShiftGenerateTimesheetModel>>($"/business/{businessId}/manager/rostershift?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&shiftStatus={request.ShiftStatus}{ConvertEnumerableToQueryString("shiftStatuses", request.ShiftStatuses?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedLocations", request.SelectedLocations?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedEmployees", request.SelectedEmployees?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedRoles", request.SelectedRoles?.Select(x => x.ToString()))}&employeeId={request.EmployeeId}&locationId={request.LocationId}&employeeGroupId={request.EmployeeGroupId}&unassignedShiftsOnly={request.UnassignedShiftsOnly}&selectAllRoles={request.SelectAllRoles}&excludeShiftsOverlappingFromDate={request.ExcludeShiftsOverlappingFromDate}&pageSize={request.PageSize}&currentPage={request.CurrentPage}&includeWarnings={request.IncludeWarnings}", Method.Get);
+            return ApiRequest<List<UkRosterShiftGenerateTimesheetModel>>($"/business/{businessId}/manager/rostershift?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ShiftStatus={request.ShiftStatus}{ConvertEnumerableToQueryString("ShiftStatuses", request.ShiftStatuses?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedLocations", request.SelectedLocations?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedEmployees", request.SelectedEmployees?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedRoles", request.SelectedRoles?.Select(x => x.ToString()))}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&EmployeeGroupId={request.EmployeeGroupId}&UnassignedShiftsOnly={request.UnassignedShiftsOnly}&SelectAllRoles={request.SelectAllRoles}&ExcludeShiftsOverlappingFromDate={request.ExcludeShiftsOverlappingFromDate}&PageSize={request.PageSize}&CurrentPage={request.CurrentPage}&IncludeWarnings={request.IncludeWarnings}", Method.Get);
         }
 
         /// <summary>
@@ -1997,7 +1369,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<List<UkRosterShiftGenerateTimesheetModel>> GetRosterShiftsAsync(int businessId, GetRosterShiftsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<UkRosterShiftGenerateTimesheetModel>>($"/business/{businessId}/manager/rostershift?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&shiftStatus={request.ShiftStatus}{ConvertEnumerableToQueryString("shiftStatuses", request.ShiftStatuses?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedLocations", request.SelectedLocations?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedEmployees", request.SelectedEmployees?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("selectedRoles", request.SelectedRoles?.Select(x => x.ToString()))}&employeeId={request.EmployeeId}&locationId={request.LocationId}&employeeGroupId={request.EmployeeGroupId}&unassignedShiftsOnly={request.UnassignedShiftsOnly}&selectAllRoles={request.SelectAllRoles}&excludeShiftsOverlappingFromDate={request.ExcludeShiftsOverlappingFromDate}&pageSize={request.PageSize}&currentPage={request.CurrentPage}&includeWarnings={request.IncludeWarnings}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<UkRosterShiftGenerateTimesheetModel>>($"/business/{businessId}/manager/rostershift?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ShiftStatus={request.ShiftStatus}{ConvertEnumerableToQueryString("ShiftStatuses", request.ShiftStatuses?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedLocations", request.SelectedLocations?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedEmployees", request.SelectedEmployees?.Select(x => x.ToString()))}{ConvertEnumerableToQueryString("SelectedRoles", request.SelectedRoles?.Select(x => x.ToString()))}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&EmployeeGroupId={request.EmployeeGroupId}&UnassignedShiftsOnly={request.UnassignedShiftsOnly}&SelectAllRoles={request.SelectAllRoles}&ExcludeShiftsOverlappingFromDate={request.ExcludeShiftsOverlappingFromDate}&PageSize={request.PageSize}&CurrentPage={request.CurrentPage}&IncludeWarnings={request.IncludeWarnings}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2006,9 +1378,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Create or update an individual roster shift
         /// </remarks>
-        public void CreateRosterShift(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request)
+        public UkEssRosterShiftModel CreateRosterShift(int businessId, RosterShiftEditModel shiftModel)
         {
-            ApiRequest($"/business/{businessId}/manager/rostershift?publish={request.Publish}", shiftModel, Method.Post);
+            return ApiRequest<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift", shiftModel, Method.Post);
         }
 
         /// <summary>
@@ -2017,175 +1389,31 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Create or update an individual roster shift
         /// </remarks>
-        public Task CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request, CancellationToken cancellationToken = default)
+        public Task<UkEssRosterShiftModel> CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/manager/rostershift?publish={request.Publish}", shiftModel, Method.Post, cancellationToken);
+            return ApiRequestAsync<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift", shiftModel, Method.Post, cancellationToken);
         }
 
         /// <summary>
-        /// Find Matching Clock Off Roster Shift
+        /// Create roster shift
         /// </summary>
         /// <remarks>
-        /// If a roster shift exists that could match for this employee to clock off at this time
-        /// given kiosk settings for shift matching, returns that shift.
-        /// Otherwise, the Shift result will be null.
-        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// Create or update an individual roster shift
         /// </remarks>
-        public UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request)
+        public UkEssRosterShiftModel CreateRosterShift(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request)
         {
-            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift?publish={request.Publish}", shiftModel, Method.Post);
         }
 
         /// <summary>
-        /// Find Matching Clock Off Roster Shift
+        /// Create roster shift
         /// </summary>
         /// <remarks>
-        /// If a roster shift exists that could match for this employee to clock off at this time
-        /// given kiosk settings for shift matching, returns that shift.
-        /// Otherwise, the Shift result will be null.
-        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// Create or update an individual roster shift
         /// </remarks>
-        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request, CancellationToken cancellationToken = default)
+        public Task<UkEssRosterShiftModel> CreateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, CreateRosterShiftQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Find Matching Clock On Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// If a roster shift exists that could match for this employee to clock on at this time
-        /// given kiosk settings for shift matching, returns that shift.
-        /// Otherwise, the Shift result will be null.
-        /// Note that if the time matches a shift exactly, the Shift result will also be null.
-        /// </remarks>
-        public UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request)
-        {
-            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
-        }
-
-        /// <summary>
-        /// Find Matching Clock On Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// If a roster shift exists that could match for this employee to clock on at this time
-        /// given kiosk settings for shift matching, returns that shift.
-        /// Otherwise, the Shift result will be null.
-        /// Note that if the time matches a shift exactly, the Shift result will also be null.
-        /// </remarks>
-        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Find Nearby Roster Shifts
-        /// </summary>
-        /// <remarks>
-        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
-        /// </remarks>
-        public List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request)
-        {
-            return ApiRequest<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
-        }
-
-        /// <summary>
-        /// Find Nearby Roster Shifts
-        /// </summary>
-        /// <remarks>
-        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
-        /// </remarks>
-        public Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a roster shift with the specified ID.
-        /// </remarks>
-        public ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId)
-        {
-            return ApiRequest<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a roster shift with the specified ID.
-        /// </remarks>
-        public Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a roster shift with the specified ID.
-        /// </remarks>
-        public ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request)
-        {
-            return ApiRequest<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?includeCosts={request.IncludeCosts}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a roster shift with the specified ID.
-        /// </remarks>
-        public Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?includeCosts={request.IncludeCosts}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update roster shift
-        /// </summary>
-        /// <remarks>
-        /// Update an individual roster shift
-        /// </remarks>
-        public void UpdateRosterShift(int businessId, RosterShiftEditModel shiftModel, int rosterShiftId, UpdateRosterShiftQueryModel request)
-        {
-            ApiRequest($"/business/{businessId}/manager/rostershift/{rosterShiftId}?publish={request.Publish}", shiftModel, Method.Put);
-        }
-
-        /// <summary>
-        /// Update roster shift
-        /// </summary>
-        /// <remarks>
-        /// Update an individual roster shift
-        /// </remarks>
-        public Task UpdateRosterShiftAsync(int businessId, RosterShiftEditModel shiftModel, int rosterShiftId, UpdateRosterShiftQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/rostershift/{rosterShiftId}?publish={request.Publish}", shiftModel, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Stub Shift Timesheets
-        /// </summary>
-        /// <remarks>
-        /// Generates timesheets for the roster shift with the specified ID.
-        /// </remarks>
-        public void StubShiftTimesheets(int businessId, int rosterShiftId, StubRosterShiftViewModel model)
-        {
-            ApiRequest($"/business/{businessId}/manager/rostershift/{rosterShiftId}/stub", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Stub Shift Timesheets
-        /// </summary>
-        /// <remarks>
-        /// Generates timesheets for the roster shift with the specified ID.
-        /// </remarks>
-        public Task StubShiftTimesheetsAsync(int businessId, int rosterShiftId, StubRosterShiftViewModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/manager/rostershift/{rosterShiftId}/stub", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift?publish={request.Publish}", shiftModel, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2265,7 +1493,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public UkManagerRosterDataModel ManageRosterData(int businessId, ManageRosterDataQueryModel request)
         {
-            return ApiRequest<UkManagerRosterDataModel>($"/business/{businessId}/manager/rostershift/manage?date={request.Date.ToString("yyyy-MM-ddTHH:mm:ss")}&employeeId={request.EmployeeId}&locationId={request.LocationId}&roleId={request.RoleId}&includeCosts={request.IncludeCosts}&includeSubLocations={request.IncludeSubLocations}", Method.Get);
+            return ApiRequest<UkManagerRosterDataModel>($"/business/{businessId}/manager/rostershift/manage?Date={request.Date.ToString("yyyy-MM-ddTHH:mm:ss")}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&RoleId={request.RoleId}&IncludeCosts={request.IncludeCosts}&IncludeSubLocations={request.IncludeSubLocations}", Method.Get);
         }
 
         /// <summary>
@@ -2277,7 +1505,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<UkManagerRosterDataModel> ManageRosterDataAsync(int businessId, ManageRosterDataQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkManagerRosterDataModel>($"/business/{businessId}/manager/rostershift/manage?date={request.Date.ToString("yyyy-MM-ddTHH:mm:ss")}&employeeId={request.EmployeeId}&locationId={request.LocationId}&roleId={request.RoleId}&includeCosts={request.IncludeCosts}&includeSubLocations={request.IncludeSubLocations}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkManagerRosterDataModel>($"/business/{businessId}/manager/rostershift/manage?Date={request.Date.ToString("yyyy-MM-ddTHH:mm:ss")}&EmployeeId={request.EmployeeId}&LocationId={request.LocationId}&RoleId={request.RoleId}&IncludeCosts={request.IncludeCosts}&IncludeSubLocations={request.IncludeSubLocations}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2316,6 +1544,272 @@ namespace KeyPayV2.Uk.Functions
         public Task<List<RosterShiftRole>> GetTheListOfRolesAvailableAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<RosterShiftRole>>($"/business/{businessId}/manager/rostershift/roles", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId)
+        {
+            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public UkRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request)
+        {
+            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOffRosterShiftQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockoff?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId)
+        {
+            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public UkRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request)
+        {
+            return ApiRequest<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given kiosk settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public Task<UkRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int businessId, int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkRosterShiftMatchingResultModel>($"/business/{businessId}/manager/rostershift/{employeeId}/matchingclockon?kioskId={request.KioskId}&dateUtc={request.DateUtc.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId)
+        {
+            return ApiRequest<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public List<UkEssRosterShiftModel> FindNearbyRosterShifts(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request)
+        {
+            return ApiRequest<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public Task<List<UkEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int businessId, int employeeId, FindNearbyRosterShiftsQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkEssRosterShiftModel>>($"/business/{businessId}/manager/rostershift/{employeeId}/nearby?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a roster shift with the specified ID.
+        /// </remarks>
+        public ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId)
+        {
+            return ApiRequest<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a roster shift with the specified ID.
+        /// </remarks>
+        public Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a roster shift with the specified ID.
+        /// </remarks>
+        public ManagerRosterShiftModel GetRosterShiftById(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request)
+        {
+            return ApiRequest<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?includeCosts={request.IncludeCosts}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a roster shift with the specified ID.
+        /// </remarks>
+        public Task<ManagerRosterShiftModel> GetRosterShiftByIdAsync(int businessId, int rosterShiftId, GetRosterShiftByIdQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerRosterShiftModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?includeCosts={request.IncludeCosts}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update roster shift
+        /// </summary>
+        /// <remarks>
+        /// Update an individual roster shift
+        /// </remarks>
+        public UkEssRosterShiftModel UpdateRosterShift(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel)
+        {
+            return ApiRequest<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", shiftModel, Method.Put);
+        }
+
+        /// <summary>
+        /// Update roster shift
+        /// </summary>
+        /// <remarks>
+        /// Update an individual roster shift
+        /// </remarks>
+        public Task<UkEssRosterShiftModel> UpdateRosterShiftAsync(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}", shiftModel, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update roster shift
+        /// </summary>
+        /// <remarks>
+        /// Update an individual roster shift
+        /// </remarks>
+        public UkEssRosterShiftModel UpdateRosterShift(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, UpdateRosterShiftQueryModel request)
+        {
+            return ApiRequest<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?publish={request.Publish}&clearBreaks={request.ClearBreaks}", shiftModel, Method.Put);
+        }
+
+        /// <summary>
+        /// Update roster shift
+        /// </summary>
+        /// <remarks>
+        /// Update an individual roster shift
+        /// </remarks>
+        public Task<UkEssRosterShiftModel> UpdateRosterShiftAsync(int businessId, int rosterShiftId, RosterShiftEditModel shiftModel, UpdateRosterShiftQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkEssRosterShiftModel,RosterShiftEditModel>($"/business/{businessId}/manager/rostershift/{rosterShiftId}?publish={request.Publish}&clearBreaks={request.ClearBreaks}", shiftModel, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Stub Shift Timesheets
+        /// </summary>
+        /// <remarks>
+        /// Generates timesheets for the roster shift with the specified ID.
+        /// </remarks>
+        public void StubShiftTimesheets(int businessId, int rosterShiftId, StubRosterShiftViewModel model)
+        {
+            ApiRequest($"/business/{businessId}/manager/rostershift/{rosterShiftId}/stub", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Stub Shift Timesheets
+        /// </summary>
+        /// <remarks>
+        /// Generates timesheets for the roster shift with the specified ID.
+        /// </remarks>
+        public Task StubShiftTimesheetsAsync(int businessId, int rosterShiftId, StubRosterShiftViewModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/rostershift/{rosterShiftId}/stub", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2363,6 +1857,30 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
+        /// Create timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Create an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public UkIndividualTimesheetLineModel CreateTimesheetLine(int businessId, UkIndividualTimesheetLineModel request)
+        {
+            return ApiRequest<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet", request, Method.Post);
+        }
+
+        /// <summary>
+        /// Create timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Create an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public Task<UkIndividualTimesheetLineModel> CreateTimesheetLineAsync(int businessId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet", request, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Business Timesheets
         /// </summary>
         /// <remarks>
@@ -2392,7 +1910,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public PagedResultModel<ManagerTimesheetLineModel> GetBusinessTimesheets(int businessId, GetBusinessTimesheetsQueryModel request)
         {
-            return ApiRequest<PagedResultModel<ManagerTimesheetLineModel>>($"/business/{businessId}/manager/timesheet?fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&status={request.Status}&employeeId={request.EmployeeId}&employeeGroupId={request.EmployeeGroupId}&locationId={request.LocationId}&includeCosts={request.IncludeCosts}&currentPage={request.CurrentPage}&pageSize={request.PageSize}&orderBy={request.OrderBy}", Method.Get);
+            return ApiRequest<PagedResultModel<ManagerTimesheetLineModel>>($"/business/{businessId}/manager/timesheet?FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&Status={request.Status}&EmployeeId={request.EmployeeId}&EmployeeGroupId={request.EmployeeGroupId}&LocationId={request.LocationId}&IncludeCosts={request.IncludeCosts}&EHSubordinateType={request.EHSubordinateType}&CurrentPage={request.CurrentPage}&PageSize={request.PageSize}&OrderBy={request.OrderBy}", Method.Get);
         }
 
         /// <summary>
@@ -2403,55 +1921,7 @@ namespace KeyPayV2.Uk.Functions
         /// </remarks>
         public Task<PagedResultModel<ManagerTimesheetLineModel>> GetBusinessTimesheetsAsync(int businessId, GetBusinessTimesheetsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<PagedResultModel<ManagerTimesheetLineModel>>($"/business/{businessId}/manager/timesheet?fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&status={request.Status}&employeeId={request.EmployeeId}&employeeGroupId={request.EmployeeGroupId}&locationId={request.LocationId}&includeCosts={request.IncludeCosts}&currentPage={request.CurrentPage}&pageSize={request.PageSize}&orderBy={request.OrderBy}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Create an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public UkIndividualTimesheetLineModel CreateTimesheetLine(int businessId, UkIndividualTimesheetLineModel request)
-        {
-            return ApiRequest<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet", request, Method.Post);
-        }
-
-        /// <summary>
-        /// Create timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Create an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public Task<UkIndividualTimesheetLineModel> CreateTimesheetLineAsync(int businessId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public UkIndividualTimesheetLineModel UpdateTimesheetLine(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request)
-        {
-            return ApiRequest<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet/{timesheetLineId}", request, Method.Put);
-        }
-
-        /// <summary>
-        /// Update timesheet line
-        /// </summary>
-        /// <remarks>
-        /// Update an individual timesheet line
-        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
-        /// </remarks>
-        public Task<UkIndividualTimesheetLineModel> UpdateTimesheetLineAsync(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet/{timesheetLineId}", request, Method.Put, cancellationToken);
+            return ApiRequestAsync<PagedResultModel<ManagerTimesheetLineModel>>($"/business/{businessId}/manager/timesheet?FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&Status={request.Status}&EmployeeId={request.EmployeeId}&EmployeeGroupId={request.EmployeeGroupId}&LocationId={request.LocationId}&IncludeCosts={request.IncludeCosts}&EHSubordinateType={request.EHSubordinateType}&CurrentPage={request.CurrentPage}&PageSize={request.PageSize}&OrderBy={request.OrderBy}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2518,6 +1988,742 @@ namespace KeyPayV2.Uk.Functions
         public Task<List<LocationModel>> ListTimesheetLocationsAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<LocationModel>>($"/business/{businessId}/manager/timesheet/locations", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public UkIndividualTimesheetLineModel UpdateTimesheetLine(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request)
+        {
+            return ApiRequest<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet/{timesheetLineId}", request, Method.Put);
+        }
+
+        /// <summary>
+        /// Update timesheet line
+        /// </summary>
+        /// <remarks>
+        /// Update an individual timesheet line
+        /// IMPORTANT NOTICE: If units are specified the start and end time will be changed to midnight
+        /// </remarks>
+        public Task<UkIndividualTimesheetLineModel> UpdateTimesheetLineAsync(int businessId, int timesheetLineId, UkIndividualTimesheetLineModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkIndividualTimesheetLineModel,UkIndividualTimesheetLineModel>($"/business/{businessId}/manager/timesheet/{timesheetLineId}", request, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Download Document
+        /// </summary>
+        /// <remarks>
+        /// Downloads the document with the specified ID so long as it is visible to the manager.
+        /// </remarks>
+        public void DownloadDocument(int businessId, int employeeId, int documentId)
+        {
+            ApiRequest($"/business/{businessId}/manager/{employeeId}/document/download/{documentId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Download Document
+        /// </summary>
+        /// <remarks>
+        /// Downloads the document with the specified ID so long as it is visible to the manager.
+        /// </remarks>
+        public Task DownloadDocumentAsync(int businessId, int employeeId, int documentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/document/download/{documentId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create expense request
+        /// </summary>
+        /// <remarks>
+        /// Creates an expense request for the employee
+        /// </remarks>
+        public ManagerExpenseRequestModel CreateExpenseRequest(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest)
+        {
+            return ApiRequest<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense", expenseRequest, Method.Post);
+        }
+
+        /// <summary>
+        /// Create expense request
+        /// </summary>
+        /// <remarks>
+        /// Creates an expense request for the employee
+        /// </remarks>
+        public Task<ManagerExpenseRequestModel> CreateExpenseRequestAsync(int businessId, int employeeId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense", expenseRequest, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get expenses reference data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Tax Codes, Expense Categories, and Locations for this Employee.
+        /// </remarks>
+        public ExpenseReferenceData GetExpensesReferenceData(int businessId, int employeeId)
+        {
+            return ApiRequest<ExpenseReferenceData>($"/business/{businessId}/manager/{employeeId}/expense/reference", Method.Get);
+        }
+
+        /// <summary>
+        /// Get expenses reference data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Tax Codes, Expense Categories, and Locations for this Employee.
+        /// </remarks>
+        public Task<ExpenseReferenceData> GetExpensesReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ExpenseReferenceData>($"/business/{businessId}/manager/{employeeId}/expense/reference", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get expense request
+        /// </summary>
+        /// <remarks>
+        /// Gets the expense request  with the specified ID.
+        /// </remarks>
+        public ManagerExpenseRequestModel GetExpenseRequest(int businessId, int employeeId, int expenseRequestId)
+        {
+            return ApiRequest<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get expense request
+        /// </summary>
+        /// <remarks>
+        /// Gets the expense request  with the specified ID.
+        /// </remarks>
+        public Task<ManagerExpenseRequestModel> GetExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Edit Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Edits the Expense Request with the specified ID.
+        /// </remarks>
+        public ManagerExpenseRequestModel EditExpenseRequest(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest)
+        {
+            return ApiRequest<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", expenseRequest, Method.Put);
+        }
+
+        /// <summary>
+        /// Edit Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Edits the Expense Request with the specified ID.
+        /// </remarks>
+        public Task<ManagerExpenseRequestModel> EditExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, ExpenseRequestEditModel expenseRequest, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerExpenseRequestModel,ExpenseRequestEditModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", expenseRequest, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the Expense Request with the specified ID.
+        /// </remarks>
+        public void DeleteExpenseRequest(int businessId, int employeeId, int expenseRequestId)
+        {
+            ApiRequest($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the Expense Request with the specified ID.
+        /// </remarks>
+        public Task DeleteExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Approve Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Approves the Expense Request with the specified ID.
+        /// </remarks>
+        public ManagerExpenseRequestModel ApproveExpenseRequest(int businessId, int employeeId, int expenseRequestId)
+        {
+            return ApiRequest<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/approve", Method.Post);
+        }
+
+        /// <summary>
+        /// Approve Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Approves the Expense Request with the specified ID.
+        /// </remarks>
+        public Task<ManagerExpenseRequestModel> ApproveExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerExpenseRequestModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/approve", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId)
+        {
+            return ApiRequest<AttachmentModel,FileUploadModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment", file, Method.Put);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AttachmentModel,FileUploadModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment", file, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public AttachmentModel UploadAttachmentToExpenseRequest(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request)
+        {
+            return ApiFileRequest<AttachmentModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", file, Method.Put);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task<AttachmentModel> UploadAttachmentToExpenseRequestAsync(int businessId, int employeeId, FileUploadModel file, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiFileRequestAsync<AttachmentModel>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", file, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Decline Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Declines the Expense Request with the specified ID.
+        /// </remarks>
+        public ManagerExpenseRequestModel DeclineExpenseRequest(int businessId, int employeeId, int expenseRequestId, DeclineReason reason)
+        {
+            return ApiRequest<ManagerExpenseRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/decline", reason, Method.Post);
+        }
+
+        /// <summary>
+        /// Decline Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Declines the Expense Request with the specified ID.
+        /// </remarks>
+        public Task<ManagerExpenseRequestModel> DeclineExpenseRequestAsync(int businessId, int employeeId, int expenseRequestId, DeclineReason reason, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerExpenseRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/expense/{expenseRequestId}/decline", reason, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Creates a new leave request.
+        /// </remarks>
+        public ManagerLeaveRequestModel CreateLeaveRequest(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication)
+        {
+            return ApiRequest<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest", leaveApplication, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Creates a new leave request.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> CreateLeaveRequestAsync(int businessId, int employeeId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest", leaveApplication, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Leave Balances
+        /// </summary>
+        /// <remarks>
+        /// Gets the leave balances for the employee.
+        /// </remarks>
+        public List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId)
+        {
+            return ApiRequest<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Leave Balances
+        /// </summary>
+        /// <remarks>
+        /// Gets the leave balances for the employee.
+        /// </remarks>
+        public Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Leave Balances
+        /// </summary>
+        /// <remarks>
+        /// Gets the leave balances for the employee.
+        /// </remarks>
+        public List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request)
+        {
+            return ApiRequest<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances?asAtDate={(request.AsAtDate.HasValue ? request.AsAtDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Leave Balances
+        /// </summary>
+        /// <remarks>
+        /// Gets the leave balances for the employee.
+        /// </remarks>
+        public Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<LeaveBalanceModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/balances?asAtDate={(request.AsAtDate.HasValue ? request.AsAtDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Leave Categories
+        /// </summary>
+        /// <remarks>
+        /// Lists all of the leave categories for this employee.
+        /// </remarks>
+        public List<ManagerLeaveCategoryModel> ListLeaveCategories(int businessId, int employeeId)
+        {
+            return ApiRequest<List<ManagerLeaveCategoryModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/categories", Method.Get);
+        }
+
+        /// <summary>
+        /// List Leave Categories
+        /// </summary>
+        /// <remarks>
+        /// Lists all of the leave categories for this employee.
+        /// </remarks>
+        public Task<List<ManagerLeaveCategoryModel>> ListLeaveCategoriesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<ManagerLeaveCategoryModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/categories", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Estimate Leave Hours
+        /// </summary>
+        /// <remarks>
+        /// Estimates the number of hours of leave required based on date and leave category.
+        /// </remarks>
+        public ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId)
+        {
+            return ApiRequest<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate", Method.Get);
+        }
+
+        /// <summary>
+        /// Estimate Leave Hours
+        /// </summary>
+        /// <remarks>
+        /// Estimates the number of hours of leave required based on date and leave category.
+        /// </remarks>
+        public Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Estimate Leave Hours
+        /// </summary>
+        /// <remarks>
+        /// Estimates the number of hours of leave required based on date and leave category.
+        /// </remarks>
+        public ManagerLeaveEstimate EstimateLeaveHours(int businessId, int employeeId, EstimateLeaveHoursQueryModel request)
+        {
+            return ApiRequest<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&leaveCategoryId={request.LeaveCategoryId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Estimate Leave Hours
+        /// </summary>
+        /// <remarks>
+        /// Estimates the number of hours of leave required based on date and leave category.
+        /// </remarks>
+        public Task<ManagerLeaveEstimate> EstimateLeaveHoursAsync(int businessId, int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveEstimate>($"/business/{businessId}/manager/{employeeId}/leaverequest/estimate?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&leaveCategoryId={request.LeaveCategoryId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Leave Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a leave request with the specified ID.
+        /// </remarks>
+        public ManagerLeaveRequestModel GetLeaveRequestById(int businessId, int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Leave Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a leave request with the specified ID.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> GetLeaveRequestByIdAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the leave request with the specified ID.
+        /// </remarks>
+        public ManagerLeaveRequestModel DeleteLeaveRequest(int businessId, int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the leave request with the specified ID.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> DeleteLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the leave request with the specified ID.
+        /// </remarks>
+        public ManagerLeaveRequestModel UpdateLeaveRequest(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication)
+        {
+            return ApiRequest<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", leaveApplication, Method.Post);
+        }
+
+        /// <summary>
+        /// Update Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the leave request with the specified ID.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> UpdateLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, ManagerLeaveApplicationModel leaveApplication, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel,ManagerLeaveApplicationModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}", leaveApplication, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Approve Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Approves the leave request with the specified ID.
+        /// </remarks>
+        public ManagerLeaveRequestModel ApproveLeaveRequest(int businessId, int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/approve", Method.Post);
+        }
+
+        /// <summary>
+        /// Approve Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Approves the leave request with the specified ID.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> ApproveLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/approve", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Leave Request Attachment
+        /// </summary>
+        /// <remarks>
+        /// Gets the file for an employee leave request by ID.
+        /// </remarks>
+        public DocumentFile GetLeaveRequestAttachment(int businessId, int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<DocumentFile>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/attachment", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Leave Request Attachment
+        /// </summary>
+        /// <remarks>
+        /// Gets the file for an employee leave request by ID.
+        /// </remarks>
+        public Task<DocumentFile> GetLeaveRequestAttachmentAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<DocumentFile>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/attachment", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Decline Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Declines the leave request with the specified ID.
+        /// </remarks>
+        public ManagerLeaveRequestModel DeclineLeaveRequest(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason)
+        {
+            return ApiRequest<ManagerLeaveRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/decline", declineReason, Method.Post);
+        }
+
+        /// <summary>
+        /// Decline Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Declines the leave request with the specified ID.
+        /// </remarks>
+        public Task<ManagerLeaveRequestModel> DeclineLeaveRequestAsync(int businessId, int employeeId, int leaveRequestId, DeclineReason declineReason, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerLeaveRequestModel,DeclineReason>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/decline", declineReason, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Overlapping Leave Requests
+        /// </summary>
+        /// <remarks>
+        /// Lists all the overlapping leave requests for the given date range.
+        /// </remarks>
+        public List<ManagerLeaveRequestModel> OverlappingLeaveRequests(int businessId, int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/overlapping", Method.Get);
+        }
+
+        /// <summary>
+        /// Overlapping Leave Requests
+        /// </summary>
+        /// <remarks>
+        /// Lists all the overlapping leave requests for the given date range.
+        /// </remarks>
+        public Task<List<ManagerLeaveRequestModel>> OverlappingLeaveRequestsAsync(int businessId, int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<ManagerLeaveRequestModel>>($"/business/{businessId}/manager/{employeeId}/leaverequest/{leaveRequestId}/overlapping", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Create an unavailability for an employee.
+        /// </remarks>
+        public ManagerUnavailabilityModel CreateUnavailability(int businessId, int employeeId, UnavailabilityEditModel model)
+        {
+            return ApiRequest<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Create an unavailability for an employee.
+        /// </remarks>
+        public Task<ManagerUnavailabilityModel> CreateUnavailabilityAsync(int businessId, int employeeId, UnavailabilityEditModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Updates the unavailability with the specified ID.
+        /// </remarks>
+        public ManagerUnavailabilityModel UpdateUnavailability(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model)
+        {
+            return ApiRequest<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Updates the unavailability with the specified ID.
+        /// </remarks>
+        public Task<ManagerUnavailabilityModel> UpdateUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, UnavailabilityEditModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerUnavailabilityModel,UnavailabilityEditModel>($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", model, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Deletes the unavailability with the specified ID.
+        /// </remarks>
+        public void DeleteUnavailability(int businessId, int employeeId, int unavailabilityId)
+        {
+            ApiRequest($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Unavailability
+        /// </summary>
+        /// <remarks>
+        /// Deletes the unavailability with the specified ID.
+        /// </remarks>
+        public Task DeleteUnavailabilityAsync(int businessId, int employeeId, int unavailabilityId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/rostershift/unavailability/{unavailabilityId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get timesheet reference data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Work Types, Shift Conditions, Locations, and Reporting Dimension Values (if enabled) for this Employee.
+        /// </remarks>
+        public UkTimesheetReferenceData GetTimesheetReferenceData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkTimesheetReferenceData>($"/business/{businessId}/manager/{employeeId}/timesheet/reference", Method.Get);
+        }
+
+        /// <summary>
+        /// Get timesheet reference data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Work Types, Shift Conditions, Locations, and Reporting Dimension Values (if enabled) for this Employee.
+        /// </remarks>
+        public Task<UkTimesheetReferenceData> GetTimesheetReferenceDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkTimesheetReferenceData>($"/business/{businessId}/manager/{employeeId}/timesheet/reference", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get timesheet
+        /// </summary>
+        /// <remarks>
+        /// Gets the timesheet with the specified ID.
+        /// </remarks>
+        public ManagerTimesheetLineModel GetTimesheet(int businessId, int employeeId, int timesheetId)
+        {
+            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get timesheet
+        /// </summary>
+        /// <remarks>
+        /// Gets the timesheet with the specified ID.
+        /// </remarks>
+        public Task<ManagerTimesheetLineModel> GetTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Edit Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Edits the timesheet with the specified ID.
+        /// classificationId field left unspecified or null will not be changed.
+        /// To update classificationId field provide the new value, to specifically clear a value use "0".
+        /// </remarks>
+        public ManagerTimesheetLineModel EditTimesheet(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet)
+        {
+            return ApiRequest<ManagerTimesheetLineModel,ManagerTimesheetSubmitModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post);
+        }
+
+        /// <summary>
+        /// Edit Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Edits the timesheet with the specified ID.
+        /// classificationId field left unspecified or null will not be changed.
+        /// To update classificationId field provide the new value, to specifically clear a value use "0".
+        /// </remarks>
+        public Task<ManagerTimesheetLineModel> EditTimesheetAsync(int businessId, int employeeId, int timesheetId, ManagerTimesheetSubmitModel timesheet, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerTimesheetLineModel,ManagerTimesheetSubmitModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Deletes the timesheet with the specified ID.
+        /// </remarks>
+        public void DeleteTimesheet(int businessId, int employeeId, int timesheetId)
+        {
+            ApiRequest($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Deletes the timesheet with the specified ID.
+        /// </remarks>
+        public Task DeleteTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Approve Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Approves the timesheet with the specified ID.
+        /// </remarks>
+        public ManagerTimesheetLineModel ApproveTimesheet(int businessId, int employeeId, int timesheetId)
+        {
+            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/approve", Method.Post);
+        }
+
+        /// <summary>
+        /// Approve Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Approves the timesheet with the specified ID.
+        /// </remarks>
+        public Task<ManagerTimesheetLineModel> ApproveTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/approve", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Reject Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Rejects the timesheet with the specified ID.
+        /// </remarks>
+        public ManagerTimesheetLineModel RejectTimesheet(int businessId, int employeeId, int timesheetId)
+        {
+            return ApiRequest<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/reject", Method.Post);
+        }
+
+        /// <summary>
+        /// Reject Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Rejects the timesheet with the specified ID.
+        /// </remarks>
+        public Task<ManagerTimesheetLineModel> RejectTimesheetAsync(int businessId, int employeeId, int timesheetId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ManagerTimesheetLineModel>($"/business/{businessId}/manager/{employeeId}/timesheet/{timesheetId}/reject", Method.Post, cancellationToken);
         }
 
         /// <summary>

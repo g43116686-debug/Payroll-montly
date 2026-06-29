@@ -11,6 +11,7 @@ namespace KeyPayV2.Sg.Models.Ess
     public class EssEmployeeDetailsModel
     {
         public bool TimesheetsReadOnly { get; set; }
+        public bool IsContractor { get; set; }
         public int Id { get; set; }
         public int? TitleId { get; set; }
         public string FirstName { get; set; }
@@ -57,7 +58,9 @@ namespace KeyPayV2.Sg.Models.Ess
         public EmployeeDetailsEditMode EditMode { get; set; }
         public bool CanEdit { get; set; }
         public string TagsString { get; set; }
+        public IList<String> Tags { get; set; }
         public IList<String> AllTags { get; set; }
+        public IList<TagGroupModel> TagGroups { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public EmployeeTimesheetSetting TimesheetSetting { get; set; }
         public bool CanDelete { get; set; }
@@ -90,5 +93,6 @@ namespace KeyPayV2.Sg.Models.Ess
         public EmployeeDetailsFields Fields { get; set; }
         public bool PendingEmailUpdate { get; set; }
         public string NewEmail { get; set; }
+        public IList<SelectListItem> Genders { get; set; }
     }
 }

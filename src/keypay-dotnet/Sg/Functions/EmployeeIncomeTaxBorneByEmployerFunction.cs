@@ -17,12 +17,12 @@ namespace KeyPayV2.Sg.Functions
     {
         List<SgIncomeTaxBorneByEmployerModel> GetIncomeTaxBorneByEmployer(int businessId, int employeeId);
         Task<List<SgIncomeTaxBorneByEmployerModel>> GetIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void CreateIncomeTaxBorneByEmployer(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model);
-        Task CreateIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model, CancellationToken cancellationToken = default);
+        SgIncomeTaxBorneByEmployerModel CreateIncomeTaxBorneByEmployer(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model);
+        Task<SgIncomeTaxBorneByEmployerModel> CreateIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model, CancellationToken cancellationToken = default);
         SgIncomeTaxBorneByEmployerModel GetIncomeTaxBorneByEmployer(int businessId, int employeeId, int id);
         Task<SgIncomeTaxBorneByEmployerModel> GetIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        void UpdateAnExistingIncomeTaxBorneByEmployer(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request);
-        Task UpdateAnExistingIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request, CancellationToken cancellationToken = default);
+        SgIncomeTaxBorneByEmployerModel UpdateAnExistingIncomeTaxBorneByEmployer(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request);
+        Task<SgIncomeTaxBorneByEmployerModel> UpdateAnExistingIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request, CancellationToken cancellationToken = default);
         void DeleteIncomeTaxBorneByEmployer(int businessId, int employeeId, int id);
         Task DeleteIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
     }
@@ -58,9 +58,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a new income tax borne by employer
         /// </remarks>
-        public void CreateIncomeTaxBorneByEmployer(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model)
+        public SgIncomeTaxBorneByEmployerModel CreateIncomeTaxBorneByEmployer(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer", model, Method.Post);
+            return ApiRequest<SgIncomeTaxBorneByEmployerModel,SgIncomeTaxBorneByEmployerModel>($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer", model, Method.Post);
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a new income tax borne by employer
         /// </remarks>
-        public Task CreateIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model, CancellationToken cancellationToken = default)
+        public Task<SgIncomeTaxBorneByEmployerModel> CreateIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, SgIncomeTaxBorneByEmployerModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<SgIncomeTaxBorneByEmployerModel,SgIncomeTaxBorneByEmployerModel>($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Update an existing income tax borne by employer
         /// </remarks>
-        public void UpdateAnExistingIncomeTaxBorneByEmployer(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request)
+        public SgIncomeTaxBorneByEmployerModel UpdateAnExistingIncomeTaxBorneByEmployer(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer/{id}", request, Method.Put);
+            return ApiRequest<SgIncomeTaxBorneByEmployerModel,SgIncomeTaxBorneByEmployerModel>($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer/{id}", request, Method.Put);
         }
 
         /// <summary>
@@ -113,9 +113,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Update an existing income tax borne by employer
         /// </remarks>
-        public Task UpdateAnExistingIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request, CancellationToken cancellationToken = default)
+        public Task<SgIncomeTaxBorneByEmployerModel> UpdateAnExistingIncomeTaxBorneByEmployerAsync(int businessId, int employeeId, int id, SgIncomeTaxBorneByEmployerModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer/{id}", request, Method.Put, cancellationToken);
+            return ApiRequestAsync<SgIncomeTaxBorneByEmployerModel,SgIncomeTaxBorneByEmployerModel>($"/business/{businessId}/employee/{employeeId}/incometaxbornebyemployer/{id}", request, Method.Put, cancellationToken);
         }
 
         /// <summary>

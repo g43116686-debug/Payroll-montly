@@ -23,6 +23,8 @@ namespace KeyPayV2.Sg.Functions
         Task<SingleSignOnResponseModel> SingleSignOnAsync(SingleSignOnRequestModel model, CancellationToken cancellationToken = default);
         void OauthToken();
         Task OauthTokenAsync(CancellationToken cancellationToken = default);
+        void RevokeOauth2TokenRfc7009(string token);
+        Task RevokeOauth2TokenRfc7009Async(string token, CancellationToken cancellationToken = default);
     }
     public class AuthenticationFunction : BaseFunction, IAuthenticationFunction
     {
@@ -32,7 +34,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public SingleSignOnResponseModel SingleSignOn(int businessId, int employeeId, SingleSignOnRequestModel model)
         {
@@ -43,7 +46,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public Task<SingleSignOnResponseModel> SingleSignOnAsync(int businessId, int employeeId, SingleSignOnRequestModel model, CancellationToken cancellationToken = default)
         {
@@ -54,7 +58,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public SingleSignOnResponseModel SingleSignOn(int businessId, SingleSignOnRequestModel model)
         {
@@ -65,7 +70,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public Task<SingleSignOnResponseModel> SingleSignOnAsync(int businessId, SingleSignOnRequestModel model, CancellationToken cancellationToken = default)
         {
@@ -76,7 +82,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public SingleSignOnResponseModel SingleSignOn(SingleSignOnRequestModel model)
         {
@@ -87,7 +94,8 @@ namespace KeyPayV2.Sg.Functions
         /// Single Sign On
         /// </summary>
         /// <remarks>
-        /// Request for SSO URL that provides authenticated access to KeyPay. See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
+        /// Request for SSO URL that provides authenticated access to KeyPay.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/SSO">SSO Requests</a> for more details.
         /// </remarks>
         public Task<SingleSignOnResponseModel> SingleSignOnAsync(SingleSignOnRequestModel model, CancellationToken cancellationToken = default)
         {
@@ -98,7 +106,7 @@ namespace KeyPayV2.Sg.Functions
         /// OAuth Token
         /// </summary>
         /// <remarks>
-        /// See the guide on <a href="http://api.keypay.com.au/guides/OAuth2">OAuth2 authentication</a> for more details.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/OAuth2.html">OAuth2 authentication</a> for more details.
         /// </remarks>
         public void OauthToken()
         {
@@ -109,11 +117,35 @@ namespace KeyPayV2.Sg.Functions
         /// OAuth Token
         /// </summary>
         /// <remarks>
-        /// See the guide on <a href="http://api.keypay.com.au/guides/OAuth2">OAuth2 authentication</a> for more details.
+        /// See the guide on <a href="http://api.keypay.com.au/guides/OAuth2.html">OAuth2 authentication</a> for more details.
         /// </remarks>
         public Task OauthTokenAsync(CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/oauth/token", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Revoke OAuth2 Token (RFC 7009)
+        /// </summary>
+        /// <remarks>
+        /// Invalidates all active OAuth2 tokens for the user associated with the provided token.
+        /// Returns HTTP 200 regardless of token validity, per RFC 7009.
+        /// </remarks>
+        public void RevokeOauth2TokenRfc7009(string token)
+        {
+            ApiRequest($"/oauth/token/revoke", Method.Post);
+        }
+
+        /// <summary>
+        /// Revoke OAuth2 Token (RFC 7009)
+        /// </summary>
+        /// <remarks>
+        /// Invalidates all active OAuth2 tokens for the user associated with the provided token.
+        /// Returns HTTP 200 regardless of token validity, per RFC 7009.
+        /// </remarks>
+        public Task RevokeOauth2TokenRfc7009Async(string token, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/oauth/token/revoke", Method.Post, cancellationToken);
         }
     }
 }

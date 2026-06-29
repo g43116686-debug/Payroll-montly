@@ -23,8 +23,8 @@ namespace KeyPayV2.My.Functions
         Task<List<NameIdPair>> ListEmployeeGroupPermissionTypesAsync(CancellationToken cancellationToken = default);
         List<string> ListGenderOptions();
         Task<List<string>> ListGenderOptionsAsync(CancellationToken cancellationToken = default);
-        List<String> ListIndustryOptions();
-        Task<List<String>> ListIndustryOptionsAsync(CancellationToken cancellationToken = default);
+        List<string> ListIndustryOptions();
+        Task<List<string>> ListIndustryOptionsAsync(CancellationToken cancellationToken = default);
         List<NameIdPair> ListReportTypes();
         Task<List<NameIdPair>> ListReportTypesAsync(CancellationToken cancellationToken = default);
         List<NameIdPair> ListTimeZoneTypes();
@@ -113,17 +113,17 @@ namespace KeyPayV2.My.Functions
         /// <summary>
         /// List industry options
         /// </summary>
-        public List<String> ListIndustryOptions()
+        public List<string> ListIndustryOptions()
         {
-            return ApiRequest<List<String>>($"/lookupdata/industries", Method.Get);
+            return ApiRequest<List<string>>($"/lookupdata/industries", Method.Get);
         }
 
         /// <summary>
         /// List industry options
         /// </summary>
-        public Task<List<String>> ListIndustryOptionsAsync(CancellationToken cancellationToken = default)
+        public Task<List<string>> ListIndustryOptionsAsync(CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<String>>($"/lookupdata/industries", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<string>>($"/lookupdata/industries", Method.Get, cancellationToken);
         }
 
         /// <summary>

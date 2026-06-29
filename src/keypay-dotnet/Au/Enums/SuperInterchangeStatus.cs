@@ -22,6 +22,17 @@ namespace KeyPayV2.Au.Enums
         Refunded,
         Cancelling,
         Paid,
-        PaymentFailed
+        PaymentFailed,
+        HeroClearProcessing,
+        HeroClearFundsDisbursed,
+        HeroClearSubmittedAllFunds,
+        HeroClearFundingFailed,
+        HeroClearSubmittedWithErrors,
+        HeroClearUploadPassed,
+        HeroClearUploadFailed,
+        HeroClearCancelled,
+        HeroClearAwaitingApproval,
+        HeroClearPaymentApproved,
+        HeroClearPaymentRejected
     }
 }

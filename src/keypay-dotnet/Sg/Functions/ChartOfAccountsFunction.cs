@@ -19,12 +19,6 @@ namespace KeyPayV2.Sg.Functions
         Task<List<JournalAccountModel>> GetJournalAccountsAsync(int businessId, CancellationToken cancellationToken = default);
         JournalAccountModel CreateANewJournalAccount(int businessId, JournalAccountModel request);
         Task<JournalAccountModel> CreateANewJournalAccountAsync(int businessId, JournalAccountModel request, CancellationToken cancellationToken = default);
-        JournalAccountModel GetJournalAccountById(int businessId, int id);
-        Task<JournalAccountModel> GetJournalAccountByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        JournalAccountModel UpdateAnExistingJournalAccount(int businessId, int id, JournalAccountModel request);
-        Task<JournalAccountModel> UpdateAnExistingJournalAccountAsync(int businessId, int id, JournalAccountModel request, CancellationToken cancellationToken = default);
-        void DeleteAnExistingJournalAccount(int businessId, int id);
-        Task DeleteAnExistingJournalAccountAsync(int businessId, int id, CancellationToken cancellationToken = default);
         JournalAccountBulkCreateModel BulkInsertJournalAccounts(int businessId, List<JournalAccountModel> request);
         Task<JournalAccountBulkCreateModel> BulkInsertJournalAccountsAsync(int businessId, List<JournalAccountModel> request, CancellationToken cancellationToken = default);
         JournalServiceProviderModel GetJournalServiceProvider(int businessId);
@@ -35,10 +29,22 @@ namespace KeyPayV2.Sg.Functions
         Task<List<string>> GetJournalServiceProvidersAsync(int businessId, CancellationToken cancellationToken = default);
         List<string> GetJournalAccountTypes(int businessId);
         Task<List<string>> GetJournalAccountTypesAsync(int businessId, CancellationToken cancellationToken = default);
+        JournalAccountModel GetJournalAccountById(int businessId, int id);
+        Task<JournalAccountModel> GetJournalAccountByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
+        JournalAccountModel UpdateAnExistingJournalAccount(int businessId, int id, JournalAccountModel request);
+        Task<JournalAccountModel> UpdateAnExistingJournalAccountAsync(int businessId, int id, JournalAccountModel request, CancellationToken cancellationToken = default);
+        void DeleteAnExistingJournalAccount(int businessId, int id);
+        Task DeleteAnExistingJournalAccountAsync(int businessId, int id, CancellationToken cancellationToken = default);
         SgChartOfAccountsModel GetChartOfAccounts(int businessId);
         Task<SgChartOfAccountsModel> GetChartOfAccountsAsync(int businessId, CancellationToken cancellationToken = default);
         SgChartOfAccountsModel UpdateChartOfAccounts(int businessId, SgChartOfAccountsGroupModel chartOfAccounts);
         Task<SgChartOfAccountsModel> UpdateChartOfAccountsAsync(int businessId, SgChartOfAccountsGroupModel chartOfAccounts, CancellationToken cancellationToken = default);
+        SgChartOfAccountsEmployingEntityGroupModel GetEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId);
+        Task<SgChartOfAccountsEmployingEntityGroupModel> GetEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, CancellationToken cancellationToken = default);
+        SgChartOfAccountsEmployingEntityGroupModel UpdateEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId, SgChartOfAccountsEmployingEntityGroupModel chartOfAccounts);
+        Task<SgChartOfAccountsEmployingEntityGroupModel> UpdateEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, SgChartOfAccountsEmployingEntityGroupModel chartOfAccounts, CancellationToken cancellationToken = default);
+        void DeleteEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId);
+        Task DeleteEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, CancellationToken cancellationToken = default);
         SgChartOfAccountsLocationGroupModel GetLocationSpecificChartOfAccounts(int businessId, int locationId);
         Task<SgChartOfAccountsLocationGroupModel> GetLocationSpecificChartOfAccountsAsync(int businessId, int locationId, CancellationToken cancellationToken = default);
         SgChartOfAccountsLocationGroupModel UpdateLocationSpecificChartOfAccounts(int businessId, int locationId, SgChartOfAccountsLocationGroupModel chartOfAccounts);
@@ -92,72 +98,6 @@ namespace KeyPayV2.Sg.Functions
         public Task<JournalAccountModel> CreateANewJournalAccountAsync(int businessId, JournalAccountModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<JournalAccountModel,JournalAccountModel>($"/business/{businessId}/accounts", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Journal Account by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the journal account with the specified ID.
-        /// </remarks>
-        public JournalAccountModel GetJournalAccountById(int businessId, int id)
-        {
-            return ApiRequest<JournalAccountModel>($"/business/{businessId}/accounts/{id}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Journal Account by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the journal account with the specified ID.
-        /// </remarks>
-        public Task<JournalAccountModel> GetJournalAccountByIdAsync(int businessId, int id, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<JournalAccountModel>($"/business/{businessId}/accounts/{id}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update an existing Journal Account
-        /// </summary>
-        /// <remarks>
-        /// Update an existing journal account for the Business.
-        /// </remarks>
-        public JournalAccountModel UpdateAnExistingJournalAccount(int businessId, int id, JournalAccountModel request)
-        {
-            return ApiRequest<JournalAccountModel,JournalAccountModel>($"/business/{businessId}/accounts/{id}", request, Method.Put);
-        }
-
-        /// <summary>
-        /// Update an existing Journal Account
-        /// </summary>
-        /// <remarks>
-        /// Update an existing journal account for the Business.
-        /// </remarks>
-        public Task<JournalAccountModel> UpdateAnExistingJournalAccountAsync(int businessId, int id, JournalAccountModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<JournalAccountModel,JournalAccountModel>($"/business/{businessId}/accounts/{id}", request, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete an existing Journal Account
-        /// </summary>
-        /// <remarks>
-        /// Delete an existing journal account for the Business.
-        /// </remarks>
-        public void DeleteAnExistingJournalAccount(int businessId, int id)
-        {
-            ApiRequest($"/business/{businessId}/accounts/{id}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete an existing Journal Account
-        /// </summary>
-        /// <remarks>
-        /// Delete an existing journal account for the Business.
-        /// </remarks>
-        public Task DeleteAnExistingJournalAccountAsync(int businessId, int id, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/accounts/{id}", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -271,6 +211,72 @@ namespace KeyPayV2.Sg.Functions
         }
 
         /// <summary>
+        /// Get Journal Account by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the journal account with the specified ID.
+        /// </remarks>
+        public JournalAccountModel GetJournalAccountById(int businessId, int id)
+        {
+            return ApiRequest<JournalAccountModel>($"/business/{businessId}/accounts/{id}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Journal Account by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the journal account with the specified ID.
+        /// </remarks>
+        public Task<JournalAccountModel> GetJournalAccountByIdAsync(int businessId, int id, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<JournalAccountModel>($"/business/{businessId}/accounts/{id}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update an existing Journal Account
+        /// </summary>
+        /// <remarks>
+        /// Update an existing journal account for the Business.
+        /// </remarks>
+        public JournalAccountModel UpdateAnExistingJournalAccount(int businessId, int id, JournalAccountModel request)
+        {
+            return ApiRequest<JournalAccountModel,JournalAccountModel>($"/business/{businessId}/accounts/{id}", request, Method.Put);
+        }
+
+        /// <summary>
+        /// Update an existing Journal Account
+        /// </summary>
+        /// <remarks>
+        /// Update an existing journal account for the Business.
+        /// </remarks>
+        public Task<JournalAccountModel> UpdateAnExistingJournalAccountAsync(int businessId, int id, JournalAccountModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<JournalAccountModel,JournalAccountModel>($"/business/{businessId}/accounts/{id}", request, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete an existing Journal Account
+        /// </summary>
+        /// <remarks>
+        /// Delete an existing journal account for the Business.
+        /// </remarks>
+        public void DeleteAnExistingJournalAccount(int businessId, int id)
+        {
+            ApiRequest($"/business/{businessId}/accounts/{id}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete an existing Journal Account
+        /// </summary>
+        /// <remarks>
+        /// Delete an existing journal account for the Business.
+        /// </remarks>
+        public Task DeleteAnExistingJournalAccountAsync(int businessId, int id, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/accounts/{id}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Chart of Accounts
         /// </summary>
         /// <remarks>
@@ -312,6 +318,72 @@ namespace KeyPayV2.Sg.Functions
         public Task<SgChartOfAccountsModel> UpdateChartOfAccountsAsync(int businessId, SgChartOfAccountsGroupModel chartOfAccounts, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<SgChartOfAccountsModel,SgChartOfAccountsGroupModel>($"/business/{businessId}/chartofaccounts", chartOfAccounts, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Gets the employingEntity specific chart of accounts configuration for a given employingEntity.
+        /// </remarks>
+        public SgChartOfAccountsEmployingEntityGroupModel GetEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId)
+        {
+            return ApiRequest<SgChartOfAccountsEmployingEntityGroupModel>($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Gets the employingEntity specific chart of accounts configuration for a given employingEntity.
+        /// </remarks>
+        public Task<SgChartOfAccountsEmployingEntityGroupModel> GetEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<SgChartOfAccountsEmployingEntityGroupModel>($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Updates the employingEntity specific chart of accounts configuration for the business.
+        /// </remarks>
+        public SgChartOfAccountsEmployingEntityGroupModel UpdateEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId, SgChartOfAccountsEmployingEntityGroupModel chartOfAccounts)
+        {
+            return ApiRequest<SgChartOfAccountsEmployingEntityGroupModel,SgChartOfAccountsEmployingEntityGroupModel>($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", chartOfAccounts, Method.Post);
+        }
+
+        /// <summary>
+        /// Update Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Updates the employingEntity specific chart of accounts configuration for the business.
+        /// </remarks>
+        public Task<SgChartOfAccountsEmployingEntityGroupModel> UpdateEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, SgChartOfAccountsEmployingEntityGroupModel chartOfAccounts, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<SgChartOfAccountsEmployingEntityGroupModel,SgChartOfAccountsEmployingEntityGroupModel>($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", chartOfAccounts, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Deletes a employingEntity specific chart of accounts configuration for the business.
+        /// </remarks>
+        public void DeleteEmployingEntitySpecificChartOfAccounts(int businessId, int employingEntityId)
+        {
+            ApiRequest($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Employing Entity Specific Chart of Accounts
+        /// </summary>
+        /// <remarks>
+        /// Deletes a employingEntity specific chart of accounts configuration for the business.
+        /// </remarks>
+        public Task DeleteEmployingEntitySpecificChartOfAccountsAsync(int businessId, int employingEntityId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/chartofaccounts/employingEntity/{employingEntityId}", Method.Delete, cancellationToken);
         }
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace KeyPayV2.Au.Functions
         /// </summary>
         /// <remarks>
         /// Lists all of the employment agreements for the business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// This operation supports OData queries.
         /// </remarks>
         public List<BasicEmploymentAgreementModel> ListEmploymentAgreements(int businessId, ODataQuery oDataQuery = null)
         {
@@ -95,7 +95,7 @@ namespace KeyPayV2.Au.Functions
         /// </summary>
         /// <remarks>
         /// Lists all of the employment agreements for the business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// This operation supports OData queries.
         /// </remarks>
         public Task<List<BasicEmploymentAgreementModel>> ListEmploymentAgreementsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
         {

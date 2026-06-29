@@ -5,10 +5,12 @@ namespace KeyPayV2.Uk.Enums
 {
     public enum TimesheetLineFilterStatus
     {
+        Any,
         Submitted,
         Approved,
         Rejected,
         Processed,
-        AnyExceptRejected
+        AnyExceptRejected,
+        ApprovedOrProcessed
     }
 }

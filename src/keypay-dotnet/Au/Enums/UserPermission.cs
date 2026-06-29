@@ -26,6 +26,6 @@ namespace KeyPayV2.Au.Enums
         ViewEmployeeDetails,
         EditBasicEmployeeDetails,
         EditAllEmployeeDetails,
-        ViewTimesheetReports
+        EmployeeNotes
     }
 }

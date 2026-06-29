@@ -17,12 +17,12 @@ namespace KeyPayV2.Sg.Functions
     {
         List<SgIncomeFromOverseasSubjectToTaxRemissionModel> GetIncomeFromOverseasSubjectToTaxRemissions(int businessId, int employeeId);
         Task<List<SgIncomeFromOverseasSubjectToTaxRemissionModel>> GetIncomeFromOverseasSubjectToTaxRemissionsAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void CreateIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model);
-        Task CreateIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model, CancellationToken cancellationToken = default);
+        SgIncomeFromOverseasSubjectToTaxRemissionModel CreateIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model);
+        Task<SgIncomeFromOverseasSubjectToTaxRemissionModel> CreateIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model, CancellationToken cancellationToken = default);
         SgIncomeFromOverseasSubjectToTaxRemissionModel GetIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id);
         Task<SgIncomeFromOverseasSubjectToTaxRemissionModel> GetIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        void UpdateAnExistingIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request);
-        Task UpdateAnExistingIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request, CancellationToken cancellationToken = default);
+        SgIncomeFromOverseasSubjectToTaxRemissionModel UpdateAnExistingIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request);
+        Task<SgIncomeFromOverseasSubjectToTaxRemissionModel> UpdateAnExistingIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request, CancellationToken cancellationToken = default);
         void DeleteIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id);
         Task DeleteIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
     }
@@ -58,9 +58,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a new income from overseas subject to tax remissions
         /// </remarks>
-        public void CreateIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model)
+        public SgIncomeFromOverseasSubjectToTaxRemissionModel CreateIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission", model, Method.Post);
+            return ApiRequest<SgIncomeFromOverseasSubjectToTaxRemissionModel,SgIncomeFromOverseasSubjectToTaxRemissionModel>($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission", model, Method.Post);
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Creates a new income from overseas subject to tax remissions
         /// </remarks>
-        public Task CreateIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model, CancellationToken cancellationToken = default)
+        public Task<SgIncomeFromOverseasSubjectToTaxRemissionModel> CreateIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, SgIncomeFromOverseasSubjectToTaxRemissionModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<SgIncomeFromOverseasSubjectToTaxRemissionModel,SgIncomeFromOverseasSubjectToTaxRemissionModel>($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Update an existing income from overseas subject to tax remission
         /// </remarks>
-        public void UpdateAnExistingIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request)
+        public SgIncomeFromOverseasSubjectToTaxRemissionModel UpdateAnExistingIncomeFromOverseasSubjectToTaxRemission(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission/{id}", request, Method.Put);
+            return ApiRequest<SgIncomeFromOverseasSubjectToTaxRemissionModel,SgIncomeFromOverseasSubjectToTaxRemissionModel>($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission/{id}", request, Method.Put);
         }
 
         /// <summary>
@@ -113,9 +113,9 @@ namespace KeyPayV2.Sg.Functions
         /// <remarks>
         /// Update an existing income from overseas subject to tax remission
         /// </remarks>
-        public Task UpdateAnExistingIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request, CancellationToken cancellationToken = default)
+        public Task<SgIncomeFromOverseasSubjectToTaxRemissionModel> UpdateAnExistingIncomeFromOverseasSubjectToTaxRemissionAsync(int businessId, int employeeId, int id, SgIncomeFromOverseasSubjectToTaxRemissionModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission/{id}", request, Method.Put, cancellationToken);
+            return ApiRequestAsync<SgIncomeFromOverseasSubjectToTaxRemissionModel,SgIncomeFromOverseasSubjectToTaxRemissionModel>($"/business/{businessId}/employee/{employeeId}/incomefromoverseassubjecttotaxremission/{id}", request, Method.Put, cancellationToken);
         }
 
         /// <summary>

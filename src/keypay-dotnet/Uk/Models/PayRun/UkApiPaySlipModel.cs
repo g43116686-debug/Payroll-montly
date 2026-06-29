@@ -40,14 +40,13 @@ namespace KeyPayV2.Uk.Models.PayRun
         public decimal ThisEmploymentYtdPayrolledBenefits { get; set; }
         public decimal ThisEmploymentYtdTaxDeducted { get; set; }
         public decimal ThisEmploymentYtdNIablePay { get; set; }
-        public bool ShowHealthAndSocialCareLevyMessage { get; set; }
         public IList<ApiPaySlipLeaveModel> TotalAccruedLeave { get; set; }
         public IList<ApiPaySlipLeaveModel> AccruedLeave { get; set; }
         public IList<ApiPaySlipLeaveModel> LeaveTaken { get; set; }
         public IList<ApiPaySlipDeductionModel> Deductions { get; set; }
         public IList<ApiYearToDateEarningsBreakdownModel> GrossYTDDetails { get; set; }
         public IList<ApiEmployeeExpenseGridModel> EmployeeExpenses { get; set; }
-        public decimal TotalHours { get; set; }
+        public decimal? TotalHours { get; set; }
         public decimal GrossEarnings { get; set; }
         public decimal NetEarnings { get; set; }
         public decimal TaxableEarnings { get; set; }

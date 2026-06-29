@@ -21,18 +21,26 @@ namespace KeyPayV2.Nz.Functions
         Task<NzBusinessExportModel> CreateNewBusinessAsync(NzBusinessExportModel model, CancellationToken cancellationToken = default);
         NzBusinessExportModel CreateNewBusiness(NzBusinessExportModel model, CreateNewBusinessQueryModel request);
         Task<NzBusinessExportModel> CreateNewBusinessAsync(NzBusinessExportModel model, CreateNewBusinessQueryModel request, CancellationToken cancellationToken = default);
+        NzBusinessExportModel GetBusinessDetailsByExternalId();
+        Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(CancellationToken cancellationToken = default);
+        NzBusinessExportModel GetBusinessDetailsByExternalId(GetBusinessDetailsByExternalIdQueryModel request);
+        Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(GetBusinessDetailsByExternalIdQueryModel request, CancellationToken cancellationToken = default);
         NzBusinessExportModel GetBusinessDetails(int businessId);
         Task<NzBusinessExportModel> GetBusinessDetailsAsync(int businessId, CancellationToken cancellationToken = default);
-        void CopyBusinessSettingsFromTemplate(int businessId, int businessTemplateId);
-        Task CopyBusinessSettingsFromTemplateAsync(int businessId, int businessTemplateId, CancellationToken cancellationToken = default);
         List<BusinessAccessModel> ListAllBusinessAccessUsers(int businessId, ODataQuery oDataQuery = null);
         Task<List<BusinessAccessModel>> ListAllBusinessAccessUsersAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void UpdateDetailsOfAnAssociatedUser(int businessId, AccessModel viewModel, UpdateDetailsOfAnAssociatedUserQueryModel request);
-        Task UpdateDetailsOfAnAssociatedUserAsync(int businessId, AccessModel viewModel, UpdateDetailsOfAnAssociatedUserQueryModel request, CancellationToken cancellationToken = default);
         void AssignBusinessAccess(int businessId, CreateBusinessAccessModel viewModel);
         Task AssignBusinessAccessAsync(int businessId, CreateBusinessAccessModel viewModel, CancellationToken cancellationToken = default);
+        void UpdateDetailsOfAnAssociatedUser(int businessId, AccessModel viewModel);
+        Task UpdateDetailsOfAnAssociatedUserAsync(int businessId, AccessModel viewModel, CancellationToken cancellationToken = default);
+        void UpdateDetailsOfAnAssociatedUser(int businessId, AccessModel viewModel, UpdateDetailsOfAnAssociatedUserQueryModel request);
+        Task UpdateDetailsOfAnAssociatedUserAsync(int businessId, AccessModel viewModel, UpdateDetailsOfAnAssociatedUserQueryModel request, CancellationToken cancellationToken = default);
+        void RevokeBusinessAccess(int businessId);
+        Task RevokeBusinessAccessAsync(int businessId, CancellationToken cancellationToken = default);
         void RevokeBusinessAccess(int businessId, RevokeBusinessAccessQueryModel request);
         Task RevokeBusinessAccessAsync(int businessId, RevokeBusinessAccessQueryModel request, CancellationToken cancellationToken = default);
+        BusinessAccessModel GetUserBusinessAccess(int businessId);
+        Task<BusinessAccessModel> GetUserBusinessAccessAsync(int businessId, CancellationToken cancellationToken = default);
         BusinessAccessModel GetUserBusinessAccess(int businessId, GetUserBusinessAccessQueryModel request);
         Task<BusinessAccessModel> GetUserBusinessAccessAsync(int businessId, GetUserBusinessAccessQueryModel request, CancellationToken cancellationToken = default);
         List<BusinessAction> ListBusinessNotifications(int businessId);
@@ -59,8 +67,12 @@ namespace KeyPayV2.Nz.Functions
         Task<NzEmployeePortalSettingsModel> UpdateEmployeePortalSettingsAsync(int businessId, NzEmployeePortalSettingsModel model, CancellationToken cancellationToken = default);
         EntitlementsModel ListEntitlements(int businessId);
         Task<EntitlementsModel> ListEntitlementsAsync(int businessId, CancellationToken cancellationToken = default);
+        void ChangeTheTaxYear(int businessId);
+        Task ChangeTheTaxYearAsync(int businessId, CancellationToken cancellationToken = default);
         void ChangeTheTaxYear(int businessId, ChangeTheTaxYearQueryModel request);
         Task ChangeTheTaxYearAsync(int businessId, ChangeTheTaxYearQueryModel request, CancellationToken cancellationToken = default);
+        DateTime GetTheInitialTaxYear(int businessId);
+        Task<DateTime> GetTheInitialTaxYearAsync(int businessId, CancellationToken cancellationToken = default);
         NzEditBusinessPaySlipApiModel GetPayslipConfiguration(int businessId);
         Task<NzEditBusinessPaySlipApiModel> GetPayslipConfigurationAsync(int businessId, CancellationToken cancellationToken = default);
         void CreatePayslipConfiguration(int businessId, NzEditBusinessPaySlipApiModel model);
@@ -77,12 +89,14 @@ namespace KeyPayV2.Nz.Functions
         Task SetBusinessBillingPlanAsync(int businessId, SetBillingPlanRequestModel model, CancellationToken cancellationToken = default);
         List<TagViewModel> ListTheBusinessTags(int businessId);
         Task<List<TagViewModel>> ListTheBusinessTagsAsync(int businessId, CancellationToken cancellationToken = default);
-        void GetTheTimesheetSettingsForTheBusiness(int businessId);
-        Task GetTheTimesheetSettingsForTheBusinessAsync(int businessId, CancellationToken cancellationToken = default);
-        void UpdateTheTimesheetSettingsForTheBusiness(int businessId, NzBusinessTimesheetSettingsModel model);
-        Task UpdateTheTimesheetSettingsForTheBusinessAsync(int businessId, NzBusinessTimesheetSettingsModel model, CancellationToken cancellationToken = default);
-        NzBusinessExportModel GetBusinessDetailsByExternalId(GetBusinessDetailsByExternalIdQueryModel request);
-        Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(GetBusinessDetailsByExternalIdQueryModel request, CancellationToken cancellationToken = default);
+        List<TagViewModel> ListTheBusinessTags(int businessId, ListTheBusinessTagsQueryModel request);
+        Task<List<TagViewModel>> ListTheBusinessTagsAsync(int businessId, ListTheBusinessTagsQueryModel request, CancellationToken cancellationToken = default);
+        NzBusinessTimesheetSettingsModel GetTheTimesheetSettingsForTheBusiness(int businessId);
+        Task<NzBusinessTimesheetSettingsModel> GetTheTimesheetSettingsForTheBusinessAsync(int businessId, CancellationToken cancellationToken = default);
+        NzBusinessTimesheetSettingsModel UpdateTheTimesheetSettingsForTheBusiness(int businessId, NzBusinessTimesheetSettingsModel model);
+        Task<NzBusinessTimesheetSettingsModel> UpdateTheTimesheetSettingsForTheBusinessAsync(int businessId, NzBusinessTimesheetSettingsModel model, CancellationToken cancellationToken = default);
+        void CopyBusinessSettingsFromTemplate(int businessId, int businessTemplateId);
+        Task CopyBusinessSettingsFromTemplateAsync(int businessId, int businessTemplateId, CancellationToken cancellationToken = default);
     }
     public class BusinessFunction : BaseFunction, IBusinessFunction
     {
@@ -157,6 +171,50 @@ namespace KeyPayV2.Nz.Functions
         }
 
         /// <summary>
+        /// Get Business Details by External ID
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the details of the business with the specified external ID.
+        /// </remarks>
+        public NzBusinessExportModel GetBusinessDetailsByExternalId()
+        {
+            return ApiRequest<NzBusinessExportModel>($"/business/externalid", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Business Details by External ID
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the details of the business with the specified external ID.
+        /// </remarks>
+        public Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<NzBusinessExportModel>($"/business/externalid", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Business Details by External ID
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the details of the business with the specified external ID.
+        /// </remarks>
+        public NzBusinessExportModel GetBusinessDetailsByExternalId(GetBusinessDetailsByExternalIdQueryModel request)
+        {
+            return ApiRequest<NzBusinessExportModel>($"/business/externalid?externalId={request.ExternalId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Business Details by External ID
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the details of the business with the specified external ID.
+        /// </remarks>
+        public Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(GetBusinessDetailsByExternalIdQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<NzBusinessExportModel>($"/business/externalid?externalId={request.ExternalId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Business Details
         /// </summary>
         /// <remarks>
@@ -176,22 +234,6 @@ namespace KeyPayV2.Nz.Functions
         public Task<NzBusinessExportModel> GetBusinessDetailsAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<NzBusinessExportModel>($"/business/{businessId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Copy Business Settings From Template
-        /// </summary>
-        public void CopyBusinessSettingsFromTemplate(int businessId, int businessTemplateId)
-        {
-            ApiRequest($"/business/{businessId}/{businessTemplateId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Copy Business Settings From Template
-        /// </summary>
-        public Task CopyBusinessSettingsFromTemplateAsync(int businessId, int businessTemplateId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/{businessTemplateId}", Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -219,6 +261,52 @@ namespace KeyPayV2.Nz.Functions
         }
 
         /// <summary>
+        /// Assign Business Access
+        /// </summary>
+        /// <remarks>
+        /// Assigns business access to a name/email.
+        /// </remarks>
+        public void AssignBusinessAccess(int businessId, CreateBusinessAccessModel viewModel)
+        {
+            ApiRequest($"/business/{businessId}/access", viewModel, Method.Post);
+        }
+
+        /// <summary>
+        /// Assign Business Access
+        /// </summary>
+        /// <remarks>
+        /// Assigns business access to a name/email.
+        /// </remarks>
+        public Task AssignBusinessAccessAsync(int businessId, CreateBusinessAccessModel viewModel, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/access", viewModel, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update details of an associated user
+        /// </summary>
+        /// <remarks>
+        /// Updates the user details (name / email) of a user that is associated with the business.
+        /// This endpoint will only work if the user is already associated with the business and is not associated with any other business
+        /// </remarks>
+        public void UpdateDetailsOfAnAssociatedUser(int businessId, AccessModel viewModel)
+        {
+            ApiRequest($"/business/{businessId}/access", viewModel, Method.Put);
+        }
+
+        /// <summary>
+        /// Update details of an associated user
+        /// </summary>
+        /// <remarks>
+        /// Updates the user details (name / email) of a user that is associated with the business.
+        /// This endpoint will only work if the user is already associated with the business and is not associated with any other business
+        /// </remarks>
+        public Task UpdateDetailsOfAnAssociatedUserAsync(int businessId, AccessModel viewModel, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/access", viewModel, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
         /// Update details of an associated user
         /// </summary>
         /// <remarks>
@@ -243,25 +331,25 @@ namespace KeyPayV2.Nz.Functions
         }
 
         /// <summary>
-        /// Assign Business Access
+        /// Revoke Business Access
         /// </summary>
         /// <remarks>
-        /// Assigns business access to a name/email.
+        /// Revokes a user's access to the business.
         /// </remarks>
-        public void AssignBusinessAccess(int businessId, CreateBusinessAccessModel viewModel)
+        public void RevokeBusinessAccess(int businessId)
         {
-            ApiRequest($"/business/{businessId}/access", viewModel, Method.Post);
+            ApiRequest($"/business/{businessId}/access", Method.Delete);
         }
 
         /// <summary>
-        /// Assign Business Access
+        /// Revoke Business Access
         /// </summary>
         /// <remarks>
-        /// Assigns business access to a name/email.
+        /// Revokes a user's access to the business.
         /// </remarks>
-        public Task AssignBusinessAccessAsync(int businessId, CreateBusinessAccessModel viewModel, CancellationToken cancellationToken = default)
+        public Task RevokeBusinessAccessAsync(int businessId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/access", viewModel, Method.Post, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/access", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -284,6 +372,28 @@ namespace KeyPayV2.Nz.Functions
         public Task RevokeBusinessAccessAsync(int businessId, RevokeBusinessAccessQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/access?email={request.Email}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get User Business Access
+        /// </summary>
+        /// <remarks>
+        /// Returns the business access assigned to the user with the specified email address.
+        /// </remarks>
+        public BusinessAccessModel GetUserBusinessAccess(int businessId)
+        {
+            return ApiRequest<BusinessAccessModel>($"/business/{businessId}/access/user", Method.Get);
+        }
+
+        /// <summary>
+        /// Get User Business Access
+        /// </summary>
+        /// <remarks>
+        /// Returns the business access assigned to the user with the specified email address.
+        /// </remarks>
+        public Task<BusinessAccessModel> GetUserBusinessAccessAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<BusinessAccessModel>($"/business/{businessId}/access/user", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -576,7 +686,29 @@ namespace KeyPayV2.Nz.Functions
         /// Change the tax year
         /// </summary>
         /// <remarks>
-        /// Changes the initial tax year for the current business. This is the tax year that
+        /// Changes the initial tax year for the current business.
+        /// </remarks>
+        public void ChangeTheTaxYear(int businessId)
+        {
+            ApiRequest($"/business/{businessId}/initialfinancialyear", Method.Post);
+        }
+
+        /// <summary>
+        /// Change the tax year
+        /// </summary>
+        /// <remarks>
+        /// Changes the initial tax year for the current business.
+        /// </remarks>
+        public Task ChangeTheTaxYearAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/initialfinancialyear", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Change the tax year
+        /// </summary>
+        /// <remarks>
+        /// Changes the initial tax year for the current business.
         /// </remarks>
         public void ChangeTheTaxYear(int businessId, ChangeTheTaxYearQueryModel request)
         {
@@ -587,11 +719,33 @@ namespace KeyPayV2.Nz.Functions
         /// Change the tax year
         /// </summary>
         /// <remarks>
-        /// Changes the initial tax year for the current business. This is the tax year that
+        /// Changes the initial tax year for the current business.
         /// </remarks>
         public Task ChangeTheTaxYearAsync(int businessId, ChangeTheTaxYearQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/initialfinancialyear?year={request.Year}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get the initial tax year
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the initial tax year for the business.
+        /// </remarks>
+        public DateTime GetTheInitialTaxYear(int businessId)
+        {
+            return ApiRequest<DateTime>($"/business/{businessId}/initialfinancialyear", Method.Get);
+        }
+
+        /// <summary>
+        /// Get the initial tax year
+        /// </summary>
+        /// <remarks>
+        /// Retrieves the initial tax year for the business.
+        /// </remarks>
+        public Task<DateTime> GetTheInitialTaxYearAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<DateTime>($"/business/{businessId}/initialfinancialyear", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -771,57 +925,67 @@ namespace KeyPayV2.Nz.Functions
         }
 
         /// <summary>
-        /// Get the timesheet settings for the business
+        /// List the Business tags
         /// </summary>
-        public void GetTheTimesheetSettingsForTheBusiness(int businessId)
+        public List<TagViewModel> ListTheBusinessTags(int businessId, ListTheBusinessTagsQueryModel request)
         {
-            ApiRequest($"/business/{businessId}/timesheetsettings", Method.Get);
+            return ApiRequest<List<TagViewModel>>($"/business/{businessId}/tags?awardName={request.AwardName}", Method.Get);
+        }
+
+        /// <summary>
+        /// List the Business tags
+        /// </summary>
+        public Task<List<TagViewModel>> ListTheBusinessTagsAsync(int businessId, ListTheBusinessTagsQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<TagViewModel>>($"/business/{businessId}/tags?awardName={request.AwardName}", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Get the timesheet settings for the business
         /// </summary>
-        public Task GetTheTimesheetSettingsForTheBusinessAsync(int businessId, CancellationToken cancellationToken = default)
+        public NzBusinessTimesheetSettingsModel GetTheTimesheetSettingsForTheBusiness(int businessId)
         {
-            return ApiRequestAsync($"/business/{businessId}/timesheetsettings", Method.Get, cancellationToken);
+            return ApiRequest<NzBusinessTimesheetSettingsModel>($"/business/{businessId}/timesheetsettings", Method.Get);
+        }
+
+        /// <summary>
+        /// Get the timesheet settings for the business
+        /// </summary>
+        public Task<NzBusinessTimesheetSettingsModel> GetTheTimesheetSettingsForTheBusinessAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<NzBusinessTimesheetSettingsModel>($"/business/{businessId}/timesheetsettings", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Update the timesheet settings for the business
         /// </summary>
-        public void UpdateTheTimesheetSettingsForTheBusiness(int businessId, NzBusinessTimesheetSettingsModel model)
+        public NzBusinessTimesheetSettingsModel UpdateTheTimesheetSettingsForTheBusiness(int businessId, NzBusinessTimesheetSettingsModel model)
         {
-            ApiRequest($"/business/{businessId}/timesheetsettings", model, Method.Put);
+            return ApiRequest<NzBusinessTimesheetSettingsModel,NzBusinessTimesheetSettingsModel>($"/business/{businessId}/timesheetsettings", model, Method.Put);
         }
 
         /// <summary>
         /// Update the timesheet settings for the business
         /// </summary>
-        public Task UpdateTheTimesheetSettingsForTheBusinessAsync(int businessId, NzBusinessTimesheetSettingsModel model, CancellationToken cancellationToken = default)
+        public Task<NzBusinessTimesheetSettingsModel> UpdateTheTimesheetSettingsForTheBusinessAsync(int businessId, NzBusinessTimesheetSettingsModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/timesheetsettings", model, Method.Put, cancellationToken);
+            return ApiRequestAsync<NzBusinessTimesheetSettingsModel,NzBusinessTimesheetSettingsModel>($"/business/{businessId}/timesheetsettings", model, Method.Put, cancellationToken);
         }
 
         /// <summary>
-        /// Get Business Details by External ID
+        /// Copy Business Settings From Template
         /// </summary>
-        /// <remarks>
-        /// Retrieves the details of the business with the specified external ID.
-        /// </remarks>
-        public NzBusinessExportModel GetBusinessDetailsByExternalId(GetBusinessDetailsByExternalIdQueryModel request)
+        public void CopyBusinessSettingsFromTemplate(int businessId, int businessTemplateId)
         {
-            return ApiRequest<NzBusinessExportModel>($"/business/externalid?externalId={request.ExternalId}", Method.Get);
+            ApiRequest($"/business/{businessId}/{businessTemplateId}", Method.Post);
         }
 
         /// <summary>
-        /// Get Business Details by External ID
+        /// Copy Business Settings From Template
         /// </summary>
-        /// <remarks>
-        /// Retrieves the details of the business with the specified external ID.
-        /// </remarks>
-        public Task<NzBusinessExportModel> GetBusinessDetailsByExternalIdAsync(GetBusinessDetailsByExternalIdQueryModel request, CancellationToken cancellationToken = default)
+        public Task CopyBusinessSettingsFromTemplateAsync(int businessId, int businessTemplateId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<NzBusinessExportModel>($"/business/externalid?externalId={request.ExternalId}", Method.Get, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/{businessTemplateId}", Method.Post, cancellationToken);
         }
     }
 }

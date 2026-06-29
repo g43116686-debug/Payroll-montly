@@ -23,8 +23,8 @@ namespace KeyPayV2.Au.Functions
         Task<AuLocationModel> CreateLocationAsync(int businessId, AuLocationModel location, CancellationToken cancellationToken = default);
         AuSingleLocationModel GetLocationById(int businessId, int id);
         Task<AuSingleLocationModel> GetLocationByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        void UpdateLocation(int businessId, int id, AuLocationModel location);
-        Task UpdateLocationAsync(int businessId, int id, AuLocationModel location, CancellationToken cancellationToken = default);
+        AuLocationModel UpdateLocation(int businessId, int id, AuLocationModel location);
+        Task<AuLocationModel> UpdateLocationAsync(int businessId, int id, AuLocationModel location, CancellationToken cancellationToken = default);
         void DeleteLocation(int businessId, int id);
         Task DeleteLocationAsync(int businessId, int id, CancellationToken cancellationToken = default);
     }
@@ -130,9 +130,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public void UpdateLocation(int businessId, int id, AuLocationModel location)
+        public AuLocationModel UpdateLocation(int businessId, int id, AuLocationModel location)
         {
-            ApiRequest($"/business/{businessId}/location/{id}", location, Method.Put);
+            return ApiRequest<AuLocationModel,AuLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put);
         }
 
         /// <summary>
@@ -141,9 +141,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public Task UpdateLocationAsync(int businessId, int id, AuLocationModel location, CancellationToken cancellationToken = default)
+        public Task<AuLocationModel> UpdateLocationAsync(int businessId, int id, AuLocationModel location, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
+            return ApiRequestAsync<AuLocationModel,AuLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
         }
 
         /// <summary>

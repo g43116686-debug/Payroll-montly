@@ -12,6 +12,7 @@ namespace KeyPayV2.My.Models.PayRun
     {
         public int PayRunId { get; set; }
         public DateTime? DatePaid { get; set; }
+        public DateTime? FpsDate { get; set; }
         public bool ExportJournals { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public PublishPaySlipsPreference PublishPaySlips { get; set; }
@@ -32,6 +33,7 @@ namespace KeyPayV2.My.Models.PayRun
         public DateTime? ExportJournalsDateTime { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public PayRunFinaliseActionPreference? LodgePayRunPreference { get; set; }
+        public bool SuperPaymentPreference { get; set; }
         public DateTime? LodgePayRunDateTime { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public PayRunFinaliseActionPreference? RunReportPacksPreference { get; set; }

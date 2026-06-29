@@ -11,12 +11,16 @@ namespace KeyPayV2.Nz.Models.PayCategory
     public class NzPayCategoryModel
     {
         public bool IsKiwiSaverExempt { get; set; }
+        public bool IncludeInAverageDailyPayDaysPaid { get; set; }
+        public bool IsEmployeeShareScheme { get; set; }
         public bool ExcludeFromAverageEarnings { get; set; }
         public bool ExcludeFromOrdinaryEarnings { get; set; }
         public bool IsAccLevyExempt { get; set; }
         public bool IsParentalLeave { get; set; }
         public bool IsGstExempt { get; set; }
         public bool IsSuperannuationFund { get; set; }
+        public bool RemunerateAtRdpForAdpMethod { get; set; }
+        public bool RemunerateAtAdpForAdpMethod { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public NzPayCategoryType PayCategoryType { get; set; }
         public int Id { get; set; }

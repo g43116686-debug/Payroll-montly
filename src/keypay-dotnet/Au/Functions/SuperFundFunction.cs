@@ -17,14 +17,16 @@ namespace KeyPayV2.Au.Functions
     {
         List<SelfManagedSuperFundModel> ListSelfManagedSuperFunds(int businessId, ODataQuery oDataQuery = null);
         Task<List<SelfManagedSuperFundModel>> ListSelfManagedSuperFundsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateSelfManagedSuperFund(int businessId, SelfManagedSuperFundModel fund);
-        Task CreateSelfManagedSuperFundAsync(int businessId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
+        SelfManagedSuperFundModel CreateSelfManagedSuperFund(int businessId, SelfManagedSuperFundModel fund);
+        Task<SelfManagedSuperFundModel> CreateSelfManagedSuperFundAsync(int businessId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
         SelfManagedSuperFundModel GetSelfManagedSuperFundById(int businessId, int id);
         Task<SelfManagedSuperFundModel> GetSelfManagedSuperFundByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
         void UpdateSelfManagedSuperFund(int businessId, int id, SelfManagedSuperFundModel fund);
         Task UpdateSelfManagedSuperFundAsync(int businessId, int id, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
         List<AuSmsfElectronicServiceAddressModel> ListElectronicServiceAddresses(int businessId);
         Task<List<AuSmsfElectronicServiceAddressModel>> ListElectronicServiceAddressesAsync(int businessId, CancellationToken cancellationToken = default);
+        List<SuperProductEditModel> SearchSuperFunds(int businessId);
+        Task<List<SuperProductEditModel>> SearchSuperFundsAsync(int businessId, CancellationToken cancellationToken = default);
         List<SuperProductEditModel> SearchSuperFunds(int businessId, SearchSuperFundsQueryModel request);
         Task<List<SuperProductEditModel>> SearchSuperFundsAsync(int businessId, SearchSuperFundsQueryModel request, CancellationToken cancellationToken = default);
     }
@@ -62,9 +64,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new self managed super fund for the business.
         /// </remarks>
-        public void CreateSelfManagedSuperFund(int businessId, SelfManagedSuperFundModel fund)
+        public SelfManagedSuperFundModel CreateSelfManagedSuperFund(int businessId, SelfManagedSuperFundModel fund)
         {
-            ApiRequest($"/business/{businessId}/selfmanagedsuperfund", fund, Method.Post);
+            return ApiRequest<SelfManagedSuperFundModel,SelfManagedSuperFundModel>($"/business/{businessId}/selfmanagedsuperfund", fund, Method.Post);
         }
 
         /// <summary>
@@ -73,9 +75,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new self managed super fund for the business.
         /// </remarks>
-        public Task CreateSelfManagedSuperFundAsync(int businessId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default)
+        public Task<SelfManagedSuperFundModel> CreateSelfManagedSuperFundAsync(int businessId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/selfmanagedsuperfund", fund, Method.Post, cancellationToken);
+            return ApiRequestAsync<SelfManagedSuperFundModel,SelfManagedSuperFundModel>($"/business/{businessId}/selfmanagedsuperfund", fund, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -142,6 +144,28 @@ namespace KeyPayV2.Au.Functions
         public Task<List<AuSmsfElectronicServiceAddressModel>> ListElectronicServiceAddressesAsync(int businessId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<AuSmsfElectronicServiceAddressModel>>($"/business/{businessId}/superfund/electronicserviceaddress", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Search Super Funds
+        /// </summary>
+        /// <remarks>
+        /// Search for super funds based on a string, search by defaults to All
+        /// </remarks>
+        public List<SuperProductEditModel> SearchSuperFunds(int businessId)
+        {
+            return ApiRequest<List<SuperProductEditModel>>($"/business/{businessId}/superfund/productsearch", Method.Get);
+        }
+
+        /// <summary>
+        /// Search Super Funds
+        /// </summary>
+        /// <remarks>
+        /// Search for super funds based on a string, search by defaults to All
+        /// </remarks>
+        public Task<List<SuperProductEditModel>> SearchSuperFundsAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<SuperProductEditModel>>($"/business/{businessId}/superfund/productsearch", Method.Get, cancellationToken);
         }
 
         /// <summary>

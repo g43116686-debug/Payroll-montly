@@ -19,56 +19,56 @@ namespace KeyPayV2.Nz.Functions
         Task<List<TimeAndAttendanceKioskModel>> ListKiosksAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         TimeAndAttendanceKioskModel CreateKiosk(int businessId, TimeAndAttendanceKioskModel kiosk);
         Task<TimeAndAttendanceKioskModel> CreateKioskAsync(int businessId, TimeAndAttendanceKioskModel kiosk, CancellationToken cancellationToken = default);
+        Boolean EmployeeHasAccess(int businessId, int employeeId);
+        Task<Boolean> EmployeeHasAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<NzTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model);
+        Task<List<NzTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default);
         TimeAndAttendanceKioskModel GetKioskById(int businessId, int id);
         Task<TimeAndAttendanceKioskModel> GetKioskByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
         TimeAndAttendanceKioskModel UpdateKiosk(int businessId, int id, TimeAndAttendanceKioskModel kiosk);
         Task<TimeAndAttendanceKioskModel> UpdateKioskAsync(int businessId, int id, TimeAndAttendanceKioskModel kiosk, CancellationToken cancellationToken = default);
         void DeleteKiosk(int businessId, int id);
         Task DeleteKioskAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        void AddCompleteShiftForEmployee(int businessId, int kioskId, AuAddShiftModel model);
-        Task AddCompleteShiftForEmployeeAsync(int businessId, int kioskId, AuAddShiftModel model, CancellationToken cancellationToken = default);
-        void ChangePin(int businessId, int kioskId, ChangeKioskPinModel model);
-        Task ChangePinAsync(int businessId, int kioskId, ChangeKioskPinModel model, CancellationToken cancellationToken = default);
-        void CheckEmployee(int businessId, BasicKioskEmployeeModel model, string kioskId);
-        Task CheckEmployeeAsync(int businessId, BasicKioskEmployeeModel model, string kioskId, CancellationToken cancellationToken = default);
-        KioskEmployeeModel VerifyKioskPin(int businessId, CheckKioskPinModel model, string kioskId);
-        Task<KioskEmployeeModel> VerifyKioskPinAsync(int businessId, CheckKioskPinModel model, string kioskId, CancellationToken cancellationToken = default);
-        void ClockOutEmployee(int businessId, int kioskId, ClockOffModel request);
-        Task ClockOutEmployeeAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default);
-        void ClockInEmployee(int businessId, int kioskId, AuClockOnModel model);
-        Task ClockInEmployeeAsync(int businessId, int kioskId, AuClockOnModel model, CancellationToken cancellationToken = default);
-        void DiscardCurrentShift(int businessId, int kioskId, ClockOffModel request);
-        Task DiscardCurrentShiftAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default);
-        void SendPinResetEmail(int businessId, PinResetModel model, string kioskId);
-        Task SendPinResetEmailAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default);
-        void EndBreak(int businessId, int kioskId, EndBreakModel request);
-        Task EndBreakAsync(int businessId, int kioskId, EndBreakModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel AddCompleteShiftForEmployee(int businessId, int kioskId, AddShiftModel model);
+        Task<KioskEmployeeModel> AddCompleteShiftForEmployeeAsync(int businessId, int kioskId, AddShiftModel model, CancellationToken cancellationToken = default);
+        KioskEmployeeModel ChangePin(int businessId, int kioskId, ChangeKioskPinModel model);
+        Task<KioskEmployeeModel> ChangePinAsync(int businessId, int kioskId, ChangeKioskPinModel model, CancellationToken cancellationToken = default);
+        BasicKioskEmployeeModel CheckEmployee(int businessId, int kioskId, CheckKioskEmployeeIdModel model);
+        Task<BasicKioskEmployeeModel> CheckEmployeeAsync(int businessId, int kioskId, CheckKioskEmployeeIdModel model, CancellationToken cancellationToken = default);
+        KioskEmployeeModel VerifyKioskPin(int businessId, int kioskId, CheckKioskPinModel model);
+        Task<KioskEmployeeModel> VerifyKioskPinAsync(int businessId, int kioskId, CheckKioskPinModel model, CancellationToken cancellationToken = default);
+        KioskEmployeeModel ClockOutEmployee(int businessId, int kioskId, ClockOffModel request);
+        Task<KioskEmployeeModel> ClockOutEmployeeAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel ClockInEmployee(int businessId, int kioskId, ClockOnModel request);
+        Task<KioskEmployeeModel> ClockInEmployeeAsync(int businessId, int kioskId, ClockOnModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel DiscardCurrentShift(int businessId, int kioskId, ClockOffModel request);
+        Task<KioskEmployeeModel> DiscardCurrentShiftAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default);
+        void SendPinResetEmail(int businessId, string kioskId, PinResetModel model);
+        Task SendPinResetEmailAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default);
+        KioskEmployeeModel EndBreak(int businessId, int kioskId, EndBreakModel request);
+        Task<KioskEmployeeModel> EndBreakAsync(int businessId, int kioskId, EndBreakModel request, CancellationToken cancellationToken = default);
         NzTimeAndAttendanceLookupDataModel GetEmployeeLookupData(int businessId, int employeeId, int kioskId);
         Task<NzTimeAndAttendanceLookupDataModel> GetEmployeeLookupDataAsync(int businessId, int employeeId, int kioskId, CancellationToken cancellationToken = default);
-        void GetShiftNotes(int businessId, int kioskId, int shiftId);
-        Task GetShiftNotesAsync(int businessId, int kioskId, int shiftId, CancellationToken cancellationToken = default);
-        void GetShiftNotes(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request);
-        Task GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default);
-        void AddNoteToShift(int businessId, int kioskId, int shiftId, AddNoteModel model);
-        Task AddNoteToShiftAsync(int businessId, int kioskId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default);
+        List<ShiftNoteViewModel> GetShiftNotes(int businessId, int kioskId, int shiftId);
+        Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, CancellationToken cancellationToken = default);
+        List<ShiftNoteViewModel> GetShiftNotes(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request);
+        Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default);
+        ShiftNoteViewModel AddNoteToShift(int businessId, int kioskId, int shiftId, AddNoteModel model);
+        Task<ShiftNoteViewModel> AddNoteToShiftAsync(int businessId, int kioskId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default);
+        void MarkShiftNotesRead(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model);
+        Task MarkShiftNotesReadAsync(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default);
         void DeleteNoteFromShift(int businessId, int kioskId, int shiftId, int noteId);
         Task DeleteNoteFromShiftAsync(int businessId, int kioskId, int shiftId, int noteId, CancellationToken cancellationToken = default);
-        void MarkShiftNotesRead(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId);
-        Task MarkShiftNotesReadAsync(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId, CancellationToken cancellationToken = default);
-        void SendPinResetSms(int businessId, PinResetModel model, string kioskId);
-        Task SendPinResetSmsAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default);
+        void SendPinResetSms(int businessId, string kioskId, PinResetModel model);
+        Task SendPinResetSmsAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default);
         List<BasicKioskEmployeeModel> ListKioskStaff(int businessId, int kioskId);
         Task<List<BasicKioskEmployeeModel>> ListKioskStaffAsync(int businessId, int kioskId, CancellationToken cancellationToken = default);
         List<BasicKioskEmployeeModel> ListKioskStaff(int businessId, int kioskId, ListKioskStaffQueryModel request);
         Task<List<BasicKioskEmployeeModel>> ListKioskStaffAsync(int businessId, int kioskId, ListKioskStaffQueryModel request, CancellationToken cancellationToken = default);
         BasicKioskEmployeeModel AddAnEmployee(int businessId, int kioskId, KioskCreateEmployeeModel model);
         Task<BasicKioskEmployeeModel> AddAnEmployeeAsync(int businessId, int kioskId, KioskCreateEmployeeModel model, CancellationToken cancellationToken = default);
-        void StartBreak(int businessId, int kioskId, StartBreakModel request);
-        Task StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default);
-        void EmployeeHasAccess(int businessId, int employeeId);
-        Task EmployeeHasAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<NzTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model);
-        Task<List<NzTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default);
+        KioskEmployeeModel StartBreak(int businessId, int kioskId, StartBreakModel request);
+        Task<KioskEmployeeModel> StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default);
     }
     public class TimeAndAttendanceFunction : BaseFunction, ITimeAndAttendanceFunction
     {
@@ -118,6 +118,50 @@ namespace KeyPayV2.Nz.Functions
         public Task<TimeAndAttendanceKioskModel> CreateKioskAsync(int businessId, TimeAndAttendanceKioskModel kiosk, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<TimeAndAttendanceKioskModel,TimeAndAttendanceKioskModel>($"/business/{businessId}/kiosk", kiosk, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Employee Has Access
+        /// </summary>
+        /// <remarks>
+        /// Check if an employee has access to a kiosk.
+        /// </remarks>
+        public Boolean EmployeeHasAccess(int businessId, int employeeId)
+        {
+            return ApiRequest<Boolean>($"/business/{businessId}/kiosk/hasaccess/{employeeId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Employee Has Access
+        /// </summary>
+        /// <remarks>
+        /// Check if an employee has access to a kiosk.
+        /// </remarks>
+        public Task<Boolean> EmployeeHasAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<Boolean>($"/business/{businessId}/kiosk/hasaccess/{employeeId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public List<NzTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model)
+        {
+            return ApiRequest<List<NzTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/kiosk/shifts", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public Task<List<NzTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<NzTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/kiosk/shifts", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -192,9 +236,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Clocks in / out an employee for a complete shift.
         /// </remarks>
-        public void AddCompleteShiftForEmployee(int businessId, int kioskId, AuAddShiftModel model)
+        public KioskEmployeeModel AddCompleteShiftForEmployee(int businessId, int kioskId, AddShiftModel model)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/addshift", model, Method.Post);
+            return ApiRequest<KioskEmployeeModel,AddShiftModel>($"/business/{businessId}/kiosk/{kioskId}/addshift", model, Method.Post);
         }
 
         /// <summary>
@@ -203,9 +247,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Clocks in / out an employee for a complete shift.
         /// </remarks>
-        public Task AddCompleteShiftForEmployeeAsync(int businessId, int kioskId, AuAddShiftModel model, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> AddCompleteShiftForEmployeeAsync(int businessId, int kioskId, AddShiftModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/addshift", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,AddShiftModel>($"/business/{businessId}/kiosk/{kioskId}/addshift", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -214,9 +258,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Changes the kiosk PIN for an employee, given their old PIN.
         /// </remarks>
-        public void ChangePin(int businessId, int kioskId, ChangeKioskPinModel model)
+        public KioskEmployeeModel ChangePin(int businessId, int kioskId, ChangeKioskPinModel model)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/changepin", model, Method.Post);
+            return ApiRequest<KioskEmployeeModel,ChangeKioskPinModel>($"/business/{businessId}/kiosk/{kioskId}/changepin", model, Method.Post);
         }
 
         /// <summary>
@@ -225,9 +269,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Changes the kiosk PIN for an employee, given their old PIN.
         /// </remarks>
-        public Task ChangePinAsync(int businessId, int kioskId, ChangeKioskPinModel model, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> ChangePinAsync(int businessId, int kioskId, ChangeKioskPinModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/changepin", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ChangeKioskPinModel>($"/business/{businessId}/kiosk/{kioskId}/changepin", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -236,9 +280,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// If the specified employee has kiosk access, returns details about the employee and their current shift.
         /// </remarks>
-        public void CheckEmployee(int businessId, BasicKioskEmployeeModel model, string kioskId)
+        public BasicKioskEmployeeModel CheckEmployee(int businessId, int kioskId, CheckKioskEmployeeIdModel model)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/checkid", model, Method.Post);
+            return ApiRequest<BasicKioskEmployeeModel,CheckKioskEmployeeIdModel>($"/business/{businessId}/kiosk/{kioskId}/checkid", model, Method.Post);
         }
 
         /// <summary>
@@ -247,9 +291,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// If the specified employee has kiosk access, returns details about the employee and their current shift.
         /// </remarks>
-        public Task CheckEmployeeAsync(int businessId, BasicKioskEmployeeModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task<BasicKioskEmployeeModel> CheckEmployeeAsync(int businessId, int kioskId, CheckKioskEmployeeIdModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/checkid", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<BasicKioskEmployeeModel,CheckKioskEmployeeIdModel>($"/business/{businessId}/kiosk/{kioskId}/checkid", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -258,7 +302,7 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Verifies the employee's kiosk PIN. Returns error code 400 if the PIN is incorrect.
         /// </remarks>
-        public KioskEmployeeModel VerifyKioskPin(int businessId, CheckKioskPinModel model, string kioskId)
+        public KioskEmployeeModel VerifyKioskPin(int businessId, int kioskId, CheckKioskPinModel model)
         {
             return ApiRequest<KioskEmployeeModel,CheckKioskPinModel>($"/business/{businessId}/kiosk/{kioskId}/checkpin", model, Method.Post);
         }
@@ -269,7 +313,7 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Verifies the employee's kiosk PIN. Returns error code 400 if the PIN is incorrect.
         /// </remarks>
-        public Task<KioskEmployeeModel> VerifyKioskPinAsync(int businessId, CheckKioskPinModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> VerifyKioskPinAsync(int businessId, int kioskId, CheckKioskPinModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<KioskEmployeeModel,CheckKioskPinModel>($"/business/{businessId}/kiosk/{kioskId}/checkpin", model, Method.Post, cancellationToken);
         }
@@ -281,9 +325,9 @@ namespace KeyPayV2.Nz.Functions
         /// Clocks out an employee from their existing shift.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public void ClockOutEmployee(int businessId, int kioskId, ClockOffModel request)
+        public KioskEmployeeModel ClockOutEmployee(int businessId, int kioskId, ClockOffModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/clockoff", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,ClockOffModel>($"/business/{businessId}/kiosk/{kioskId}/clockoff", request, Method.Post);
         }
 
         /// <summary>
@@ -293,9 +337,9 @@ namespace KeyPayV2.Nz.Functions
         /// Clocks out an employee from their existing shift.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public Task ClockOutEmployeeAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> ClockOutEmployeeAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/clockoff", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ClockOffModel>($"/business/{businessId}/kiosk/{kioskId}/clockoff", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -304,9 +348,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Clocks in an employee for a new shift.
         /// </remarks>
-        public void ClockInEmployee(int businessId, int kioskId, AuClockOnModel model)
+        public KioskEmployeeModel ClockInEmployee(int businessId, int kioskId, ClockOnModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/clockon", model, Method.Post);
+            return ApiRequest<KioskEmployeeModel,ClockOnModel>($"/business/{businessId}/kiosk/{kioskId}/clockon", request, Method.Post);
         }
 
         /// <summary>
@@ -315,9 +359,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Clocks in an employee for a new shift.
         /// </remarks>
-        public Task ClockInEmployeeAsync(int businessId, int kioskId, AuClockOnModel model, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> ClockInEmployeeAsync(int businessId, int kioskId, ClockOnModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/clockon", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ClockOnModel>($"/business/{businessId}/kiosk/{kioskId}/clockon", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -327,9 +371,9 @@ namespace KeyPayV2.Nz.Functions
         /// Discards the current shift for an employee.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public void DiscardCurrentShift(int businessId, int kioskId, ClockOffModel request)
+        public KioskEmployeeModel DiscardCurrentShift(int businessId, int kioskId, ClockOffModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/discard", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,ClockOffModel>($"/business/{businessId}/kiosk/{kioskId}/discard", request, Method.Post);
         }
 
         /// <summary>
@@ -339,9 +383,9 @@ namespace KeyPayV2.Nz.Functions
         /// Discards the current shift for an employee.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public Task DiscardCurrentShiftAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> DiscardCurrentShiftAsync(int businessId, int kioskId, ClockOffModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/discard", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ClockOffModel>($"/business/{businessId}/kiosk/{kioskId}/discard", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -350,7 +394,7 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by email.
         /// </remarks>
-        public void SendPinResetEmail(int businessId, PinResetModel model, string kioskId)
+        public void SendPinResetEmail(int businessId, string kioskId, PinResetModel model)
         {
             ApiRequest($"/business/{businessId}/kiosk/{kioskId}/emailreset", model, Method.Post);
         }
@@ -361,7 +405,7 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by email.
         /// </remarks>
-        public Task SendPinResetEmailAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task SendPinResetEmailAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/emailreset", model, Method.Post, cancellationToken);
         }
@@ -372,9 +416,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Ends the employee's current break.
         /// </remarks>
-        public void EndBreak(int businessId, int kioskId, EndBreakModel request)
+        public KioskEmployeeModel EndBreak(int businessId, int kioskId, EndBreakModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/endbreak", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,EndBreakModel>($"/business/{businessId}/kiosk/{kioskId}/endbreak", request, Method.Post);
         }
 
         /// <summary>
@@ -383,9 +427,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Ends the employee's current break.
         /// </remarks>
-        public Task EndBreakAsync(int businessId, int kioskId, EndBreakModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> EndBreakAsync(int businessId, int kioskId, EndBreakModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/endbreak", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,EndBreakModel>($"/business/{businessId}/kiosk/{kioskId}/endbreak", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -416,9 +460,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Gets all the notes for a specific shift.
         /// </remarks>
-        public void GetShiftNotes(int businessId, int kioskId, int shiftId)
+        public List<ShiftNoteViewModel> GetShiftNotes(int businessId, int kioskId, int shiftId)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", Method.Get);
+            return ApiRequest<List<ShiftNoteViewModel>>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", Method.Get);
         }
 
         /// <summary>
@@ -427,9 +471,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Gets all the notes for a specific shift.
         /// </remarks>
-        public Task GetShiftNotesAsync(int businessId, int kioskId, int shiftId, CancellationToken cancellationToken = default)
+        public Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -438,9 +482,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Gets all the notes for a specific shift.
         /// </remarks>
-        public void GetShiftNotes(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request)
+        public List<ShiftNoteViewModel> GetShiftNotes(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get);
+            return ApiRequest<List<ShiftNoteViewModel>>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get);
         }
 
         /// <summary>
@@ -449,9 +493,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Gets all the notes for a specific shift.
         /// </remarks>
-        public Task GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default)
+        public Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int businessId, int kioskId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -460,9 +504,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Adds a note to an existing shift.
         /// </remarks>
-        public void AddNoteToShift(int businessId, int kioskId, int shiftId, AddNoteModel model)
+        public ShiftNoteViewModel AddNoteToShift(int businessId, int kioskId, int shiftId, AddNoteModel model)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", model, Method.Post);
+            return ApiRequest<ShiftNoteViewModel,AddNoteModel>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", model, Method.Post);
         }
 
         /// <summary>
@@ -471,9 +515,31 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Adds a note to an existing shift.
         /// </remarks>
-        public Task AddNoteToShiftAsync(int businessId, int kioskId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default)
+        public Task<ShiftNoteViewModel> AddNoteToShiftAsync(int businessId, int kioskId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<ShiftNoteViewModel,AddNoteModel>($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Mark Shift Notes Read
+        /// </summary>
+        /// <remarks>
+        /// Marks some shift notes as either read or unread.
+        /// </remarks>
+        public void MarkShiftNotesRead(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model)
+        {
+            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Mark Shift Notes Read
+        /// </summary>
+        /// <remarks>
+        /// Marks some shift notes as either read or unread.
+        /// </remarks>
+        public Task MarkShiftNotesReadAsync(int businessId, string kioskId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -499,34 +565,12 @@ namespace KeyPayV2.Nz.Functions
         }
 
         /// <summary>
-        /// Mark Shift Notes Read
-        /// </summary>
-        /// <remarks>
-        /// Marks some shift notes as either read or unread.
-        /// </remarks>
-        public void MarkShiftNotesRead(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId)
-        {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Mark Shift Notes Read
-        /// </summary>
-        /// <remarks>
-        /// Marks some shift notes as either read or unread.
-        /// </remarks>
-        public Task MarkShiftNotesReadAsync(int businessId, MarkNotesReadViewModel model, string kioskId, string shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/shift/{shiftId}/notes/read-state", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
         /// Send PIN Reset SMS
         /// </summary>
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by SMS. Note that the current business must have SMS notifications enabled.
         /// </remarks>
-        public void SendPinResetSms(int businessId, PinResetModel model, string kioskId)
+        public void SendPinResetSms(int businessId, string kioskId, PinResetModel model)
         {
             ApiRequest($"/business/{businessId}/kiosk/{kioskId}/smsreset", model, Method.Post);
         }
@@ -537,7 +581,7 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Sends kiosk PIN reset instructions to an employee by SMS. Note that the current business must have SMS notifications enabled.
         /// </remarks>
-        public Task SendPinResetSmsAsync(int businessId, PinResetModel model, string kioskId, CancellationToken cancellationToken = default)
+        public Task SendPinResetSmsAsync(int businessId, string kioskId, PinResetModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/smsreset", model, Method.Post, cancellationToken);
         }
@@ -614,9 +658,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Starts a break for an employee who is clocked on for a shift.
         /// </remarks>
-        public void StartBreak(int businessId, int kioskId, StartBreakModel request)
+        public KioskEmployeeModel StartBreak(int businessId, int kioskId, StartBreakModel request)
         {
-            ApiRequest($"/business/{businessId}/kiosk/{kioskId}/startbreak", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,StartBreakModel>($"/business/{businessId}/kiosk/{kioskId}/startbreak", request, Method.Post);
         }
 
         /// <summary>
@@ -625,53 +669,9 @@ namespace KeyPayV2.Nz.Functions
         /// <remarks>
         /// Starts a break for an employee who is clocked on for a shift.
         /// </remarks>
-        public Task StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> StartBreakAsync(int businessId, int kioskId, StartBreakModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/{kioskId}/startbreak", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Employee Has Access
-        /// </summary>
-        /// <remarks>
-        /// Check if an employee has access to a kiosk.
-        /// </remarks>
-        public void EmployeeHasAccess(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/kiosk/hasaccess/{employeeId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Employee Has Access
-        /// </summary>
-        /// <remarks>
-        /// Check if an employee has access to a kiosk.
-        /// </remarks>
-        public Task EmployeeHasAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/kiosk/hasaccess/{employeeId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Shifts
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public List<NzTimeAndAttendanceShiftModel> Shifts(int businessId, GetShiftsModel model)
-        {
-            return ApiRequest<List<NzTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/kiosk/shifts", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Shifts
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public Task<List<NzTimeAndAttendanceShiftModel>> ShiftsAsync(int businessId, GetShiftsModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<NzTimeAndAttendanceShiftModel>,GetShiftsModel>($"/business/{businessId}/kiosk/shifts", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,StartBreakModel>($"/business/{businessId}/kiosk/{kioskId}/startbreak", request, Method.Post, cancellationToken);
         }
     }
 }

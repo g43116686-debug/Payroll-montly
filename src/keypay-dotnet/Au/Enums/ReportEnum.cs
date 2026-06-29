@@ -55,7 +55,6 @@ namespace KeyPayV2.Au.Enums
         JobKeeperEligibilityReport,
         EarningsCertificate,
         Ir8AReport,
-        ExcessCpfContributionsReport,
         BenefitsInKindReport,
         ShareOptionsReport,
         Cp39Report,
@@ -99,6 +98,18 @@ namespace KeyPayV2.Au.Enums
         P45Report,
         CpfOwAndAwReconciliationReport,
         PayRunFpsReport,
-        PortableLongServiceLeaveReport
+        PortableLongServiceLeaveReport,
+        UkTaxAndNiBandwidthsReport,
+        CustomisablePayrollReport,
+        SuperannuationStaplingDetailsReport,
+        HmrcInboxReport,
+        HrdfMonthlyContributionsReport,
+        CpfApexOverviewReport,
+        EmployeeIrregularEmploymentReport,
+        StatsNzQesReport,
+        IrdReconciliationReport,
+        PayConditionComparisonReport,
+        CasualConversionReport,
+        HeroClearCterReport
     }
 }

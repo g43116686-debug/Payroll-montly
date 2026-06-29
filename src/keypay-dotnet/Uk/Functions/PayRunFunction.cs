@@ -23,10 +23,24 @@ namespace KeyPayV2.Uk.Functions
         Task<List<UkPayRunModel>> ListPayRunsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         UkPayRunModel CreatePayRun(int businessId, PayRunCreateRequest request);
         Task<UkPayRunModel> CreatePayRunSynchronouslyAsync(int businessId, PayRunCreateRequest request, CancellationToken cancellationToken = default);
+        PayRunJobModel CreatePayRunAsync(int businessId, PayRunCreateRequest request);
+        Task<PayRunJobModel> CreatePayRunAsynchronouslyAsync(int businessId, PayRunCreateRequest request, CancellationToken cancellationToken = default);
+        PayRunJobStatusModel GetCreationStatus(int businessId, Guid jobId);
+        Task<PayRunJobStatusModel> GetCreationStatusAsync(int businessId, Guid jobId, CancellationToken cancellationToken = default);
+        List<PayRunSummaryModel> ListPayRunsSummaries(int businessId, ODataQuery oDataQuery = null);
+        Task<List<PayRunSummaryModel>> ListPayRunsSummariesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         UkPayRunModel GetPayRun(int businessId, int payRunId);
         Task<UkPayRunModel> GetPayRunAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void DeletePayRun(int businessId, int payRunId);
         Task DeletePayRunAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
+        PayRunEmployeeExpenseResponse ListEmployeeExpenses(int businessId, int payRunId);
+        Task<PayRunEmployeeExpenseResponse> ListEmployeeExpensesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
+        void CreateEmployeeExpenses(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request);
+        Task CreateEmployeeExpensesAsync(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request, CancellationToken cancellationToken = default);
+        void DeleteEmployeeExpense(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request);
+        Task DeleteEmployeeExpenseAsync(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request, CancellationToken cancellationToken = default);
+        PayRunEmployeeExpenseResponse GetEmployeeExpensesByEmployeeId(int businessId, int employeeId, int payRunId);
+        Task<PayRunEmployeeExpenseResponse> GetEmployeeExpensesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         void StartApprovalProcess(int businessId, int payRunId);
         Task StartApprovalProcessAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         UkPayRunTotalBenefitResponse ListBenefits(int businessId, int payRunId);
@@ -43,28 +57,24 @@ namespace KeyPayV2.Uk.Functions
         Task DeleteDeductionAsync(int businessId, int payRunId, DeleteDeductionQueryModel request, CancellationToken cancellationToken = default);
         UkPayRunDeductionResponse GetDeductionsByEmployeeId(int businessId, int employeeId, int payRunId);
         Task<UkPayRunDeductionResponse> GetDeductionsByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
-        UkPayRunDetailsModel UkPayRunDetails_Get(int businessId, int payRunId);
-        Task<UkPayRunDetailsModel> UkPayRunDetails_GetAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
-        UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId);
-        Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
+        UkPayRunDetailsModel GetPayRunDetails(int businessId, int payRunId);
+        Task<UkPayRunDetailsModel> GetPayRunDetailsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
+        UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId, ODataQuery oDataQuery = null);
+        Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId, ListEarningsLinesQueryModel request, ODataQuery oDataQuery = null);
+        Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, ListEarningsLinesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         void CreateEarningsLines(int businessId, int payRunId, UkSubmitPayRunEarningsLineRequest request);
         Task CreateEarningsLinesAsync(int businessId, int payRunId, UkSubmitPayRunEarningsLineRequest request, CancellationToken cancellationToken = default);
         void DeleteEarningsLine(int businessId, int payRunId, DeleteEarningsLineQueryModel request);
         Task DeleteEarningsLineAsync(int businessId, int payRunId, DeleteEarningsLineQueryModel request, CancellationToken cancellationToken = default);
-        UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId);
-        Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
+        UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId, ODataQuery oDataQuery = null);
+        Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId, GetEarningsLinesByEmployeeIdQueryModel request, ODataQuery oDataQuery = null);
+        Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, GetEarningsLinesByEmployeeIdQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         PayRunTotalModel IncludeEmployee(int businessId, int employeeId, int payRunId);
         Task<PayRunTotalModel> IncludeEmployeeAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         void RemoveEmployeeFromPayRun(int businessId, int employeeId, int payRunId);
         Task RemoveEmployeeFromPayRunAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
-        PayRunEmployeeExpenseResponse ListEmployeeExpenses(int businessId, int payRunId);
-        Task<PayRunEmployeeExpenseResponse> ListEmployeeExpensesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
-        void CreateEmployeeExpenses(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request);
-        Task CreateEmployeeExpensesAsync(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request, CancellationToken cancellationToken = default);
-        void DeleteEmployeeExpense(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request);
-        Task DeleteEmployeeExpenseAsync(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request, CancellationToken cancellationToken = default);
-        PayRunEmployeeExpenseResponse GetEmployeeExpensesByEmployeeId(int businessId, int employeeId, int payRunId);
-        Task<PayRunEmployeeExpenseResponse> GetEmployeeExpensesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         PayRunEmployerLiabilityResponse ListEmployerLiabilities(int businessId, int payRunId);
         Task<PayRunEmployerLiabilityResponse> ListEmployerLiabilitiesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void CreateEmployerLiabilities(int businessId, int payRunId, SubmitPayRunEmployerLiabilityRequest request);
@@ -75,6 +85,8 @@ namespace KeyPayV2.Uk.Functions
         Task<PayRunEmployerLiabilityResponse> GetEmployerLiabilitiesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         void ExcludeEmployeeFromPayRun(int businessId, int employeeId, int payRunId);
         Task ExcludeEmployeeFromPayRunAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
+        JournalExportResult ExportJournalsForAPayRunUsingTheExportpayrunjournalcommand(int businessId, int payRunId);
+        Task<JournalExportResult> ExportJournalsForAPayRunUsingTheExportpayrunjournalcommandAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void GetBacsFile(int businessId, int payRunId, int bacsDetailsId);
         Task GetBacsFileAsync(int businessId, int payRunId, int bacsDetailsId, CancellationToken cancellationToken = default);
         byte[] GetPaySlipFile(int businessId, int employeeId, int payRunId);
@@ -85,6 +97,8 @@ namespace KeyPayV2.Uk.Functions
         Task<PayRunHmrcAdjustmentResponse> ListHmrcAdjustmentsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void CreateHmrcAdjustments(int businessId, int payRunId, SubmitPayRunHmrcAdjustmentRequest request);
         Task CreateHmrcAdjustmentsAsync(int businessId, int payRunId, SubmitPayRunHmrcAdjustmentRequest request, CancellationToken cancellationToken = default);
+        void DeleteHmrcAdjustment(int businessId, int payRunId);
+        Task DeleteHmrcAdjustmentAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void DeleteHmrcAdjustment(int businessId, int payRunId, DeleteHmrcAdjustmentQueryModel request);
         Task DeleteHmrcAdjustmentAsync(int businessId, int payRunId, DeleteHmrcAdjustmentQueryModel request, CancellationToken cancellationToken = default);
         PayRunHmrcAdjustmentResponse GetHmrcAdjustmentsByEmployeeId(int businessId, int employeeId, int payRunId);
@@ -101,8 +115,8 @@ namespace KeyPayV2.Uk.Functions
         Task<LeaveAccrualResponse> GetLeaveAccrualsForEmployeeAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         LeaveAccrualResponse GetLeaveAccrualsForEmployee(int businessId, int employeeId, int payRunId, GetLeaveAccrualsForEmployeeQueryModel request);
         Task<LeaveAccrualResponse> GetLeaveAccrualsForEmployeeAsync(int businessId, int employeeId, int payRunId, GetLeaveAccrualsForEmployeeQueryModel request, CancellationToken cancellationToken = default);
-        NetToGrossModel NetToGross(int businessId, NetToGrossRequest netToGrossRequest, string payRunId);
-        Task<NetToGrossModel> NetToGrossAsync(int businessId, NetToGrossRequest netToGrossRequest, string payRunId, CancellationToken cancellationToken = default);
+        NetToGrossModel NetToGross(int businessId, string payRunId, NetToGrossRequest netToGrossRequest);
+        Task<NetToGrossModel> NetToGrossAsync(int businessId, string payRunId, NetToGrossRequest netToGrossRequest, CancellationToken cancellationToken = default);
         void SetPayRunNotation(int businessId, int payRunId, PayRunNotationModel model);
         Task SetPayRunNotationAsync(int businessId, int payRunId, PayRunNotationModel model, CancellationToken cancellationToken = default);
         void DeletePayRunNotation(int businessId, int payRunId);
@@ -115,10 +129,14 @@ namespace KeyPayV2.Uk.Functions
         Task<PayRunPayeAdjustmentResponse> ListPayeAdjustmentsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void CreatePayeAdjustments(int businessId, int payRunId, SubmitPayRunPayeAdjustmentRequest request);
         Task CreatePayeAdjustmentsAsync(int businessId, int payRunId, SubmitPayRunPayeAdjustmentRequest request, CancellationToken cancellationToken = default);
+        void DeletePayeAdjustment(int businessId, int payRunId);
+        Task DeletePayeAdjustmentAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void DeletePayeAdjustment(int businessId, int payRunId, DeletePayeAdjustmentQueryModel request);
         Task DeletePayeAdjustmentAsync(int businessId, int payRunId, DeletePayeAdjustmentQueryModel request, CancellationToken cancellationToken = default);
         PayRunPayeAdjustmentResponse GetPayeAdjustmentsByEmployeeId(int businessId, int employeeId, int payRunId);
         Task<PayRunPayeAdjustmentResponse> GetPayeAdjustmentsByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
+        void StartPaymentApprovalProcess(int businessId, int payRunId);
+        Task StartPaymentApprovalProcessAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         List<UkBankPaymentModel> GetPayRunPayments(int businessId, int payRunId);
         Task<List<UkBankPaymentModel>> GetPayRunPaymentsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         Dictionary<String,UkApiPaySlipModel> ListPaySlipData(int businessId, int payRunId);
@@ -131,20 +149,20 @@ namespace KeyPayV2.Uk.Functions
         Task<UkApiPaySlipModel> GetPaySlipDataByEmployeeIdAsync(int businessId, int employeeId, int payRunId, GetPaySlipDataByEmployeeIdQueryModel request, CancellationToken cancellationToken = default);
         void Recalculate(int businessId, int payRunId);
         Task RecalculateAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
+        Guid RecalculateBackgroundJob(int businessId, int payRunId);
+        Task<Guid> RecalculateBackgroundJobAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void SetUiUnlockEnabled(int businessId, int payRunId, SetPayRunUIUnlockStateRequest request);
         Task SetUiUnlockEnabledAsync(int businessId, int payRunId, SetPayRunUIUnlockStateRequest request, CancellationToken cancellationToken = default);
         UkSapApiCalculationResultViewModel GetStatutoryAdoptionPayCalculationForPayRun(int businessId, int employeeId, int payRunId);
         Task<UkSapApiCalculationResultViewModel> GetStatutoryAdoptionPayCalculationForPayRunAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         void ApplyStatutoryAdoptionPaymentsToPayRun(int businessId, int employeeId, int payRunId, UkApplySapPaymentsApiModel model);
         Task ApplyStatutoryAdoptionPaymentsToPayRunAsync(int businessId, int employeeId, int payRunId, UkApplySapPaymentsApiModel model, CancellationToken cancellationToken = default);
-        UkSmpApiResponseModel AddStatutoryMaternityPay(int businessId, int employeeId, int payRunId, UkSmpApiRequestModel model);
-        Task<UkSmpApiResponseModel> AddStatutoryMaternityPayAsync(int businessId, int employeeId, int payRunId, UkSmpApiRequestModel model, CancellationToken cancellationToken = default);
-        UkSspApiModel GetStatutorySickPayById(int businessId, int payRunId, int sspId);
-        Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int payRunId, int sspId, CancellationToken cancellationToken = default);
         List<UkSspApiModel> GetStatutorySickPayByEmployeeId(int businessId, int employeeId, int payRunId);
         Task<List<UkSspApiModel>> GetStatutorySickPayByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default);
         UkSspApiResponseModel AddStatutorySickPay(int businessId, int employeeId, int payRunId, UkSspApiModel model);
         Task<UkSspApiResponseModel> AddStatutorySickPayAsync(int businessId, int employeeId, int payRunId, UkSspApiModel model, CancellationToken cancellationToken = default);
+        UkSspApiModel GetStatutorySickPayById(int businessId, int payRunId, int sspId);
+        Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int payRunId, int sspId, CancellationToken cancellationToken = default);
         PayRunSummaryModel GetPayRunSummary(int businessId, int payRunId);
         Task<PayRunSummaryModel> GetPayRunSummaryAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
         void TerminateEmployeeInPayRun(int businessId, int payRunId, TerminateEmployeeRequest request);
@@ -157,12 +175,6 @@ namespace KeyPayV2.Uk.Functions
         Task UnlockPayRunAsync(int businessId, int payRunId, PayRunUnlockRequest request, CancellationToken cancellationToken = default);
         List<DetailedPayRunWarningModel> ListPayRunWarnings(int businessId, int payRunId);
         Task<List<DetailedPayRunWarningModel>> ListPayRunWarningsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default);
-        PayRunJobModel CreatePayRunAsync(int businessId, PayRunCreateRequest request);
-        Task<PayRunJobModel> CreatePayRunAsynchronouslyAsync(int businessId, PayRunCreateRequest request, CancellationToken cancellationToken = default);
-        PayRunJobStatusModel GetCreationStatus(int businessId, Guid jobId);
-        Task<PayRunJobStatusModel> GetCreationStatusAsync(int businessId, Guid jobId, CancellationToken cancellationToken = default);
-        List<PayRunSummaryModel> ListPayRunsSummaries(int businessId, ODataQuery oDataQuery = null);
-        Task<List<PayRunSummaryModel>> ListPayRunsSummariesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
     }
     public class PayRunFunction : BaseFunction, IPayRunFunction
     {
@@ -259,6 +271,74 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
+        /// Create Pay Run (Async)
+        /// </summary>
+        /// <remarks>
+        /// Creates a new pay run for this business asynchronously (the request will return before the pay run is created).
+        /// </remarks>
+        public PayRunJobModel CreatePayRunAsync(int businessId, PayRunCreateRequest request)
+        {
+            return ApiRequest<PayRunJobModel,PayRunCreateRequest>($"/business/{businessId}/payrun/async", request, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Pay Run (Async)
+        /// </summary>
+        /// <remarks>
+        /// Creates a new pay run for this business asynchronously (the request will return before the pay run is created).
+        /// </remarks>
+        public Task<PayRunJobModel> CreatePayRunAsynchronouslyAsync(int businessId, PayRunCreateRequest request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PayRunJobModel,PayRunCreateRequest>($"/business/{businessId}/payrun/async", request, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Creation Status
+        /// </summary>
+        /// <remarks>
+        /// Gets the creation status of a pay run that was created asynchronously.
+        /// </remarks>
+        public PayRunJobStatusModel GetCreationStatus(int businessId, Guid jobId)
+        {
+            return ApiRequest<PayRunJobStatusModel>($"/business/{businessId}/payrun/creationstatus/{jobId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Creation Status
+        /// </summary>
+        /// <remarks>
+        /// Gets the creation status of a pay run that was created asynchronously.
+        /// </remarks>
+        public Task<PayRunJobStatusModel> GetCreationStatusAsync(int businessId, Guid jobId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PayRunJobStatusModel>($"/business/{businessId}/payrun/creationstatus/{jobId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Pay Runs Summaries
+        /// </summary>
+        /// <remarks>
+        /// Get a list of pay run summaries associated with the business.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<PayRunSummaryModel> ListPayRunsSummaries(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<PayRunSummaryModel>>($"/business/{businessId}/payrun/summary{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Pay Runs Summaries
+        /// </summary>
+        /// <remarks>
+        /// Get a list of pay run summaries associated with the business.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<PayRunSummaryModel>> ListPayRunsSummariesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<PayRunSummaryModel>>($"/business/{businessId}/payrun/summary{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Pay Run
         /// </summary>
         /// <remarks>
@@ -300,6 +380,94 @@ namespace KeyPayV2.Uk.Functions
         public Task DeletePayRunAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employee Expenses
+        /// </summary>
+        /// <remarks>
+        /// Lists all the employee expenses for a pay run.
+        /// </remarks>
+        public PayRunEmployeeExpenseResponse ListEmployeeExpenses(int businessId, int payRunId)
+        {
+            return ApiRequest<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employee Expenses
+        /// </summary>
+        /// <remarks>
+        /// Lists all the employee expenses for a pay run.
+        /// </remarks>
+        public Task<PayRunEmployeeExpenseResponse> ListEmployeeExpensesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create Employee Expenses
+        /// </summary>
+        /// <remarks>
+        /// Add employee expenses to the specified pay run.
+        /// </remarks>
+        public void CreateEmployeeExpenses(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request)
+        {
+            ApiRequest($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", request, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Employee Expenses
+        /// </summary>
+        /// <remarks>
+        /// Add employee expenses to the specified pay run.
+        /// </remarks>
+        public Task CreateEmployeeExpensesAsync(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", request, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Employee Expense
+        /// </summary>
+        /// <remarks>
+        /// Deletes the employee expense with the specified ID from the pay run.
+        /// </remarks>
+        public void DeleteEmployeeExpense(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request)
+        {
+            ApiRequest($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses?id={request.Id}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Employee Expense
+        /// </summary>
+        /// <remarks>
+        /// Deletes the employee expense with the specified ID from the pay run.
+        /// </remarks>
+        public Task DeleteEmployeeExpenseAsync(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses?id={request.Id}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee Expenses by Employee ID
+        /// </summary>
+        /// <remarks>
+        /// Gets all the employee expenses for a specific employee in a pay run.
+        /// </remarks>
+        public PayRunEmployeeExpenseResponse GetEmployeeExpensesByEmployeeId(int businessId, int employeeId, int payRunId)
+        {
+            return ApiRequest<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses/{employeeId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee Expenses by Employee ID
+        /// </summary>
+        /// <remarks>
+        /// Gets all the employee expenses for a specific employee in a pay run.
+        /// </remarks>
+        public Task<PayRunEmployeeExpenseResponse> GetEmployeeExpensesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses/{employeeId}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -478,12 +646,24 @@ namespace KeyPayV2.Uk.Functions
             return ApiRequestAsync<UkPayRunDeductionResponse>($"/business/{businessId}/payrun/{payRunId}/deductions/{employeeId}", Method.Get, cancellationToken);
         }
 
-        public UkPayRunDetailsModel UkPayRunDetails_Get(int businessId, int payRunId)
+        /// <summary>
+        /// Get Pay Run Details
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for the specified pay run.
+        /// </remarks>
+        public UkPayRunDetailsModel GetPayRunDetails(int businessId, int payRunId)
         {
             return ApiRequest<UkPayRunDetailsModel>($"/business/{businessId}/payrun/{payRunId}/details", Method.Get);
         }
 
-        public Task<UkPayRunDetailsModel> UkPayRunDetails_GetAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Get Pay Run Details
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for the specified pay run.
+        /// </remarks>
+        public Task<UkPayRunDetailsModel> GetPayRunDetailsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkPayRunDetailsModel>($"/business/{businessId}/payrun/{payRunId}/details", Method.Get, cancellationToken);
         }
@@ -493,10 +673,11 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         /// <remarks>
         /// Lists all the earnings lines for a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
         /// </remarks>
-        public UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId)
+        public UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId, ODataQuery oDataQuery = null)
         {
-            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines", Method.Get);
+            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
         }
 
         /// <summary>
@@ -504,10 +685,35 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         /// <remarks>
         /// Lists all the earnings lines for a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
         /// </remarks>
-        public Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        public Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Earnings Lines
+        /// </summary>
+        /// <remarks>
+        /// Lists all the earnings lines for a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public UkPayRunEarningsLineResponseModel ListEarningsLines(int businessId, int payRunId, ListEarningsLinesQueryModel request, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines?queryOptions={request.QueryOptions}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Earnings Lines
+        /// </summary>
+        /// <remarks>
+        /// Lists all the earnings lines for a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<UkPayRunEarningsLineResponseModel> ListEarningsLinesAsync(int businessId, int payRunId, ListEarningsLinesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines?queryOptions={request.QueryOptions}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -559,10 +765,11 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         /// <remarks>
         /// Gets all the earnings lines for a specific employee in a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
         /// </remarks>
-        public UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId)
+        public UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId, ODataQuery oDataQuery = null)
         {
-            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}", Method.Get);
+            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
         }
 
         /// <summary>
@@ -570,10 +777,35 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         /// <remarks>
         /// Gets all the earnings lines for a specific employee in a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
         /// </remarks>
-        public Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
+        public Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Earnings Lines by Employee ID
+        /// </summary>
+        /// <remarks>
+        /// Gets all the earnings lines for a specific employee in a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public UkPayRunEarningsLineResponseModel GetEarningsLinesByEmployeeId(int businessId, int employeeId, int payRunId, GetEarningsLinesByEmployeeIdQueryModel request, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}?queryOptions={request.QueryOptions}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Earnings Lines by Employee ID
+        /// </summary>
+        /// <remarks>
+        /// Gets all the earnings lines for a specific employee in a pay run.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<UkPayRunEarningsLineResponseModel> GetEarningsLinesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, GetEarningsLinesByEmployeeIdQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkPayRunEarningsLineResponseModel>($"/business/{businessId}/payrun/{payRunId}/earningslines/{employeeId}?queryOptions={request.QueryOptions}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -618,94 +850,6 @@ namespace KeyPayV2.Uk.Functions
         public Task RemoveEmployeeFromPayRunAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/employee/{employeeId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Employee Expenses
-        /// </summary>
-        /// <remarks>
-        /// Lists all the employee expenses for a pay run.
-        /// </remarks>
-        public PayRunEmployeeExpenseResponse ListEmployeeExpenses(int businessId, int payRunId)
-        {
-            return ApiRequest<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", Method.Get);
-        }
-
-        /// <summary>
-        /// List Employee Expenses
-        /// </summary>
-        /// <remarks>
-        /// Lists all the employee expenses for a pay run.
-        /// </remarks>
-        public Task<PayRunEmployeeExpenseResponse> ListEmployeeExpensesAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create Employee Expenses
-        /// </summary>
-        /// <remarks>
-        /// Add employee expenses to the specified pay run.
-        /// </remarks>
-        public void CreateEmployeeExpenses(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request)
-        {
-            ApiRequest($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", request, Method.Post);
-        }
-
-        /// <summary>
-        /// Create Employee Expenses
-        /// </summary>
-        /// <remarks>
-        /// Add employee expenses to the specified pay run.
-        /// </remarks>
-        public Task CreateEmployeeExpensesAsync(int businessId, int payRunId, SubmitPayRunEmployeeExpenseRequest request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Employee Expense
-        /// </summary>
-        /// <remarks>
-        /// Deletes the employee expense with the specified ID from the pay run.
-        /// </remarks>
-        public void DeleteEmployeeExpense(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request)
-        {
-            ApiRequest($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses?id={request.Id}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Employee Expense
-        /// </summary>
-        /// <remarks>
-        /// Deletes the employee expense with the specified ID from the pay run.
-        /// </remarks>
-        public Task DeleteEmployeeExpenseAsync(int businessId, int payRunId, DeleteEmployeeExpenseQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses?id={request.Id}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee Expenses by Employee ID
-        /// </summary>
-        /// <remarks>
-        /// Gets all the employee expenses for a specific employee in a pay run.
-        /// </remarks>
-        public PayRunEmployeeExpenseResponse GetEmployeeExpensesByEmployeeId(int businessId, int employeeId, int payRunId)
-        {
-            return ApiRequest<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses/{employeeId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee Expenses by Employee ID
-        /// </summary>
-        /// <remarks>
-        /// Gets all the employee expenses for a specific employee in a pay run.
-        /// </remarks>
-        public Task<PayRunEmployeeExpenseResponse> GetEmployeeExpensesByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<PayRunEmployeeExpenseResponse>($"/business/{businessId}/payrun/{payRunId}/EmployeeExpenses/{employeeId}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -810,6 +954,22 @@ namespace KeyPayV2.Uk.Functions
         public Task ExcludeEmployeeFromPayRunAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/exclude/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Export journals for a pay run using the ExportPayRunJournalCommand
+        /// </summary>
+        public JournalExportResult ExportJournalsForAPayRunUsingTheExportpayrunjournalcommand(int businessId, int payRunId)
+        {
+            return ApiRequest<JournalExportResult>($"/business/{businessId}/payrun/{payRunId}/exportjournal", Method.Post);
+        }
+
+        /// <summary>
+        /// Export journals for a pay run using the ExportPayRunJournalCommand
+        /// </summary>
+        public Task<JournalExportResult> ExportJournalsForAPayRunUsingTheExportpayrunjournalcommandAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<JournalExportResult>($"/business/{businessId}/payrun/{payRunId}/exportjournal", Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -920,6 +1080,28 @@ namespace KeyPayV2.Uk.Functions
         public Task CreateHmrcAdjustmentsAsync(int businessId, int payRunId, SubmitPayRunHmrcAdjustmentRequest request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/hmrcadjustments", request, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete HMRC Adjustment
+        /// </summary>
+        /// <remarks>
+        /// Deletes the HMRC adjustment with the specified ID from the pay run.
+        /// </remarks>
+        public void DeleteHmrcAdjustment(int businessId, int payRunId)
+        {
+            ApiRequest($"/business/{businessId}/payrun/{payRunId}/hmrcadjustments", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete HMRC Adjustment
+        /// </summary>
+        /// <remarks>
+        /// Deletes the HMRC adjustment with the specified ID from the pay run.
+        /// </remarks>
+        public Task DeleteHmrcAdjustmentAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/hmrcadjustments", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -1104,7 +1286,7 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Calculates net to gross for a given pay run.
         /// </remarks>
-        public NetToGrossModel NetToGross(int businessId, NetToGrossRequest netToGrossRequest, string payRunId)
+        public NetToGrossModel NetToGross(int businessId, string payRunId, NetToGrossRequest netToGrossRequest)
         {
             return ApiRequest<NetToGrossModel,NetToGrossRequest>($"/business/{businessId}/payrun/{payRunId}/nettogross", netToGrossRequest, Method.Post);
         }
@@ -1115,7 +1297,7 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Calculates net to gross for a given pay run.
         /// </remarks>
-        public Task<NetToGrossModel> NetToGrossAsync(int businessId, NetToGrossRequest netToGrossRequest, string payRunId, CancellationToken cancellationToken = default)
+        public Task<NetToGrossModel> NetToGrossAsync(int businessId, string payRunId, NetToGrossRequest netToGrossRequest, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<NetToGrossModel,NetToGrossRequest>($"/business/{businessId}/payrun/{payRunId}/nettogross", netToGrossRequest, Method.Post, cancellationToken);
         }
@@ -1258,6 +1440,28 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Deletes the PAYE adjustment with the specified ID from the pay run.
         /// </remarks>
+        public void DeletePayeAdjustment(int businessId, int payRunId)
+        {
+            ApiRequest($"/business/{businessId}/payrun/{payRunId}/payeadjustments", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete PAYE Adjustment
+        /// </summary>
+        /// <remarks>
+        /// Deletes the PAYE adjustment with the specified ID from the pay run.
+        /// </remarks>
+        public Task DeletePayeAdjustmentAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/payeadjustments", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete PAYE Adjustment
+        /// </summary>
+        /// <remarks>
+        /// Deletes the PAYE adjustment with the specified ID from the pay run.
+        /// </remarks>
         public void DeletePayeAdjustment(int businessId, int payRunId, DeletePayeAdjustmentQueryModel request)
         {
             ApiRequest($"/business/{businessId}/payrun/{payRunId}/payeadjustments?id={request.Id}", Method.Delete);
@@ -1294,6 +1498,30 @@ namespace KeyPayV2.Uk.Functions
         public Task<PayRunPayeAdjustmentResponse> GetPayeAdjustmentsByEmployeeIdAsync(int businessId, int employeeId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<PayRunPayeAdjustmentResponse>($"/business/{businessId}/payrun/{payRunId}/payeadjustments/{employeeId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Start Payment Approval Process
+        /// </summary>
+        /// <remarks>
+        /// Start the payment approval process for a unfinalised payrun can be with finalised with payment approval required
+        /// All default notification user configured on the pay schedule notified to approve the following payment
+        /// </remarks>
+        public void StartPaymentApprovalProcess(int businessId, int payRunId)
+        {
+            ApiRequest($"/business/{businessId}/payrun/{payRunId}/paymentapproval/start", Method.Get);
+        }
+
+        /// <summary>
+        /// Start Payment Approval Process
+        /// </summary>
+        /// <remarks>
+        /// Start the payment approval process for a unfinalised payrun can be with finalised with payment approval required
+        /// All default notification user configured on the pay schedule notified to approve the following payment
+        /// </remarks>
+        public Task StartPaymentApprovalProcessAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/payrun/{payRunId}/paymentapproval/start", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1429,6 +1657,28 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
+        /// Recalculate background job
+        /// </summary>
+        /// <remarks>
+        /// Recalculates a pay run asynchronously.
+        /// </remarks>
+        public Guid RecalculateBackgroundJob(int businessId, int payRunId)
+        {
+            return ApiRequest<Guid>($"/business/{businessId}/payrun/{payRunId}/recalculate/async", Method.Post);
+        }
+
+        /// <summary>
+        /// Recalculate background job
+        /// </summary>
+        /// <remarks>
+        /// Recalculates a pay run asynchronously.
+        /// </remarks>
+        public Task<Guid> RecalculateBackgroundJobAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<Guid>($"/business/{businessId}/payrun/{payRunId}/recalculate/async", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
         /// Set UI Unlock enabled
         /// </summary>
         /// <remarks>
@@ -1483,38 +1733,6 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Add Statutory Maternity Pay
-        /// </summary>
-        public UkSmpApiResponseModel AddStatutoryMaternityPay(int businessId, int employeeId, int payRunId, UkSmpApiRequestModel model)
-        {
-            return ApiRequest<UkSmpApiResponseModel,UkSmpApiRequestModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/smp/employee/{employeeId}", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Add Statutory Maternity Pay
-        /// </summary>
-        public Task<UkSmpApiResponseModel> AddStatutoryMaternityPayAsync(int businessId, int employeeId, int payRunId, UkSmpApiRequestModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkSmpApiResponseModel,UkSmpApiRequestModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/smp/employee/{employeeId}", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Statutory Sick Pay By Id
-        /// </summary>
-        public UkSspApiModel GetStatutorySickPayById(int businessId, int payRunId, int sspId)
-        {
-            return ApiRequest<UkSspApiModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/ssp/{sspId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Statutory Sick Pay By Id
-        /// </summary>
-        public Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int payRunId, int sspId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkSspApiModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/ssp/{sspId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Get Statutory Sick Pay By Employee Id
         /// </summary>
         public List<UkSspApiModel> GetStatutorySickPayByEmployeeId(int businessId, int employeeId, int payRunId)
@@ -1544,6 +1762,22 @@ namespace KeyPayV2.Uk.Functions
         public Task<UkSspApiResponseModel> AddStatutorySickPayAsync(int businessId, int employeeId, int payRunId, UkSspApiModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkSspApiResponseModel,UkSspApiModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/ssp/employee/{employeeId}", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Sick Pay By Id
+        /// </summary>
+        public UkSspApiModel GetStatutorySickPayById(int businessId, int payRunId, int sspId)
+        {
+            return ApiRequest<UkSspApiModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/ssp/{sspId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Sick Pay By Id
+        /// </summary>
+        public Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int payRunId, int sspId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSspApiModel>($"/business/{businessId}/payrun/{payRunId}/statutorypay/ssp/{sspId}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1676,74 +1910,6 @@ namespace KeyPayV2.Uk.Functions
         public Task<List<DetailedPayRunWarningModel>> ListPayRunWarningsAsync(int businessId, int payRunId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<DetailedPayRunWarningModel>>($"/business/{businessId}/payrun/{payRunId}/warnings", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create Pay Run (Async)
-        /// </summary>
-        /// <remarks>
-        /// Creates a new pay run for this business asynchronously (the request will return before the pay run is created).
-        /// </remarks>
-        public PayRunJobModel CreatePayRunAsync(int businessId, PayRunCreateRequest request)
-        {
-            return ApiRequest<PayRunJobModel,PayRunCreateRequest>($"/business/{businessId}/payrun/async", request, Method.Post);
-        }
-
-        /// <summary>
-        /// Create Pay Run (Async)
-        /// </summary>
-        /// <remarks>
-        /// Creates a new pay run for this business asynchronously (the request will return before the pay run is created).
-        /// </remarks>
-        public Task<PayRunJobModel> CreatePayRunAsynchronouslyAsync(int businessId, PayRunCreateRequest request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<PayRunJobModel,PayRunCreateRequest>($"/business/{businessId}/payrun/async", request, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Creation Status
-        /// </summary>
-        /// <remarks>
-        /// Gets the creation status of a pay run that was created asynchronously.
-        /// </remarks>
-        public PayRunJobStatusModel GetCreationStatus(int businessId, Guid jobId)
-        {
-            return ApiRequest<PayRunJobStatusModel>($"/business/{businessId}/payrun/creationstatus/{jobId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Creation Status
-        /// </summary>
-        /// <remarks>
-        /// Gets the creation status of a pay run that was created asynchronously.
-        /// </remarks>
-        public Task<PayRunJobStatusModel> GetCreationStatusAsync(int businessId, Guid jobId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<PayRunJobStatusModel>($"/business/{businessId}/payrun/creationstatus/{jobId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Pay Runs Summaries
-        /// </summary>
-        /// <remarks>
-        /// Get a list of pay run summaries associated with the business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<PayRunSummaryModel> ListPayRunsSummaries(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<PayRunSummaryModel>>($"/business/{businessId}/payrun/summary{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List Pay Runs Summaries
-        /// </summary>
-        /// <remarks>
-        /// Get a list of pay run summaries associated with the business.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<PayRunSummaryModel>> ListPayRunsSummariesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<PayRunSummaryModel>>($"/business/{businessId}/payrun/summary{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
         }
     }
 }

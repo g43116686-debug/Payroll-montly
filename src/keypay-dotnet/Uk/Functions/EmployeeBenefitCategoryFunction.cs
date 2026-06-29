@@ -17,10 +17,10 @@ namespace KeyPayV2.Uk.Functions
     {
         UkEmployeeBenefitCategories ListEmployeeBenefits(int businessId, int employeeId);
         Task<UkEmployeeBenefitCategories> ListEmployeeBenefitsAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        UkEmployeeBenefitCategoryModel UpdateEmployeeBenefit(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model);
-        Task<UkEmployeeBenefitCategoryModel> UpdateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model, CancellationToken cancellationToken = default);
         UkEmployeeBenefitCategoryModel CreateEmployeeBenefit(int businessId, int employeeId, UkEmployeeBenefitCategoryEditModel model);
         Task<UkEmployeeBenefitCategoryModel> CreateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryEditModel model, CancellationToken cancellationToken = default);
+        UkEmployeeBenefitCategoryModel UpdateEmployeeBenefit(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model);
+        Task<UkEmployeeBenefitCategoryModel> UpdateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model, CancellationToken cancellationToken = default);
         UkEmployeeBenefitCategoryModel GetEmployeeBenefit(int businessId, int employeeId, int benefitCategoryId);
         Task<UkEmployeeBenefitCategoryModel> GetEmployeeBenefitAsync(int businessId, int employeeId, int benefitCategoryId, CancellationToken cancellationToken = default);
     }
@@ -51,28 +51,6 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Update employee benefit
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing employee benefit
-        /// </remarks>
-        public UkEmployeeBenefitCategoryModel UpdateEmployeeBenefit(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model)
-        {
-            return ApiRequest<UkEmployeeBenefitCategoryModel,UkEmployeeBenefitCategoryModel>($"/business/{businessId}/employee/{employeeId}/benefit", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update employee benefit
-        /// </summary>
-        /// <remarks>
-        /// Updates an existing employee benefit
-        /// </remarks>
-        public Task<UkEmployeeBenefitCategoryModel> UpdateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkEmployeeBenefitCategoryModel,UkEmployeeBenefitCategoryModel>($"/business/{businessId}/employee/{employeeId}/benefit", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
         /// Create employee benefit
         /// </summary>
         /// <remarks>
@@ -92,6 +70,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<UkEmployeeBenefitCategoryModel> CreateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryEditModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkEmployeeBenefitCategoryModel,UkEmployeeBenefitCategoryEditModel>($"/business/{businessId}/employee/{employeeId}/benefit", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update employee benefit
+        /// </summary>
+        /// <remarks>
+        /// Updates an existing employee benefit
+        /// </remarks>
+        public UkEmployeeBenefitCategoryModel UpdateEmployeeBenefit(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model)
+        {
+            return ApiRequest<UkEmployeeBenefitCategoryModel,UkEmployeeBenefitCategoryModel>($"/business/{businessId}/employee/{employeeId}/benefit", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update employee benefit
+        /// </summary>
+        /// <remarks>
+        /// Updates an existing employee benefit
+        /// </remarks>
+        public Task<UkEmployeeBenefitCategoryModel> UpdateEmployeeBenefitAsync(int businessId, int employeeId, UkEmployeeBenefitCategoryModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkEmployeeBenefitCategoryModel,UkEmployeeBenefitCategoryModel>($"/business/{businessId}/employee/{employeeId}/benefit", model, Method.Put, cancellationToken);
         }
 
         /// <summary>

@@ -58,6 +58,7 @@ namespace KeyPayV2.Au.Models.Common
         public bool? SuperFund3_EmployerNominatedFund { get; set; }
         public decimal? SuperThresholdAmount { get; set; }
         public decimal? MaximumQuarterlySuperContributionsBase { get; set; }
+        public decimal? MaximumAnnualSuperContributionsBase { get; set; }
         public string MedicareLevyExemption { get; set; }
         public bool? CloselyHeldEmployee { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
@@ -80,14 +81,26 @@ namespace KeyPayV2.Au.Models.Common
         public string DvlPaySlipDescription { get; set; }
         public string PortableLongServiceLeaveId { get; set; }
         public bool? IncludeInPortableLongServiceLeaveReport { get; set; }
+        public bool? AutomaticallyApplyPublicHolidayNotWorkedEarningsLines { get; set; }
+        public int? AwardId { get; set; }
+        public int? EmploymentAgreementId { get; set; }
+        public bool? DisableAutoProgression { get; set; }
+        public string Gender { get; set; }
+        public DateTime? AnniversaryDate { get; set; }
+        public string JobTitle { get; set; }
+        public string PaySlipNotificationType { get; set; }
+        public string LeaveTemplate { get; set; }
+        public string RosteringNotificationChoices { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public LeaveAccrualStartDateType? LeaveAccrualStartDateType { get; set; }
+        public DateTime? LeaveYearStart { get; set; }
         public int Id { get; set; }
         public string Title { get; set; }
-        public string PreferredName { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string Surname { get; set; }
+        public string PreferredName { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public string Gender { get; set; }
         public string ExternalId { get; set; }
         public string ResidentialStreetAddress { get; set; }
         public string ResidentialAddressLine2 { get; set; }
@@ -103,21 +116,13 @@ namespace KeyPayV2.Au.Models.Common
         public string MobilePhone { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public DateTime? AnniversaryDate { get; set; }
-        public string Tags { get; set; }
-        public string JobTitle { get; set; }
         public string PaySchedule { get; set; }
         public string PrimaryPayCategory { get; set; }
         public string PrimaryLocation { get; set; }
-        public string PaySlipNotificationType { get; set; }
         public decimal? Rate { get; set; }
-        public string OverrideTemplateRate { get; set; }
         public string RateUnit { get; set; }
         public decimal? HoursPerWeek { get; set; }
         public string AutomaticallyPayEmployee { get; set; }
-        public string LeaveTemplate { get; set; }
-        public string PayRateTemplate { get; set; }
-        public string PayConditionRuleSet { get; set; }
         public string IsEnabledForTimesheets { get; set; }
         public string Locations { get; set; }
         public string WorkTypes { get; set; }
@@ -143,13 +148,13 @@ namespace KeyPayV2.Au.Models.Common
         public string BankAccount3_AccountName { get; set; }
         public decimal? BankAccount3_AllocatedPercentage { get; set; }
         public decimal? BankAccount3_FixedAmount { get; set; }
-        public string RosteringNotificationChoices { get; set; }
-        [JsonConverter(typeof(StringEnumConverter))]
-        public LeaveAccrualStartDateType? LeaveAccrualStartDateType { get; set; }
-        public DateTime? LeaveYearStart { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public EmployeeStatusEnum Status { get; set; }
         public DateTime DateCreated { get; set; }
         public string ReportingDimensionValues { get; set; }
+        public string OverrideTemplateRate { get; set; }
+        public string PayRateTemplate { get; set; }
+        public string PayConditionRuleSet { get; set; }
+        public string Tags { get; set; }
     }
 }

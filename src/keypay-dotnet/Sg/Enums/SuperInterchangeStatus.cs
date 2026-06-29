@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+
+namespace KeyPayV2.Sg.Enums
+{
+    public enum SuperInterchangeStatus
+    {
+        New,
+        SubmittedForProcessing,
+        SubmissionFailed,
+        SubmissionProcessed,
+        SubmissionQueuedForPayment,
+        SubmissionPaid,
+        AwaitingPayment,
+        AwaitingClearance,
+        Reconciled,
+        SentToFund,
+        SentToFundWithResponse,
+        SentToFundWithRefund,
+        Cancelled,
+        Submitted,
+        Refunded,
+        Cancelling,
+        Paid,
+        PaymentFailed,
+        HeroClearProcessing,
+        HeroClearFundsDisbursed,
+        HeroClearSubmittedAllFunds,
+        HeroClearFundingFailed,
+        HeroClearSubmittedWithErrors,
+        HeroClearUploadPassed,
+        HeroClearUploadFailed,
+        HeroClearCancelled,
+        HeroClearAwaitingApproval,
+        HeroClearPaymentApproved,
+        HeroClearPaymentRejected
+    }
+}

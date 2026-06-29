@@ -15,156 +15,8 @@ namespace KeyPayV2.Uk.Functions
 {
     public interface IEmployeeFunction
     {
-        UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, GetEmployeeByExternalIdQueryModel request);
-        Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, GetEmployeeByExternalIdQueryModel request, CancellationToken cancellationToken = default);
-        void DeleteEmployee(int businessId, int employeeId);
-        Task DeleteEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        EmployeeDetailsModel GetEmployeeBasicDetailsById(int businessId, int employeeId);
-        Task<EmployeeDetailsModel> GetEmployeeBasicDetailsByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        HmrcFormsViewModel GetsHmrcFormsViewModelForEmployee(int businessId, int employeeId);
-        Task<HmrcFormsViewModel> GetsHmrcFormsViewModelForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        AutoEnrolmentNoticeModel CreateAutoEnrolmentNotice(int businessId, int employeeId, AutoEnrolmentNoticeModel notice);
-        Task<AutoEnrolmentNoticeModel> CreateAutoEnrolmentNoticeAsync(int businessId, int employeeId, AutoEnrolmentNoticeModel notice, CancellationToken cancellationToken = default);
-        byte[] UkHmrcForms_DownloadAutoEnrolmentNotice(int businessId, int employeeId, UkHmrcForms_DownloadAutoEnrolmentNoticeQueryModel request);
-        Task<byte[]> UkHmrcForms_DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, UkHmrcForms_DownloadAutoEnrolmentNoticeQueryModel request, CancellationToken cancellationToken = default);
-        AutoEnrolmentNoticeViewModel SendAutoEnrolmentNotificationToEmployee(int businessId, int employeeId, int noticeId);
-        Task<AutoEnrolmentNoticeViewModel> SendAutoEnrolmentNotificationToEmployeeAsync(int businessId, int employeeId, int noticeId, CancellationToken cancellationToken = default);
-        P45ViewModel SendP45EmailToEmployee(int businessId, int employeeId);
-        Task<P45ViewModel> SendP45EmailToEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        byte[] DownloadEmployeeP11dForm(int businessId, int employeeId, int taxYear);
-        Task<byte[]> DownloadEmployeeP11dFormAsync(int businessId, int employeeId, int taxYear, CancellationToken cancellationToken = default);
-        P45ViewModel GetP45ModelForEmployee(int businessId, int employeeId);
-        Task<P45ViewModel> GetP45ModelForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        P45DataResponse UkHmrcForms_P45Data(int businessId, int employeeId);
-        Task<P45DataResponse> UkHmrcForms_P45DataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        byte[] UkHmrcForms_P45Download(int businessId, int employeeId);
-        Task<byte[]> UkHmrcForms_P45DownloadAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        P60ViewModel GetP60ModelForEmployee(int businessId, int employeeId, int financialYearEnding);
-        Task<P60ViewModel> GetP60ModelForEmployeeAsync(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default);
-        P60ViewModel UkHmrcForms_P60DownloadController(int businessId, int employeeId, int financialYearEnding);
-        Task<P60ViewModel> UkHmrcForms_P60DownloadControllerAsync(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default);
-        P60GridViewModel NotifyEmployeeByEmailOfP60(int businessId, int employeeId, int noticeId, int financialYearEnding);
-        Task<P60GridViewModel> NotifyEmployeeByEmailOfP60Async(int businessId, int employeeId, int noticeId, int financialYearEnding, CancellationToken cancellationToken = default);
-        void GetEmployeeProfileImage(int businessId, int employeeId);
-        Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        ProfileImageMetadata SetEmployeeProfileImage(int businessId, int employeeId);
-        Task<ProfileImageMetadata> SetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void DeleteEmployeeProfileImage(int businessId, int employeeId);
-        Task DeleteEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId);
-        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request);
-        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default);
-        UkNationalInsuranceBackCalculationModel GetNationalInsuranceBackCalculationOfEmployee(int businessId, int employeeId);
-        Task<UkNationalInsuranceBackCalculationModel> GetNationalInsuranceBackCalculationOfEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        UkNationalInsuranceBackCalculationModel GetNationalInsuranceBackCalculationOfEmployee(int businessId, int employeeId, GetNationalInsuranceBackCalculationOfEmployeeQueryModel request);
-        Task<UkNationalInsuranceBackCalculationModel> GetNationalInsuranceBackCalculationOfEmployeeAsync(int businessId, int employeeId, GetNationalInsuranceBackCalculationOfEmployeeQueryModel request, CancellationToken cancellationToken = default);
-        void ApplyNationalInsuranceBackCalculation(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request);
-        Task ApplyNationalInsuranceBackCalculationAsync(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request, CancellationToken cancellationToken = default);
-        void DeleteNationalInsuranceBackCalculation(int businessId, int employeeId);
-        Task DeleteNationalInsuranceBackCalculationAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        UkNationalInsuranceBackCalculationModel BackCalculateNationalInsurance(int businessId, int employeeId);
-        Task<UkNationalInsuranceBackCalculationModel> BackCalculateNationalInsuranceAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        UkNationalInsuranceBackCalculationModel BackCalculateNationalInsurance(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request);
-        Task<UkNationalInsuranceBackCalculationModel> BackCalculateNationalInsuranceAsync(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request, CancellationToken cancellationToken = default);
-        TaxNationalInsuranceEditModel GetNationalInsuranceRecordAndP45(int businessId, int employeeId);
-        Task<TaxNationalInsuranceEditModel> GetNationalInsuranceRecordAndP45Async(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        TaxNationalInsuranceEditModel UpdateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel);
-        Task<TaxNationalInsuranceEditModel> UpdateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default);
-        TaxNationalInsuranceEditModel CreateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel);
-        Task<TaxNationalInsuranceEditModel> CreateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default);
-        List<EmployeeNoteModel> GetEmployeeNotes(int businessId, int employeeId);
-        Task<List<EmployeeNoteModel>> GetEmployeeNotesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void SetEmployeeNotes(int businessId, int employeeId, CreateEmployeeNoteModel model);
-        Task SetEmployeeNotesAsync(int businessId, int employeeId, CreateEmployeeNoteModel model, CancellationToken cancellationToken = default);
-        List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request);
-        Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request, CancellationToken cancellationToken = default);
-        PeriodOfLeaveModel CreateOccupationalAbsence(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel);
-        Task<PeriodOfLeaveModel> CreateOccupationalAbsenceAsync(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel, CancellationToken cancellationToken = default);
-        UkOpeningBalancesModel GetOpeningBalances(int businessId, int employeeId);
-        Task<UkOpeningBalancesModel> GetOpeningBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void SetOpeningBalances(int businessId, int employeeId, UkOpeningBalancesModel model);
-        Task SetOpeningBalancesAsync(int businessId, int employeeId, UkOpeningBalancesModel model, CancellationToken cancellationToken = default);
-        List<EmployeePayRateModel> GetPayRates(int businessId, int employeeId);
-        Task<List<EmployeePayRateModel>> GetPayRatesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        EmployeePensionContributionPlanSettingsApiModel GetPensionContributionPlan(int businessId, int employeeId);
-        Task<EmployeePensionContributionPlanSettingsApiModel> GetPensionContributionPlanAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        EmployeePensionContributionPlanSettingsApiModel UpdatePensionContributionPlan(int businessId, int employeeId, EmployeePensionContributionPlanSettingsApiModel model);
-        Task<EmployeePensionContributionPlanSettingsApiModel> UpdatePensionContributionPlanAsync(int businessId, int employeeId, EmployeePensionContributionPlanSettingsApiModel model, CancellationToken cancellationToken = default);
-        EmployeePensionContributionPlanSettingsApiModel ForceEnrolment(int businessId, int employeeId);
-        Task<EmployeePensionContributionPlanSettingsApiModel> ForceEnrolmentAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<UkWorkTypeModel> GetEmployeeShiftConditions(int businessId, int employeeId, ODataQuery oDataQuery = null);
-        Task<List<UkWorkTypeModel>> GetEmployeeShiftConditionsAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId);
-        Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        StandardHoursModel SetStandardHoursForEmployee(int businessId, int employeeId, StandardHoursModel model);
-        Task<StandardHoursModel> SetStandardHoursForEmployeeAsync(int businessId, int employeeId, StandardHoursModel model, CancellationToken cancellationToken = default);
-        UkSapDataApiResponseModel CreateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId, UkSapDataApiModel sap);
-        Task<UkSapDataApiResponseModel> CreateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, UkSapDataApiModel sap, CancellationToken cancellationToken = default);
-        List<EmployeeDocumentModel> GetStatutoryAdoptionLeaveAttachments(int businessId, int employeeId, int id);
-        Task<List<EmployeeDocumentModel>> GetStatutoryAdoptionLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryAdoptionLeave(int businessId, int employeeId, int id, int documentId);
-        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        void UnattachEmployeeDocumentFromStatutoryAdoptionLeave(int businessId, int employeeId, int id, int documentId);
-        Task UnattachEmployeeDocumentFromStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        UkSapCalcApiModel CalculateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId, CalculateStatutoryAdoptionLeavePeriodDataQueryModel request);
-        Task<UkSapCalcApiModel> CalculateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryAdoptionLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSmpDataApiModel GetStatutoryMaternityLeavePeriodData(int businessId, int employeeId, GetStatutoryMaternityLeavePeriodDataQueryModel request);
-        Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryMaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSmpDataApiResponseModel CreateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, UkSmpDataApiModel smp);
-        Task<UkSmpDataApiResponseModel> CreateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, UkSmpDataApiModel smp, CancellationToken cancellationToken = default);
-        UkSmpDataApiModel GetStatutoryMaternityLeavePeriodDataById(int businessId, int employeeId, int id);
-        Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        void DeleteStatutoryMaternityLeaveData(int businessId, int employeeId, int id);
-        Task DeleteStatutoryMaternityLeaveDataAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        List<EmployeeDocumentModel> GetStatutoryMaternityLeaveAttachments(int businessId, int employeeId, int id);
-        Task<List<EmployeeDocumentModel>> GetStatutoryMaternityLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryMaternityLeave(int businessId, int employeeId, int id, int documentId);
-        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryMaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        void UnattachEmployeeDocumentFromStatutoryMaternityLeave(int businessId, int employeeId, int id, int documentId);
-        Task UnattachEmployeeDocumentFromStatutoryMaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        UkSmpCalcApiModel CalculateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, CalculateStatutoryMaternityLeavePeriodDataQueryModel request);
-        Task<UkSmpCalcApiModel> CalculateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryMaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, GetStatutoryParentalBereavementLeavePeriodDataQueryModel request);
-        Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryParentalBereavementLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSpbpDataApiResponseModel CreateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, UkSpbpDataApiModel spbp);
-        Task<UkSpbpDataApiResponseModel> CreateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, UkSpbpDataApiModel spbp, CancellationToken cancellationToken = default);
-        UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodDataById(int businessId, int employeeId, int id);
-        Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        List<EmployeeDocumentModel> GetStatutoryParentalBereavementLeaveAttachments(int businessId, int employeeId, int id);
-        Task<List<EmployeeDocumentModel>> GetStatutoryParentalBereavementLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryParentalBereavementLeave(int businessId, int employeeId, int id, int documentId);
-        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        void UnattachEmployeeDocumentFromStatutoryParentalBereavementLeave(int businessId, int employeeId, int id, int documentId);
-        Task UnattachEmployeeDocumentFromStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        UkSpbpCalcApiModel CalculateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, CalculateStatutoryParentalBereavementLeavePeriodDataQueryModel request);
-        Task<UkSpbpCalcApiModel> CalculateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryParentalBereavementLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSppDataApiModel GetStatutoryPaternityLeavePeriodData(int businessId, int employeeId, GetStatutoryPaternityLeavePeriodDataQueryModel request);
-        Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryPaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        UkSppDataApiResponseModel CreateStatutoryPaternityLeavePeriodData(int businessId, int employeeId, UkSppDataApiModel spp);
-        Task<UkSppDataApiResponseModel> CreateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, UkSppDataApiModel spp, CancellationToken cancellationToken = default);
-        UkSppDataApiModel GetStatutoryPaternityLeavePeriodDataById(int businessId, int employeeId, int id);
-        Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        List<EmployeeDocumentModel> GetStatutoryPaternityLeaveAttachments(int businessId, int employeeId, int id);
-        Task<List<EmployeeDocumentModel>> GetStatutoryPaternityLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default);
-        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryPaternityLeave(int businessId, int employeeId, int id, int documentId);
-        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryPaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        void UnattachEmployeeDocumentFromStatutoryPaternityLeave(int businessId, int employeeId, int id, int documentId);
-        Task UnattachEmployeeDocumentFromStatutoryPaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default);
-        UkSppCalcApiModel CalculateStatutoryPaternityLeavePeriodData(int businessId, int employeeId, CalculateStatutoryPaternityLeavePeriodDataQueryModel request);
-        Task<UkSppCalcApiModel> CalculateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryPaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
-        List<UkSspApiModel> GetStatutorySickPayByEmployee(int businessId, int employeeId, GetStatutorySickPayByEmployeeQueryModel request);
-        Task<List<UkSspApiModel>> GetStatutorySickPayByEmployeeAsync(int businessId, int employeeId, GetStatutorySickPayByEmployeeQueryModel request, CancellationToken cancellationToken = default);
-        UkSspApiModel CreateStatutorySickPay(int businessId, int employeeId, UkSspApiModel ssp);
-        Task<UkSspApiModel> CreateStatutorySickPayAsync(int businessId, int employeeId, UkSspApiModel ssp, CancellationToken cancellationToken = default);
-        UkSspApiModel GetStatutorySickPayById(int businessId, int employeeId, int periodOfLeaveId);
-        Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int employeeId, int periodOfLeaveId, CancellationToken cancellationToken = default);
-        void SyncEmployeeToQbo(int businessId, int employeeId);
-        Task SyncEmployeeToQboAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<UkWorkTypeModel> GetEmployeeWorkTypes(int businessId, int employeeId, ODataQuery oDataQuery = null);
-        Task<List<UkWorkTypeModel>> GetEmployeeWorkTypesAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        YearToDateModel GetYearToDate(int businessId, int employeeId, GetYearToDateQueryModel request);
-        Task<YearToDateModel> GetYearToDateAsync(int businessId, int employeeId, GetYearToDateQueryModel request, CancellationToken cancellationToken = default);
+        UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId);
+        Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, CancellationToken cancellationToken = default);
         void ActivateEmployee(int businessId, int employeeId);
         Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null);
@@ -181,14 +33,234 @@ namespace KeyPayV2.Uk.Functions
         Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
         EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request);
         Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default);
-        UkUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId);
-        Task<UkUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, UkUnstructuredEmployeeModel model);
-        Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
         UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId);
         Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default);
         UkUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source);
         Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default);
+        UkUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId);
+        Task<UkUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, UkUnstructuredEmployeeModel model);
+        Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
+        void DeleteEmployee(int businessId, int employeeId);
+        Task DeleteEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        EmployeeDetailsModel GetEmployeeBasicDetailsById(int businessId, int employeeId);
+        Task<EmployeeDetailsModel> GetEmployeeBasicDetailsByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        HmrcFormsViewModel GetsHmrcFormsViewModelForEmployee(int businessId, int employeeId);
+        Task<HmrcFormsViewModel> GetsHmrcFormsViewModelForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        AutoEnrolmentNoticeModel CreateAutoEnrolmentNotice(int businessId, int employeeId, AutoEnrolmentNoticeModel notice);
+        Task<AutoEnrolmentNoticeModel> CreateAutoEnrolmentNoticeAsync(int businessId, int employeeId, AutoEnrolmentNoticeModel notice, CancellationToken cancellationToken = default);
+        byte[] DownloadAutoEnrolmentNotice(int businessId, int employeeId);
+        Task<byte[]> DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        byte[] DownloadAutoEnrolmentNotice(int businessId, int employeeId, DownloadAutoEnrolmentNoticeQueryModel request);
+        Task<byte[]> DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, DownloadAutoEnrolmentNoticeQueryModel request, CancellationToken cancellationToken = default);
+        AutoEnrolmentNoticeViewModel SendAutoEnrolmentNotificationToEmployee(int businessId, int employeeId, int noticeId);
+        Task<AutoEnrolmentNoticeViewModel> SendAutoEnrolmentNotificationToEmployeeAsync(int businessId, int employeeId, int noticeId, CancellationToken cancellationToken = default);
+        P45ViewModel SendP45EmailToEmployee(int businessId, int employeeId);
+        Task<P45ViewModel> SendP45EmailToEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        byte[] DownloadEmployeeP11dForm(int businessId, int employeeId, int taxYear);
+        Task<byte[]> DownloadEmployeeP11dFormAsync(int businessId, int employeeId, int taxYear, CancellationToken cancellationToken = default);
+        P45ViewModel GetP45ModelForEmployee(int businessId, int employeeId);
+        Task<P45ViewModel> GetP45ModelForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        P45DataResponse GetP45Data(int businessId, int employeeId);
+        Task<P45DataResponse> GetP45DataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        byte[] DownloadP45(int businessId, int employeeId);
+        Task<byte[]> DownloadP45Async(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        P60ViewModel GetP60ModelForEmployee(int businessId, int employeeId, int financialYearEnding);
+        Task<P60ViewModel> GetP60ModelForEmployeeAsync(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default);
+        byte[] DownloadP60(int businessId, int employeeId, int financialYearEnding);
+        Task<byte[]> DownloadP60Async(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default);
+        P60GridViewModel NotifyEmployeeByEmailOfP60(int businessId, int employeeId, int noticeId, int financialYearEnding);
+        Task<P60GridViewModel> NotifyEmployeeByEmailOfP60Async(int businessId, int employeeId, int noticeId, int financialYearEnding, CancellationToken cancellationToken = default);
+        byte[] GetEmployeeProfileImage(int businessId, int employeeId);
+        Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        ProfileImageMetadata SetEmployeeProfileImage(int businessId, int employeeId);
+        Task<ProfileImageMetadata> SetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        void DeleteEmployeeProfileImage(int businessId, int employeeId);
+        Task DeleteEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId);
+        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<LeaveBalanceModel> GetLeaveBalances(int businessId, int employeeId, GetLeaveBalancesQueryModel request);
+        Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int businessId, int employeeId, GetLeaveBalancesQueryModel request, CancellationToken cancellationToken = default);
+        UkNationalInsuranceBackCalculationModel GetNationalInsuranceBackCalculationOfEmployee(int businessId, int employeeId);
+        Task<UkNationalInsuranceBackCalculationModel> GetNationalInsuranceBackCalculationOfEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkNationalInsuranceBackCalculationModel GetNationalInsuranceBackCalculationOfEmployee(int businessId, int employeeId, GetNationalInsuranceBackCalculationOfEmployeeQueryModel request);
+        Task<UkNationalInsuranceBackCalculationModel> GetNationalInsuranceBackCalculationOfEmployeeAsync(int businessId, int employeeId, GetNationalInsuranceBackCalculationOfEmployeeQueryModel request, CancellationToken cancellationToken = default);
+        UkNationalInsuranceBackCalculationModel ApplyNationalInsuranceBackCalculation(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request);
+        Task<UkNationalInsuranceBackCalculationModel> ApplyNationalInsuranceBackCalculationAsync(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request, CancellationToken cancellationToken = default);
+        void DeleteNationalInsuranceBackCalculation(int businessId, int employeeId);
+        Task DeleteNationalInsuranceBackCalculationAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkNationalInsuranceBackCalculationModel BackCalculateNationalInsurance(int businessId, int employeeId);
+        Task<UkNationalInsuranceBackCalculationModel> BackCalculateNationalInsuranceAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkNationalInsuranceBackCalculationModel BackCalculateNationalInsurance(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request);
+        Task<UkNationalInsuranceBackCalculationModel> BackCalculateNationalInsuranceAsync(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request, CancellationToken cancellationToken = default);
+        TaxNationalInsuranceEditModel GetNationalInsuranceRecordAndP45(int businessId, int employeeId);
+        Task<TaxNationalInsuranceEditModel> GetNationalInsuranceRecordAndP45Async(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        TaxNationalInsuranceEditModel CreateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel);
+        Task<TaxNationalInsuranceEditModel> CreateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default);
+        TaxNationalInsuranceEditModel UpdateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel);
+        Task<TaxNationalInsuranceEditModel> UpdateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default);
+        List<EmployeeNoteModel> GetEmployeeNotes(int businessId, int employeeId);
+        Task<List<EmployeeNoteModel>> GetEmployeeNotesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        void SetEmployeeNotes(int businessId, int employeeId, CreateEmployeeNoteModel model);
+        Task SetEmployeeNotesAsync(int businessId, int employeeId, CreateEmployeeNoteModel model, CancellationToken cancellationToken = default);
+        PeriodOfLeaveModel CreateOccupationalAbsence(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel);
+        Task<PeriodOfLeaveModel> CreateOccupationalAbsenceAsync(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel, CancellationToken cancellationToken = default);
+        List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId);
+        Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request);
+        Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request, CancellationToken cancellationToken = default);
+        UkOpeningBalancesModel GetOpeningBalances(int businessId, int employeeId);
+        Task<UkOpeningBalancesModel> GetOpeningBalancesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        void SetOpeningBalances(int businessId, int employeeId, UkOpeningBalancesModel model);
+        Task SetOpeningBalancesAsync(int businessId, int employeeId, UkOpeningBalancesModel model, CancellationToken cancellationToken = default);
+        List<EmployeePayRateModel> GetPayRates(int businessId, int employeeId);
+        Task<List<EmployeePayRateModel>> GetPayRatesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        EmployeePensionContributionPlanSettingsApiModel GetPensionContributionPlan(int businessId, int employeeId);
+        Task<EmployeePensionContributionPlanSettingsApiModel> GetPensionContributionPlanAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        EmployeePensionContributionPlanSettingsApiModel UpdatePensionContributionPlan(int businessId, int employeeId, EmployeePensionContributionPlanSettingsApiModel model);
+        Task<EmployeePensionContributionPlanSettingsApiModel> UpdatePensionContributionPlanAsync(int businessId, int employeeId, EmployeePensionContributionPlanSettingsApiModel model, CancellationToken cancellationToken = default);
+        EmployeePensionContributionPlanSettingsApiModel ForceEnrolment(int businessId, int employeeId);
+        Task<EmployeePensionContributionPlanSettingsApiModel> ForceEnrolmentAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<UkWorkTypeModel> GetEmployeeShiftConditions(int businessId, int employeeId, ODataQuery oDataQuery = null);
+        Task<List<UkWorkTypeModel>> GetEmployeeShiftConditionsAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        StandardHoursModel SetStandardHoursForEmployee(int businessId, int employeeId, StandardHoursModel model);
+        Task<StandardHoursModel> SetStandardHoursForEmployeeAsync(int businessId, int employeeId, StandardHoursModel model, CancellationToken cancellationToken = default);
+        StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId);
+        Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSapDataApiResponseModel CreateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId, UkSapDataApiModel sap);
+        Task<UkSapDataApiResponseModel> CreateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, UkSapDataApiModel sap, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutoryAdoptionLeaveAttachments(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutoryAdoptionLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryAdoptionLeave(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutoryAdoptionLeave(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        UkSapCalcApiModel CalculateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId);
+        Task<UkSapCalcApiModel> CalculateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSapCalcApiModel CalculateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId, CalculateStatutoryAdoptionLeavePeriodDataQueryModel request);
+        Task<UkSapCalcApiModel> CalculateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryAdoptionLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkShppDataApiModel GetStatutorySharedParentalLeavePeriodData(int businessId, int employeeId);
+        Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkShppDataApiModel GetStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, GetStatutorySharedParentalLeavePeriodDataQueryModel request);
+        Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, GetStatutorySharedParentalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel CreateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, UkShppDataApiModel shpp);
+        Task<UkSmpDataApiResponseModel> CreateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, UkShppDataApiModel shpp, CancellationToken cancellationToken = default);
+        UkShppDataApiModel GetStatutorySharedParentalLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel UpdateStatutorySharedParentalLeaveData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkShppDataApiModel shpp);
+        Task<UkSmpDataApiResponseModel> UpdateStatutorySharedParentalLeaveDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkShppDataApiModel shpp, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutorySharedParentalLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutorySharedParentalLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutorySharedParentalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutorySharedParentalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutorySharedParentalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutorySharedParentalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        UkSmpCalcApiModel CalculateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId);
+        Task<UkSmpCalcApiModel> CalculateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSmpCalcApiModel CalculateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, CalculateStatutorySharedParentalLeavePeriodDataQueryModel request);
+        Task<UkSmpCalcApiModel> CalculateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutorySharedParentalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSmpDataApiModel GetStatutoryMaternityLeavePeriodData(int businessId, int employeeId);
+        Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSmpDataApiModel GetStatutoryMaternityLeavePeriodData(int businessId, int employeeId, GetStatutoryMaternityLeavePeriodDataQueryModel request);
+        Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryMaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel CreateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, UkSmpDataApiModel smp);
+        Task<UkSmpDataApiResponseModel> CreateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, UkSmpDataApiModel smp, CancellationToken cancellationToken = default);
+        void DeleteStatutoryMaternityLeaveData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task DeleteStatutoryMaternityLeaveDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        UkSmpDataApiModel GetStatutoryMaternityLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel UpdateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSmpDataApiModel smp);
+        Task<UkSmpDataApiResponseModel> UpdateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSmpDataApiModel smp, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutoryMaternityLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutoryMaternityLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryMaternityLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryMaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutoryMaternityLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutoryMaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        UkSmpCalcApiModel CalculateStatutoryMaternityLeavePeriodData(int businessId, int employeeId);
+        Task<UkSmpCalcApiModel> CalculateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSmpCalcApiModel CalculateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, CalculateStatutoryMaternityLeavePeriodDataQueryModel request);
+        Task<UkSmpCalcApiModel> CalculateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryMaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodData(int businessId, int employeeId);
+        Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, GetStatutoryNeonatalLeavePeriodDataQueryModel request);
+        Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryNeonatalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel CreateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, UkSncpDataApiModel sncp);
+        Task<UkSmpDataApiResponseModel> CreateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, UkSncpDataApiModel sncp, CancellationToken cancellationToken = default);
+        UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        UkSmpDataApiResponseModel UpdateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSncpDataApiModel sncp);
+        Task<UkSmpDataApiResponseModel> UpdateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSncpDataApiModel sncp, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutoryNeonatalLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutoryNeonatalLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryNeonatalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryNeonatalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutoryNeonatalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutoryNeonatalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void PauseStatutoryNeonatalCareLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId);
+        Task PauseStatutoryNeonatalCareLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default);
+        void PauseStatutoryNeonatalCareLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, PauseStatutoryNeonatalCareLeaveQueryModel request);
+        Task PauseStatutoryNeonatalCareLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, PauseStatutoryNeonatalCareLeaveQueryModel request, CancellationToken cancellationToken = default);
+        UkSncpCalcApiModel CalculateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId);
+        Task<UkSncpCalcApiModel> CalculateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSncpCalcApiModel CalculateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, CalculateStatutoryNeonatalLeavePeriodDataQueryModel request);
+        Task<UkSncpCalcApiModel> CalculateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryNeonatalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId);
+        Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, GetStatutoryParentalBereavementLeavePeriodDataQueryModel request);
+        Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryParentalBereavementLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSpbpDataApiResponseModel CreateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, UkSpbpDataApiModel spbp);
+        Task<UkSpbpDataApiResponseModel> CreateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, UkSpbpDataApiModel spbp, CancellationToken cancellationToken = default);
+        UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId);
+        Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, CancellationToken cancellationToken = default);
+        UkSpbpDataApiResponseModel UpdateStatutoryParentalBereavementLeaveData(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, UkSpbpDataApiModel spbp);
+        Task<UkSpbpDataApiResponseModel> UpdateStatutoryParentalBereavementLeaveDataAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, UkSpbpDataApiModel spbp, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutoryParentalBereavementLeaveAttachments(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutoryParentalBereavementLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryParentalBereavementLeave(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutoryParentalBereavementLeave(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        UkSpbpCalcApiModel CalculateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId);
+        Task<UkSpbpCalcApiModel> CalculateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSpbpCalcApiModel CalculateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId, CalculateStatutoryParentalBereavementLeavePeriodDataQueryModel request);
+        Task<UkSpbpCalcApiModel> CalculateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryParentalBereavementLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSppDataApiModel GetStatutoryPaternityLeavePeriodData(int businessId, int employeeId);
+        Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSppDataApiModel GetStatutoryPaternityLeavePeriodData(int businessId, int employeeId, GetStatutoryPaternityLeavePeriodDataQueryModel request);
+        Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryPaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSppDataApiResponseModel CreateStatutoryPaternityLeavePeriodData(int businessId, int employeeId, UkSppDataApiModel spp);
+        Task<UkSppDataApiResponseModel> CreateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, UkSppDataApiModel spp, CancellationToken cancellationToken = default);
+        UkSppDataApiModel GetStatutoryPaternityLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId);
+        Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, CancellationToken cancellationToken = default);
+        List<EmployeeDocumentModel> GetStatutoryPaternityLeaveAttachments(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId);
+        Task<List<EmployeeDocumentModel>> GetStatutoryPaternityLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, CancellationToken cancellationToken = default);
+        EmployeeDocumentModel AttachEmployeeDocumentToStatutoryPaternityLeave(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId);
+        Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryPaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        void UnattachEmployeeDocumentFromStatutoryPaternityLeave(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId);
+        Task UnattachEmployeeDocumentFromStatutoryPaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default);
+        UkSppCalcApiModel CalculateStatutoryPaternityLeavePeriodData(int businessId, int employeeId);
+        Task<UkSppCalcApiModel> CalculateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        UkSppCalcApiModel CalculateStatutoryPaternityLeavePeriodData(int businessId, int employeeId, CalculateStatutoryPaternityLeavePeriodDataQueryModel request);
+        Task<UkSppCalcApiModel> CalculateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryPaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default);
+        UkSspApiModel CreateStatutorySickPay(int businessId, int employeeId, UkSspApiModel ssp);
+        Task<UkSspApiModel> CreateStatutorySickPayAsync(int businessId, int employeeId, UkSspApiModel ssp, CancellationToken cancellationToken = default);
+        List<UkSspApiModel> GetStatutorySickPayByEmployee(int businessId, int employeeId);
+        Task<List<UkSspApiModel>> GetStatutorySickPayByEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<UkSspApiModel> GetStatutorySickPayByEmployee(int businessId, int employeeId, GetStatutorySickPayByEmployeeQueryModel request);
+        Task<List<UkSspApiModel>> GetStatutorySickPayByEmployeeAsync(int businessId, int employeeId, GetStatutorySickPayByEmployeeQueryModel request, CancellationToken cancellationToken = default);
+        PeriodOfLeaveModel UpdateStatutorySickPay(int businessId, int employeeId, int periodOfLeaveId, UkSspUpdateModel model);
+        Task<PeriodOfLeaveModel> UpdateStatutorySickPayAsync(int businessId, int employeeId, int periodOfLeaveId, UkSspUpdateModel model, CancellationToken cancellationToken = default);
+        UkSspApiModel GetStatutorySickPayById(int businessId, int employeeId, int periodOfLeaveId);
+        Task<UkSspApiModel> GetStatutorySickPayByIdAsync(int businessId, int employeeId, int periodOfLeaveId, CancellationToken cancellationToken = default);
+        void DeletePeriodOfLeave(int businessId, int employeeId, int periodOfLeaveId);
+        Task DeletePeriodOfLeaveAsync(int businessId, int employeeId, int periodOfLeaveId, CancellationToken cancellationToken = default);
+        List<UkWorkTypeModel> GetEmployeeWorkTypes(int businessId, int employeeId, ODataQuery oDataQuery = null);
+        Task<List<UkWorkTypeModel>> GetEmployeeWorkTypesAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        YearToDateModel GetYearToDate(int businessId, int employeeId);
+        Task<YearToDateModel> GetYearToDateAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        YearToDateModel GetYearToDate(int businessId, int employeeId, GetYearToDateQueryModel request);
+        Task<YearToDateModel> GetYearToDateAsync(int businessId, int employeeId, GetYearToDateQueryModel request, CancellationToken cancellationToken = default);
     }
     public class EmployeeFunction : BaseFunction, IEmployeeFunction
     {
@@ -200,9 +272,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the employee with the specified external ID.
         /// </remarks>
-        public UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, GetEmployeeByExternalIdQueryModel request)
+        public UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId)
         {
-            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee?externalId={request.ExternalId}", Method.Get);
+            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee", Method.Get);
         }
 
         /// <summary>
@@ -211,9 +283,399 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the employee with the specified external ID.
         /// </remarks>
-        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, GetEmployeeByExternalIdQueryModel request, CancellationToken cancellationToken = default)
+        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee?externalId={request.ExternalId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Activate Employee
+        /// </summary>
+        /// <remarks>
+        /// Activates the employee with the specified ID.
+        /// </remarks>
+        public void ActivateEmployee(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/activate/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Activate Employee
+        /// </summary>
+        /// <remarks>
+        /// Activates the employee with the specified ID.
+        /// </remarks>
+        public Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/activate/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// List basic details for employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
+        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List basic details for employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
+        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Grant Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Grants kiosk access to the specified employee.
+        /// </remarks>
+        public void GrantKioskAccess(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Grant Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Grants kiosk access to the specified employee.
+        /// </remarks>
+        public Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Revoke Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Revokes kiosk access from the specified employee.
+        /// </remarks>
+        public void RevokeKioskAccess(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Revoke Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Revokes kiosk access from the specified employee.
+        /// </remarks>
+        public Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<UkUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<UkUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<UkUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?PayScheduleId={request.PayScheduleId}&LocationId={request.LocationId}&options={request.Options}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<UkUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?PayScheduleId={request.PayScheduleId}&LocationId={request.LocationId}&options={request.Options}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
+        ///             be updated. Otherwise a new employee will be created. 
+        ///             </p>
+        /// <p>
+        ///             MatchType parameter values:
+        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
+        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
+        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
+        ///                 </li></list></p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
+        ///             TaxCode and TaxCalculationMethod.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// <p>Bypassing address validation:</p>
+        /// <p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p>
+        /// <ol>
+        ///   <li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li>
+        ///   <li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li>
+        ///   <li>Now you can enter your address unrestricted in the normal fields.</li>
+        /// </ol>
+        /// <p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, UkUnstructuredEmployeeModel model)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
+        ///             be updated. Otherwise a new employee will be created. 
+        ///             </p>
+        /// <p>
+        ///             MatchType parameter values:
+        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
+        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
+        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
+        ///                 </li></list></p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
+        ///             TaxCode and TaxCalculationMethod.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// <p>Bypassing address validation:</p>
+        /// <p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p>
+        /// <ol>
+        ///   <li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li>
+        ///   <li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li>
+        ///   <li>Now you can enter your address unrestricted in the normal fields.</li>
+        /// </ol>
+        /// <p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
+        ///             be updated. Otherwise a new employee will be created. 
+        ///             </p>
+        /// <p>
+        ///             MatchType parameter values:
+        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
+        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
+        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
+        ///                 </li></list></p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
+        ///             TaxCode and TaxCalculationMethod.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// <p>Bypassing address validation:</p>
+        /// <p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p>
+        /// <ol>
+        ///   <li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li>
+        ///   <li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li>
+        ///   <li>Now you can enter your address unrestricted in the normal fields.</li>
+        /// </ol>
+        /// <p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
+        ///             be updated. Otherwise a new employee will be created. 
+        ///             </p>
+        /// <p>
+        ///             MatchType parameter values:
+        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
+        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
+        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
+        ///                 </li></list></p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
+        ///             TaxCode and TaxCalculationMethod.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// <p>Bypassing address validation:</p>
+        /// <p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p>
+        /// <ol>
+        ///   <li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li>
+        ///   <li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li>
+        ///   <li>Now you can enter your address unrestricted in the normal fields.</li>
+        /// </ol>
+        /// <p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By External ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external ID.
+        /// </remarks>
+        public UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId)
+        {
+            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By External ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external ID.
+        /// </remarks>
+        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By External Reference ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external reference ID.
+        /// </remarks>
+        public UkUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source)
+        {
+            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By External Reference ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external reference ID.
+        /// </remarks>
+        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified ID.
+        /// </remarks>
+        public UkUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId)
+        {
+            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified ID.
+        /// </remarks>
+        public Task<UkUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        /// <remarks>
+        /// Updates the employee with the specified ID.
+        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
+        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
+        /// <p>Bypassing address validation:</p><p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p><ol><li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li><li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li><li>Now you can enter your address unrestricted in the normal fields.</li></ol><p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, UkUnstructuredEmployeeModel model)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        /// <remarks>
+        /// Updates the employee with the specified ID.
+        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
+        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
+        /// <p>Bypassing address validation:</p><p>By default we validate addresses when they are entered. If for any reason you want to skip this validation, please follow the steps below.</p><ol><li>Set "ResidentialAddressIsOverseas" and "PostalAddressIsOverseas" to "true" (this needs to be a boolean in a string).</li><li>Set "ResidentialCountry" and "PostalCountry" to the country of the address (e.g. United Kingdom)</li><li>Now you can enter your address unrestricted in the normal fields.</li></ol><p>Please note that when ResidentialAddressIsOverseas is set to "true", ResidentialCountry <b>must</b> be set and likewise with PostalAddressIsOverseas and PostalCountry.</p>
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -292,12 +754,46 @@ namespace KeyPayV2.Uk.Functions
             return ApiRequestAsync<AutoEnrolmentNoticeModel,AutoEnrolmentNoticeModel>($"/business/{businessId}/employee/{employeeId}/hmrcforms/autoenrolmentnotice", notice, Method.Post, cancellationToken);
         }
 
-        public byte[] UkHmrcForms_DownloadAutoEnrolmentNotice(int businessId, int employeeId, UkHmrcForms_DownloadAutoEnrolmentNoticeQueryModel request)
+        /// <summary>
+        /// Download Auto Enrolment Notice
+        /// </summary>
+        /// <remarks>
+        /// Downloads the auto enrolment notice for the employee as a PDF.
+        /// </remarks>
+        public byte[] DownloadAutoEnrolmentNotice(int businessId, int employeeId)
+        {
+            return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/hmrcforms/downloadautoenrolmentnotice", Method.Get);
+        }
+
+        /// <summary>
+        /// Download Auto Enrolment Notice
+        /// </summary>
+        /// <remarks>
+        /// Downloads the auto enrolment notice for the employee as a PDF.
+        /// </remarks>
+        public Task<byte[]> DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/hmrcforms/downloadautoenrolmentnotice", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Download Auto Enrolment Notice
+        /// </summary>
+        /// <remarks>
+        /// Downloads the auto enrolment notice for the employee as a PDF.
+        /// </remarks>
+        public byte[] DownloadAutoEnrolmentNotice(int businessId, int employeeId, DownloadAutoEnrolmentNoticeQueryModel request)
         {
             return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/hmrcforms/downloadautoenrolmentnotice?id={request.Id}", Method.Get);
         }
 
-        public Task<byte[]> UkHmrcForms_DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, UkHmrcForms_DownloadAutoEnrolmentNoticeQueryModel request, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Download Auto Enrolment Notice
+        /// </summary>
+        /// <remarks>
+        /// Downloads the auto enrolment notice for the employee as a PDF.
+        /// </remarks>
+        public Task<byte[]> DownloadAutoEnrolmentNoticeAsync(int businessId, int employeeId, DownloadAutoEnrolmentNoticeQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/hmrcforms/downloadautoenrolmentnotice?id={request.Id}", Method.Get, cancellationToken);
         }
@@ -366,22 +862,46 @@ namespace KeyPayV2.Uk.Functions
             return ApiRequestAsync<P45ViewModel>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p45", Method.Get, cancellationToken);
         }
 
-        public P45DataResponse UkHmrcForms_P45Data(int businessId, int employeeId)
+        /// <summary>
+        /// Get P45 Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the P45 data for the employee.
+        /// </remarks>
+        public P45DataResponse GetP45Data(int businessId, int employeeId)
         {
             return ApiRequest<P45DataResponse>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p45data", Method.Get);
         }
 
-        public Task<P45DataResponse> UkHmrcForms_P45DataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Get P45 Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the P45 data for the employee.
+        /// </remarks>
+        public Task<P45DataResponse> GetP45DataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<P45DataResponse>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p45data", Method.Get, cancellationToken);
         }
 
-        public byte[] UkHmrcForms_P45Download(int businessId, int employeeId)
+        /// <summary>
+        /// Download P45
+        /// </summary>
+        /// <remarks>
+        /// Downloads the P45 form for the employee as a PDF.
+        /// </remarks>
+        public byte[] DownloadP45(int businessId, int employeeId)
         {
             return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/hmrcforms/p45download", Method.Get);
         }
 
-        public Task<byte[]> UkHmrcForms_P45DownloadAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Download P45
+        /// </summary>
+        /// <remarks>
+        /// Downloads the P45 form for the employee as a PDF.
+        /// </remarks>
+        public Task<byte[]> DownloadP45Async(int businessId, int employeeId, CancellationToken cancellationToken = default)
         {
             return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/hmrcforms/p45download", Method.Get, cancellationToken);
         }
@@ -402,14 +922,26 @@ namespace KeyPayV2.Uk.Functions
             return ApiRequestAsync<P60ViewModel>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p60/{financialYearEnding}", Method.Get, cancellationToken);
         }
 
-        public P60ViewModel UkHmrcForms_P60DownloadController(int businessId, int employeeId, int financialYearEnding)
+        /// <summary>
+        /// Download P60
+        /// </summary>
+        /// <remarks>
+        /// Downloads the P60 form for the employee for the specified financial year as a PDF.
+        /// </remarks>
+        public byte[] DownloadP60(int businessId, int employeeId, int financialYearEnding)
         {
-            return ApiRequest<P60ViewModel>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p60download/{financialYearEnding}", Method.Get);
+            return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/hmrcforms/p60download/{financialYearEnding}", Method.Get);
         }
 
-        public Task<P60ViewModel> UkHmrcForms_P60DownloadControllerAsync(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Download P60
+        /// </summary>
+        /// <remarks>
+        /// Downloads the P60 form for the employee for the specified financial year as a PDF.
+        /// </remarks>
+        public Task<byte[]> DownloadP60Async(int businessId, int employeeId, int financialYearEnding, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<P60ViewModel>($"/business/{businessId}/employee/{employeeId}/hmrcforms/p60download/{financialYearEnding}", Method.Get, cancellationToken);
+            return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/hmrcforms/p60download/{financialYearEnding}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -434,9 +966,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public void GetEmployeeProfileImage(int businessId, int employeeId)
+        public byte[] GetEmployeeProfileImage(int businessId, int employeeId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/image", Method.Get);
+            return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/image", Method.Get);
         }
 
         /// <summary>
@@ -445,9 +977,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        public Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/image", Method.Get, cancellationToken);
+            return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/image", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -573,17 +1105,17 @@ namespace KeyPayV2.Uk.Functions
         /// <summary>
         /// Apply National Insurance Back Calculation
         /// </summary>
-        public void ApplyNationalInsuranceBackCalculation(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request)
+        public UkNationalInsuranceBackCalculationModel ApplyNationalInsuranceBackCalculation(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation", request, Method.Post);
+            return ApiRequest<UkNationalInsuranceBackCalculationModel,UkApplyNationalInsuranceBackCalculationRequestModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation", request, Method.Post);
         }
 
         /// <summary>
         /// Apply National Insurance Back Calculation
         /// </summary>
-        public Task ApplyNationalInsuranceBackCalculationAsync(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request, CancellationToken cancellationToken = default)
+        public Task<UkNationalInsuranceBackCalculationModel> ApplyNationalInsuranceBackCalculationAsync(int businessId, int employeeId, UkApplyNationalInsuranceBackCalculationRequestModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<UkNationalInsuranceBackCalculationModel,UkApplyNationalInsuranceBackCalculationRequestModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -623,7 +1155,7 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         public UkNationalInsuranceBackCalculationModel BackCalculateNationalInsurance(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request)
         {
-            return ApiRequest<UkNationalInsuranceBackCalculationModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation/calculation?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&newCategory={request.NewCategory}", Method.Get);
+            return ApiRequest<UkNationalInsuranceBackCalculationModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation/calculation?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&NewCategory={request.NewCategory}", Method.Get);
         }
 
         /// <summary>
@@ -631,7 +1163,7 @@ namespace KeyPayV2.Uk.Functions
         /// </summary>
         public Task<UkNationalInsuranceBackCalculationModel> BackCalculateNationalInsuranceAsync(int businessId, int employeeId, BackCalculateNationalInsuranceQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkNationalInsuranceBackCalculationModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation/calculation?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&newCategory={request.NewCategory}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkNationalInsuranceBackCalculationModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancebackcalculation/calculation?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&NewCategory={request.NewCategory}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -657,28 +1189,6 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Update National Insurance Record and P45
-        /// </summary>
-        /// <remarks>
-        /// Update the National Insurance Record and P45 for the Employee
-        /// </remarks>
-        public TaxNationalInsuranceEditModel UpdateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel)
-        {
-            return ApiRequest<TaxNationalInsuranceEditModel,TaxNationalInsuranceEditModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancerecord", taxNationalInsuranceEditModel, Method.Put);
-        }
-
-        /// <summary>
-        /// Update National Insurance Record and P45
-        /// </summary>
-        /// <remarks>
-        /// Update the National Insurance Record and P45 for the Employee
-        /// </remarks>
-        public Task<TaxNationalInsuranceEditModel> UpdateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<TaxNationalInsuranceEditModel,TaxNationalInsuranceEditModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancerecord", taxNationalInsuranceEditModel, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
         /// Create National Insurance Record and P45
         /// </summary>
         /// <remarks>
@@ -698,6 +1208,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<TaxNationalInsuranceEditModel> CreateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<TaxNationalInsuranceEditModel,TaxNationalInsuranceEditModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancerecord", taxNationalInsuranceEditModel, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update National Insurance Record and P45
+        /// </summary>
+        /// <remarks>
+        /// Update the National Insurance Record and P45 for the Employee
+        /// </remarks>
+        public TaxNationalInsuranceEditModel UpdateNationalInsuranceRecordAndP45(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel)
+        {
+            return ApiRequest<TaxNationalInsuranceEditModel,TaxNationalInsuranceEditModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancerecord", taxNationalInsuranceEditModel, Method.Put);
+        }
+
+        /// <summary>
+        /// Update National Insurance Record and P45
+        /// </summary>
+        /// <remarks>
+        /// Update the National Insurance Record and P45 for the Employee
+        /// </remarks>
+        public Task<TaxNationalInsuranceEditModel> UpdateNationalInsuranceRecordAndP45Async(int businessId, int employeeId, TaxNationalInsuranceEditModel taxNationalInsuranceEditModel, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<TaxNationalInsuranceEditModel,TaxNationalInsuranceEditModel>($"/business/{businessId}/employee/{employeeId}/nationalinsurancerecord", taxNationalInsuranceEditModel, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -745,22 +1277,6 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Get Occupational Absence
-        /// </summary>
-        public List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request)
-        {
-            return ApiRequest<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence?earliestStartDate={request.EarliestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}&latestStartDate={request.LatestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Occupational Absence
-        /// </summary>
-        public Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence?earliestStartDate={request.EarliestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}&latestStartDate={request.LatestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Create Occupational Absence
         /// </summary>
         public PeriodOfLeaveModel CreateOccupationalAbsence(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel)
@@ -774,6 +1290,38 @@ namespace KeyPayV2.Uk.Functions
         public Task<PeriodOfLeaveModel> CreateOccupationalAbsenceAsync(int businessId, int employeeId, PeriodOfLeaveModel periodOfLeaveModel, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<PeriodOfLeaveModel,PeriodOfLeaveModel>($"/business/{businessId}/employee/{employeeId}/occupationalabsence", periodOfLeaveModel, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Occupational Absence
+        /// </summary>
+        public List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId)
+        {
+            return ApiRequest<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Occupational Absence
+        /// </summary>
+        public Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Occupational Absence
+        /// </summary>
+        public List<PeriodOfLeaveModel> GetOccupationalAbsence(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request)
+        {
+            return ApiRequest<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence?earliestStartDate={request.EarliestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}&latestStartDate={request.LatestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Occupational Absence
+        /// </summary>
+        public Task<List<PeriodOfLeaveModel>> GetOccupationalAbsenceAsync(int businessId, int employeeId, GetOccupationalAbsenceQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<PeriodOfLeaveModel>>($"/business/{businessId}/employee/{employeeId}/occupationalabsence?earliestStartDate={request.EarliestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}&latestStartDate={request.LatestStartDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -933,28 +1481,6 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Get standard hours for employee
-        /// </summary>
-        /// <remarks>
-        /// Gets the standard hours for this employee.
-        /// </remarks>
-        public StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId)
-        {
-            return ApiRequest<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get);
-        }
-
-        /// <summary>
-        /// Get standard hours for employee
-        /// </summary>
-        /// <remarks>
-        /// Gets the standard hours for this employee.
-        /// </remarks>
-        public Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Set standard hours for employee
         /// </summary>
         /// <remarks>
@@ -974,6 +1500,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<StandardHoursModel> SetStandardHoursForEmployeeAsync(int businessId, int employeeId, StandardHoursModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<StandardHoursModel,StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", model, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get standard hours for employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the standard hours for this employee.
+        /// </remarks>
+        public StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId)
+        {
+            return ApiRequest<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get);
+        }
+
+        /// <summary>
+        /// Get standard hours for employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the standard hours for this employee.
+        /// </remarks>
+        public Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1001,49 +1549,71 @@ namespace KeyPayV2.Uk.Functions
         /// <summary>
         /// Get Statutory Adoption Leave Attachments
         /// </summary>
-        public List<EmployeeDocumentModel> GetStatutoryAdoptionLeaveAttachments(int businessId, int employeeId, int id)
+        public List<EmployeeDocumentModel> GetStatutoryAdoptionLeaveAttachments(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId)
         {
-            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/attachments", Method.Get);
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/attachments", Method.Get);
         }
 
         /// <summary>
         /// Get Statutory Adoption Leave Attachments
         /// </summary>
-        public Task<List<EmployeeDocumentModel>> GetStatutoryAdoptionLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<List<EmployeeDocumentModel>> GetStatutoryAdoptionLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/attachments", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/attachments", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Adoption Leave
         /// </summary>
-        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryAdoptionLeave(int businessId, int employeeId, int id, int documentId)
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryAdoptionLeave(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId)
         {
-            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/employeedocument/{documentId}", Method.Put);
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Adoption Leave
         /// </summary>
-        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/employeedocument/{documentId}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Adoption Leave
         /// </summary>
-        public void UnattachEmployeeDocumentFromStatutoryAdoptionLeave(int businessId, int employeeId, int id, int documentId)
+        public void UnattachEmployeeDocumentFromStatutoryAdoptionLeave(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/employeedocument/{documentId}", Method.Delete);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Adoption Leave
         /// </summary>
-        public Task UnattachEmployeeDocumentFromStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task UnattachEmployeeDocumentFromStatutoryAdoptionLeaveAsync(int businessId, int employeeId, int ukStatutoryAdoptionLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{id}/employeedocument/{documentId}", Method.Delete, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/sap/{ukStatutoryAdoptionLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Adoption Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Adoption Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSapCalcApiModel CalculateStatutoryAdoptionLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSapCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sapcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Adoption Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Adoption Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSapCalcApiModel> CalculateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSapCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sapcalc", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1066,6 +1636,230 @@ namespace KeyPayV2.Uk.Functions
         public Task<UkSapCalcApiModel> CalculateStatutoryAdoptionLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryAdoptionLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkSapCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sapcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public UkShppDataApiModel GetStatutorySharedParentalLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public UkShppDataApiModel GetStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, GetStatutorySharedParentalLeavePeriodDataQueryModel request)
+        {
+            return ApiRequest<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, GetStatutorySharedParentalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create Statutory Shared Parental Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Shared Parental Leave period for an employee
+        /// </remarks>
+        public UkSmpDataApiResponseModel CreateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, UkShppDataApiModel shpp)
+        {
+            return ApiRequest<UkSmpDataApiResponseModel,UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp", shpp, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Statutory Shared Parental Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Shared Parental Leave period for an employee
+        /// </remarks>
+        public Task<UkSmpDataApiResponseModel> CreateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, UkShppDataApiModel shpp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiResponseModel,UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp", shpp, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data By Id
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public UkShppDataApiModel GetStatutorySharedParentalLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
+        {
+            return ApiRequest<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Period Data By Id
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkShppDataApiModel> GetStatutorySharedParentalLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Statutory Shared Parental Leave data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Shared Parental Leave period for an employee
+        /// </remarks>
+        public UkSmpDataApiResponseModel UpdateStatutorySharedParentalLeaveData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkShppDataApiModel shpp)
+        {
+            return ApiRequest<UkSmpDataApiResponseModel,UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}", shpp, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Statutory Shared Parental Leave data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Shared Parental Leave period for an employee
+        /// </remarks>
+        public Task<UkSmpDataApiResponseModel> UpdateStatutorySharedParentalLeaveDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkShppDataApiModel shpp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiResponseModel,UkShppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}", shpp, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Attachments
+        /// </summary>
+        public List<EmployeeDocumentModel> GetStatutorySharedParentalLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
+        {
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Shared Parental Leave Attachments
+        /// </summary>
+        public Task<List<EmployeeDocumentModel>> GetStatutorySharedParentalLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Attach Employee Document to Statutory Shared Parental Leave
+        /// </summary>
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutorySharedParentalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
+        {
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
+        }
+
+        /// <summary>
+        /// Attach Employee Document to Statutory Shared Parental Leave
+        /// </summary>
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutorySharedParentalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Unattach Employee Document from Statutory Shared Parental Leave
+        /// </summary>
+        public void UnattachEmployeeDocumentFromStatutorySharedParentalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
+        {
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Unattach Employee Document from Statutory Shared Parental Leave
+        /// </summary>
+        public Task UnattachEmployeeDocumentFromStatutorySharedParentalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/shpp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSmpCalcApiModel CalculateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shppcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSmpCalcApiModel> CalculateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shppcalc", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSmpCalcApiModel CalculateStatutorySharedParentalLeavePeriodData(int businessId, int employeeId, CalculateStatutorySharedParentalLeavePeriodDataQueryModel request)
+        {
+            return ApiRequest<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shppcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Shared Parental Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Shared Parental Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSmpCalcApiModel> CalculateStatutorySharedParentalLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutorySharedParentalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/shppcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Maternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee
+        /// </remarks>
+        public UkSmpDataApiModel GetStatutoryMaternityLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Maternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1113,89 +1907,133 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Get Statutory Maternity Leave Period Data By Id
+        /// Delete Statutory Maternity Leave Data
         /// </summary>
-        /// <remarks>
-        /// Gets the Statutory Maternity Leave period data for a specific employee
-        /// </remarks>
-        public UkSmpDataApiModel GetStatutoryMaternityLeavePeriodDataById(int businessId, int employeeId, int id)
+        public void DeleteStatutoryMaternityLeaveData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
         {
-            return ApiRequest<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Statutory Maternity Leave Period Data By Id
-        /// </summary>
-        /// <remarks>
-        /// Gets the Statutory Maternity Leave period data for a specific employee
-        /// </remarks>
-        public Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}", Method.Get, cancellationToken);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", Method.Delete);
         }
 
         /// <summary>
         /// Delete Statutory Maternity Leave Data
         /// </summary>
-        public void DeleteStatutoryMaternityLeaveData(int businessId, int employeeId, int id)
+        public Task DeleteStatutoryMaternityLeaveDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}", Method.Delete);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", Method.Delete, cancellationToken);
         }
 
         /// <summary>
-        /// Delete Statutory Maternity Leave Data
+        /// Get Statutory Maternity Leave Period Data By Id
         /// </summary>
-        public Task DeleteStatutoryMaternityLeaveDataAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee
+        /// </remarks>
+        public UkSmpDataApiModel GetStatutoryMaternityLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}", Method.Delete, cancellationToken);
+            return ApiRequest<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Maternity Leave Period Data By Id
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSmpDataApiModel> GetStatutoryMaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Statutory Maternity Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Maternity Leave period for an employee
+        /// </remarks>
+        public UkSmpDataApiResponseModel UpdateStatutoryMaternityLeavePeriodData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSmpDataApiModel smp)
+        {
+            return ApiRequest<UkSmpDataApiResponseModel,UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", smp, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Statutory Maternity Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Maternity Leave period for an employee
+        /// </remarks>
+        public Task<UkSmpDataApiResponseModel> UpdateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSmpDataApiModel smp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiResponseModel,UkSmpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}", smp, Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Get Statutory Maternity Leave Attachments
         /// </summary>
-        public List<EmployeeDocumentModel> GetStatutoryMaternityLeaveAttachments(int businessId, int employeeId, int id)
+        public List<EmployeeDocumentModel> GetStatutoryMaternityLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
         {
-            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/attachments", Method.Get);
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get);
         }
 
         /// <summary>
         /// Get Statutory Maternity Leave Attachments
         /// </summary>
-        public Task<List<EmployeeDocumentModel>> GetStatutoryMaternityLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<List<EmployeeDocumentModel>> GetStatutoryMaternityLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/attachments", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Maternity Leave
         /// </summary>
-        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryMaternityLeave(int businessId, int employeeId, int id, int documentId)
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryMaternityLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
         {
-            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/employeedocument/{documentId}", Method.Put);
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Maternity Leave
         /// </summary>
-        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryMaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryMaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/employeedocument/{documentId}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Maternity Leave
         /// </summary>
-        public void UnattachEmployeeDocumentFromStatutoryMaternityLeave(int businessId, int employeeId, int id, int documentId)
+        public void UnattachEmployeeDocumentFromStatutoryMaternityLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/employeedocument/{documentId}", Method.Delete);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Maternity Leave
         /// </summary>
-        public Task UnattachEmployeeDocumentFromStatutoryMaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task UnattachEmployeeDocumentFromStatutoryMaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{id}/employeedocument/{documentId}", Method.Delete, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/smp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Maternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSmpCalcApiModel CalculateStatutoryMaternityLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smpcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Maternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Maternity Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSmpCalcApiModel> CalculateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smpcalc", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1218,6 +2056,262 @@ namespace KeyPayV2.Uk.Functions
         public Task<UkSmpCalcApiModel> CalculateStatutoryMaternityLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryMaternityLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkSmpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/smpcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, GetStatutoryNeonatalLeavePeriodDataQueryModel request)
+        {
+            return ApiRequest<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, GetStatutoryNeonatalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create Statutory Neonatal Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Neonatal Leave period for an employee
+        /// </remarks>
+        public UkSmpDataApiResponseModel CreateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, UkSncpDataApiModel sncp)
+        {
+            return ApiRequest<UkSmpDataApiResponseModel,UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp", sncp, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Statutory Neonatal Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Neonatal Leave period for an employee
+        /// </remarks>
+        public Task<UkSmpDataApiResponseModel> CreateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, UkSncpDataApiModel sncp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiResponseModel,UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp", sncp, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data By Id
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public UkSncpDataApiModel GetStatutoryNeonatalLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
+        {
+            return ApiRequest<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Period Data By Id
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSncpDataApiModel> GetStatutoryNeonatalLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Statutory Neonatal Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Neonatal Leave period for an employee
+        /// </remarks>
+        public UkSmpDataApiResponseModel UpdateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSncpDataApiModel sncp)
+        {
+            return ApiRequest<UkSmpDataApiResponseModel,UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}", sncp, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Statutory Neonatal Leave Period data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Statutory Neonatal Leave period for an employee
+        /// </remarks>
+        public Task<UkSmpDataApiResponseModel> UpdateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, UkSncpDataApiModel sncp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSmpDataApiResponseModel,UkSncpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}", sncp, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Attachments
+        /// </summary>
+        public List<EmployeeDocumentModel> GetStatutoryNeonatalLeaveAttachments(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
+        {
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Neonatal Leave Attachments
+        /// </summary>
+        public Task<List<EmployeeDocumentModel>> GetStatutoryNeonatalLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/attachments", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Attach Employee Document to Statutory Neonatal Leave
+        /// </summary>
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryNeonatalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
+        {
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
+        }
+
+        /// <summary>
+        /// Attach Employee Document to Statutory Neonatal Leave
+        /// </summary>
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryNeonatalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Unattach Employee Document from Statutory Neonatal Leave
+        /// </summary>
+        public void UnattachEmployeeDocumentFromStatutoryNeonatalLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId)
+        {
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Unattach Employee Document from Statutory Neonatal Leave
+        /// </summary>
+        public Task UnattachEmployeeDocumentFromStatutoryNeonatalLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Pause Statutory Neonatal Care Leave
+        /// </summary>
+        public void PauseStatutoryNeonatalCareLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId)
+        {
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/paused", Method.Put);
+        }
+
+        /// <summary>
+        /// Pause Statutory Neonatal Care Leave
+        /// </summary>
+        public Task PauseStatutoryNeonatalCareLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/paused", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Pause Statutory Neonatal Care Leave
+        /// </summary>
+        public void PauseStatutoryNeonatalCareLeave(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, PauseStatutoryNeonatalCareLeaveQueryModel request)
+        {
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/paused?isPaused={request.IsPaused}", Method.Put);
+        }
+
+        /// <summary>
+        /// Pause Statutory Neonatal Care Leave
+        /// </summary>
+        public Task PauseStatutoryNeonatalCareLeaveAsync(int businessId, int employeeId, int ukStatutoryMaternityLeaveDataId, PauseStatutoryNeonatalCareLeaveQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncp/{ukStatutoryMaternityLeaveDataId}/paused?isPaused={request.IsPaused}", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSncpCalcApiModel CalculateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSncpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncpcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSncpCalcApiModel> CalculateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSncpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncpcalc", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSncpCalcApiModel CalculateStatutoryNeonatalLeavePeriodData(int businessId, int employeeId, CalculateStatutoryNeonatalLeavePeriodDataQueryModel request)
+        {
+            return ApiRequest<UkSncpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncpcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Neonatal Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Neonatal Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSncpCalcApiModel> CalculateStatutoryNeonatalLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryNeonatalLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSncpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sncpcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Parental Bereavement Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Parental Bereavement Leave period data for a specific employee
+        /// </remarks>
+        public UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Parental Bereavement Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Parental Bereavement Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1270,9 +2364,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the Statutory Parental Bereavement Leave period data for a specific employee
         /// </remarks>
-        public UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodDataById(int businessId, int employeeId, int id)
+        public UkSpbpDataApiModel GetStatutoryParentalBereavementLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId)
         {
-            return ApiRequest<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}", Method.Get);
+            return ApiRequest<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}", Method.Get);
         }
 
         /// <summary>
@@ -1281,57 +2375,101 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the Statutory Parental Bereavement Leave period data for a specific employee
         /// </remarks>
-        public Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<UkSpbpDataApiModel> GetStatutoryParentalBereavementLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Statutory Parental Bereavement Leave data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Parental Bereavement Leave record for an employee
+        /// </remarks>
+        public UkSpbpDataApiResponseModel UpdateStatutoryParentalBereavementLeaveData(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, UkSpbpDataApiModel spbp)
+        {
+            return ApiRequest<UkSpbpDataApiResponseModel,UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}", spbp, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Statutory Parental Bereavement Leave data
+        /// </summary>
+        /// <remarks>
+        /// Updates a Parental Bereavement Leave record for an employee
+        /// </remarks>
+        public Task<UkSpbpDataApiResponseModel> UpdateStatutoryParentalBereavementLeaveDataAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, UkSpbpDataApiModel spbp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSpbpDataApiResponseModel,UkSpbpDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}", spbp, Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Get Statutory Parental Bereavement Leave Attachments
         /// </summary>
-        public List<EmployeeDocumentModel> GetStatutoryParentalBereavementLeaveAttachments(int businessId, int employeeId, int id)
+        public List<EmployeeDocumentModel> GetStatutoryParentalBereavementLeaveAttachments(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId)
         {
-            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/attachments", Method.Get);
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/attachments", Method.Get);
         }
 
         /// <summary>
         /// Get Statutory Parental Bereavement Leave Attachments
         /// </summary>
-        public Task<List<EmployeeDocumentModel>> GetStatutoryParentalBereavementLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<List<EmployeeDocumentModel>> GetStatutoryParentalBereavementLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/attachments", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/attachments", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Parental Bereavement Leave
         /// </summary>
-        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryParentalBereavementLeave(int businessId, int employeeId, int id, int documentId)
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryParentalBereavementLeave(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId)
         {
-            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/employeedocument/{documentId}", Method.Put);
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Parental Bereavement Leave
         /// </summary>
-        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/employeedocument/{documentId}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Parental Bereavement Leave
         /// </summary>
-        public void UnattachEmployeeDocumentFromStatutoryParentalBereavementLeave(int businessId, int employeeId, int id, int documentId)
+        public void UnattachEmployeeDocumentFromStatutoryParentalBereavementLeave(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/employeedocument/{documentId}", Method.Delete);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Parental Bereavement Leave
         /// </summary>
-        public Task UnattachEmployeeDocumentFromStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task UnattachEmployeeDocumentFromStatutoryParentalBereavementLeaveAsync(int businessId, int employeeId, int ukStatutoryParentalBereavementLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{id}/employeedocument/{documentId}", Method.Delete, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbp/{ukStatutoryParentalBereavementLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Parental Bereavement Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Parental Bereavement Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSpbpCalcApiModel CalculateStatutoryParentalBereavementLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSpbpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbpcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Parental Bereavement Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Parental Bereavement Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSpbpCalcApiModel> CalculateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSpbpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbpcalc", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1354,6 +2492,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<UkSpbpCalcApiModel> CalculateStatutoryParentalBereavementLeavePeriodDataAsync(int businessId, int employeeId, CalculateStatutoryParentalBereavementLeavePeriodDataQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<UkSpbpCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spbpcalc?periodStart={request.PeriodStart.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Paternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Paternity Leave period data for a specific employee
+        /// </remarks>
+        public UkSppDataApiModel GetStatutoryPaternityLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Paternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Paternity Leave period data for a specific employee
+        /// </remarks>
+        public Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1406,9 +2566,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the Statutory Paternity Leave period data for a specific employee
         /// </remarks>
-        public UkSppDataApiModel GetStatutoryPaternityLeavePeriodDataById(int businessId, int employeeId, int id)
+        public UkSppDataApiModel GetStatutoryPaternityLeavePeriodDataById(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId)
         {
-            return ApiRequest<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}", Method.Get);
+            return ApiRequest<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}", Method.Get);
         }
 
         /// <summary>
@@ -1417,57 +2577,79 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Gets the Statutory Paternity Leave period data for a specific employee
         /// </remarks>
-        public Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<UkSppDataApiModel> GetStatutoryPaternityLeavePeriodDataByIdAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}", Method.Get, cancellationToken);
+            return ApiRequestAsync<UkSppDataApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Get Statutory Paternity Leave Attachments
         /// </summary>
-        public List<EmployeeDocumentModel> GetStatutoryPaternityLeaveAttachments(int businessId, int employeeId, int id)
+        public List<EmployeeDocumentModel> GetStatutoryPaternityLeaveAttachments(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId)
         {
-            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/attachments", Method.Get);
+            return ApiRequest<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/attachments", Method.Get);
         }
 
         /// <summary>
         /// Get Statutory Paternity Leave Attachments
         /// </summary>
-        public Task<List<EmployeeDocumentModel>> GetStatutoryPaternityLeaveAttachmentsAsync(int businessId, int employeeId, int id, CancellationToken cancellationToken = default)
+        public Task<List<EmployeeDocumentModel>> GetStatutoryPaternityLeaveAttachmentsAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/attachments", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EmployeeDocumentModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/attachments", Method.Get, cancellationToken);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Paternity Leave
         /// </summary>
-        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryPaternityLeave(int businessId, int employeeId, int id, int documentId)
+        public EmployeeDocumentModel AttachEmployeeDocumentToStatutoryPaternityLeave(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId)
         {
-            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/employeedocument/{documentId}", Method.Put);
+            return ApiRequest<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put);
         }
 
         /// <summary>
         /// Attach Employee Document to Statutory Paternity Leave
         /// </summary>
-        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryPaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task<EmployeeDocumentModel> AttachEmployeeDocumentToStatutoryPaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/employeedocument/{documentId}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EmployeeDocumentModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Put, cancellationToken);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Paternity Leave
         /// </summary>
-        public void UnattachEmployeeDocumentFromStatutoryPaternityLeave(int businessId, int employeeId, int id, int documentId)
+        public void UnattachEmployeeDocumentFromStatutoryPaternityLeave(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/employeedocument/{documentId}", Method.Delete);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete);
         }
 
         /// <summary>
         /// Unattach Employee Document from Statutory Paternity Leave
         /// </summary>
-        public Task UnattachEmployeeDocumentFromStatutoryPaternityLeaveAsync(int businessId, int employeeId, int id, int documentId, CancellationToken cancellationToken = default)
+        public Task UnattachEmployeeDocumentFromStatutoryPaternityLeaveAsync(int businessId, int employeeId, int ukStatutoryPaternityLeaveDataId, int employeeDocumentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{id}/employeedocument/{documentId}", Method.Delete, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/spp/{ukStatutoryPaternityLeaveDataId}/employeedocument/{employeeDocumentId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Paternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Paternity Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public UkSppCalcApiModel CalculateStatutoryPaternityLeavePeriodData(int businessId, int employeeId)
+        {
+            return ApiRequest<UkSppCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sppcalc", Method.Get);
+        }
+
+        /// <summary>
+        /// Calculate Statutory Paternity Leave Period Data
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Paternity Leave period data for a specific employee including information about payments already made and pending
+        /// </remarks>
+        public Task<UkSppCalcApiModel> CalculateStatutoryPaternityLeavePeriodDataAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSppCalcApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/sppcalc", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1493,6 +2675,50 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
+        /// Create Statutory Sick Pay
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Sick Pay leave period for an employee
+        /// </remarks>
+        public UkSspApiModel CreateStatutorySickPay(int businessId, int employeeId, UkSspApiModel ssp)
+        {
+            return ApiRequest<UkSspApiModel,UkSspApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", ssp, Method.Post);
+        }
+
+        /// <summary>
+        /// Create Statutory Sick Pay
+        /// </summary>
+        /// <remarks>
+        /// Creates a Statutory Sick Pay leave period for an employee
+        /// </remarks>
+        public Task<UkSspApiModel> CreateStatutorySickPayAsync(int businessId, int employeeId, UkSspApiModel ssp, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<UkSspApiModel,UkSspApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", ssp, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Statutory Sick Pay By Employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Sick Pay records for the employee between the specified dates
+        /// </remarks>
+        public List<UkSspApiModel> GetStatutorySickPayByEmployee(int businessId, int employeeId)
+        {
+            return ApiRequest<List<UkSspApiModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Statutory Sick Pay By Employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the Statutory Sick Pay records for the employee between the specified dates
+        /// </remarks>
+        public Task<List<UkSspApiModel>> GetStatutorySickPayByEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<UkSspApiModel>>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Statutory Sick Pay By Employee
         /// </summary>
         /// <remarks>
@@ -1515,25 +2741,19 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Create Statutory Sick Pay
+        /// Update Statutory Sick Pay
         /// </summary>
-        /// <remarks>
-        /// Creates a Statutory Sick Pay leave period for an employee
-        /// </remarks>
-        public UkSspApiModel CreateStatutorySickPay(int businessId, int employeeId, UkSspApiModel ssp)
+        public PeriodOfLeaveModel UpdateStatutorySickPay(int businessId, int employeeId, int periodOfLeaveId, UkSspUpdateModel model)
         {
-            return ApiRequest<UkSspApiModel,UkSspApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", ssp, Method.Post);
+            return ApiRequest<PeriodOfLeaveModel,UkSspUpdateModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp/{periodOfLeaveId}", model, Method.Put);
         }
 
         /// <summary>
-        /// Create Statutory Sick Pay
+        /// Update Statutory Sick Pay
         /// </summary>
-        /// <remarks>
-        /// Creates a Statutory Sick Pay leave period for an employee
-        /// </remarks>
-        public Task<UkSspApiModel> CreateStatutorySickPayAsync(int businessId, int employeeId, UkSspApiModel ssp, CancellationToken cancellationToken = default)
+        public Task<PeriodOfLeaveModel> UpdateStatutorySickPayAsync(int businessId, int employeeId, int periodOfLeaveId, UkSspUpdateModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<UkSspApiModel,UkSspApiModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp", ssp, Method.Post, cancellationToken);
+            return ApiRequestAsync<PeriodOfLeaveModel,UkSspUpdateModel>($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp/{periodOfLeaveId}", model, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -1559,25 +2779,19 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Sync Employee to QBO
+        /// Delete Period of Leave
         /// </summary>
-        /// <remarks>
-        /// Syncs an employee record to QBO.
-        /// </remarks>
-        public void SyncEmployeeToQbo(int businessId, int employeeId)
+        public void DeletePeriodOfLeave(int businessId, int employeeId, int periodOfLeaveId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/synctoqbo", Method.Post);
+            ApiRequest($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp/{periodOfLeaveId}", Method.Delete);
         }
 
         /// <summary>
-        /// Sync Employee to QBO
+        /// Delete Period of Leave
         /// </summary>
-        /// <remarks>
-        /// Syncs an employee record to QBO.
-        /// </remarks>
-        public Task SyncEmployeeToQboAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        public Task DeletePeriodOfLeaveAsync(int businessId, int employeeId, int periodOfLeaveId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/synctoqbo", Method.Post, cancellationToken);
+            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/statutoryleave/ssp/{periodOfLeaveId}", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -1607,6 +2821,22 @@ namespace KeyPayV2.Uk.Functions
         /// <summary>
         /// Get Year to date
         /// </summary>
+        public YearToDateModel GetYearToDate(int businessId, int employeeId)
+        {
+            return ApiRequest<YearToDateModel>($"/business/{businessId}/employee/{employeeId}/yeartodate", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Year to date
+        /// </summary>
+        public Task<YearToDateModel> GetYearToDateAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<YearToDateModel>($"/business/{businessId}/employee/{employeeId}/yeartodate", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Year to date
+        /// </summary>
         public YearToDateModel GetYearToDate(int businessId, int employeeId, GetYearToDateQueryModel request)
         {
             return ApiRequest<YearToDateModel>($"/business/{businessId}/employee/{employeeId}/yeartodate?referenceDate={(request.ReferenceDate.HasValue ? request.ReferenceDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
@@ -1618,362 +2848,6 @@ namespace KeyPayV2.Uk.Functions
         public Task<YearToDateModel> GetYearToDateAsync(int businessId, int employeeId, GetYearToDateQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<YearToDateModel>($"/business/{businessId}/employee/{employeeId}/yeartodate?referenceDate={(request.ReferenceDate.HasValue ? request.ReferenceDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Activate Employee
-        /// </summary>
-        /// <remarks>
-        /// Activates the employee with the specified ID.
-        /// </remarks>
-        public void ActivateEmployee(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/activate/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Activate Employee
-        /// </summary>
-        /// <remarks>
-        /// Activates the employee with the specified ID.
-        /// </remarks>
-        public Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/activate/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// List basic details for employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
-        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List basic details for employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
-        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Grant Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Grants kiosk access to the specified employee.
-        /// </remarks>
-        public void GrantKioskAccess(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Grant Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Grants kiosk access to the specified employee.
-        /// </remarks>
-        public Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Revoke Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Revokes kiosk access from the specified employee.
-        /// </remarks>
-        public void RevokeKioskAccess(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Revoke Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Revokes kiosk access from the specified employee.
-        /// </remarks>
-        public Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<UkUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<UkUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<UkUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?payScheduleId={request.PayScheduleId}&locationId={request.LocationId}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<UkUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<UkUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?payScheduleId={request.PayScheduleId}&locationId={request.LocationId}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
-        ///             be updated. Otherwise a new employee will be created. 
-        ///             </p>
-        /// <p>
-        ///             MatchType parameter values:
-        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
-        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
-        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
-        ///                 </li></list></p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
-        ///             TaxCode and TaxCalculationMethod.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, UkUnstructuredEmployeeModel model)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
-        ///             be updated. Otherwise a new employee will be created. 
-        ///             </p>
-        /// <p>
-        ///             MatchType parameter values:
-        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
-        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
-        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
-        ///                 </li></list></p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
-        ///             TaxCode and TaxCalculationMethod.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
-        ///             be updated. Otherwise a new employee will be created. 
-        ///             </p>
-        /// <p>
-        ///             MatchType parameter values:
-        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
-        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
-        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
-        ///                 </li></list></p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
-        ///             TaxCode and TaxCalculationMethod.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed or an existing employee is matched (according to the matchType parameter), it will
-        ///             be updated. Otherwise a new employee will be created. 
-        ///             </p>
-        /// <p>
-        ///             MatchType parameter values:
-        ///             <list><li>Standard (default): attempts to match an existing employee - first, based on the external ID,
-        ///                     then on Payroll ID, then National Insurance number and finally on first name + surname + date of birth + gender 
-        ///                 </li><li>None: do not attempt to match an existing employee (create a new one)
-        ///                 </li></list></p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employeeStatement, NationalInsuranceNumber, NationalInsuranceCategory, NationalInsuranceCalculationMethod,
-        ///             TaxCode and TaxCalculationMethod.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth and Address Details)</li><li>National Insurance Record</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li><li>Pension Details</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, UkUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified ID.
-        /// </remarks>
-        public UkUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId)
-        {
-            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified ID.
-        /// </remarks>
-        public Task<UkUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Employee
-        /// </summary>
-        /// <remarks>
-        /// Updates the employee with the specified ID.
-        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
-        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
-        /// </remarks>
-        public EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, UkUnstructuredEmployeeModel model)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update Employee
-        /// </summary>
-        /// <remarks>
-        /// Updates the employee with the specified ID.
-        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
-        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, UkUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By External ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external ID.
-        /// </remarks>
-        public UkUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId)
-        {
-            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By External ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external ID.
-        /// </remarks>
-        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By External Reference ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external reference ID.
-        /// </remarks>
-        public UkUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source)
-        {
-            return ApiRequest<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By External Reference ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external reference ID.
-        /// </remarks>
-        public Task<UkUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<UkUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get, cancellationToken);
         }
     }
 }

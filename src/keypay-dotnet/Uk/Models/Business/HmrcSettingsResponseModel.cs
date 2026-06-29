@@ -20,6 +20,9 @@ namespace KeyPayV2.Uk.Models.Business
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string Suburb { get; set; }
+        public string State { get; set; }
+        public string Postcode { get; set; }
+        public int? SuburbId { get; set; }
         public string Country { get; set; }
         public bool IsRtiEnabled { get; set; }
         public bool RtiTestMode { get; set; }
@@ -39,6 +42,7 @@ namespace KeyPayV2.Uk.Models.Business
         public bool? SecondedEmployeesEnabled { get; set; }
         public bool? OccupationalPensionsEnabled { get; set; }
         public bool? IncludeEmploymentAllowanceInJournals { get; set; }
+        public bool? InvestmentZoneTaxSiteEnabled { get; set; }
         public HmrcPaymentReminderModel HmrcPaymentReminder { get; set; }
     }
 }

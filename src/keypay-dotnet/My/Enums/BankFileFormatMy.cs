@@ -18,6 +18,10 @@ namespace KeyPayV2.My.Enums
         Maybank2E_StaffPayroll,
         RHBSmartPayroll,
         AllianceBizSmart,
-        EAmPayday
+        EAmPayday,
+        UnitedOverseas,
+        StandardCharteredS2B,
+        IslamBulkPayment,
+        AffinBankAutopay
     }
 }

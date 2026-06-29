@@ -6,7 +6,6 @@ namespace KeyPayV2.Uk
 {
     public interface IUkApiClient : IBaseApiClient
     {
-        IOtherFunction Other { get; }
         IBrandFunction Brand { get; }
         IInvoicesFunction Invoices { get; }
         IBusinessFunction Business { get; }
@@ -15,8 +14,8 @@ namespace KeyPayV2.Uk
         IDeductionCategoriesFunction DeductionCategories { get; }
         IReportingDimensionsFunction ReportingDimensions { get; }
         IEmployeeFunction Employee { get; }
-        IEmployeeAccessFunction EmployeeAccess { get; }
         IEmployeeRecurringTransactionsFunction EmployeeRecurringTransactions { get; }
+        IEmployeeAccessFunction EmployeeAccess { get; }
         IEmployeeBankAccountFunction EmployeeBankAccount { get; }
         IEmployeeBenefitCategoryFunction EmployeeBenefitCategory { get; }
         IEmployeeDocumentFunction EmployeeDocument { get; }
@@ -35,17 +34,20 @@ namespace KeyPayV2.Uk
         IEmployeeGroupsFunction EmployeeGroups { get; }
         IEmployeeOnboardingFunction EmployeeOnboarding { get; }
         IEmployerLiabilityCategoriesFunction EmployerLiabilityCategories { get; }
+        IPayScheduleFunction PaySchedule { get; }
         ITimeAndAttendanceFunction TimeAndAttendance { get; }
         ILeaveCategoriesFunction LeaveCategories { get; }
         ILookupDataFunction LookupData { get; }
         IManagerFunction Manager { get; }
         IPayCategoryFunction PayCategory { get; }
+        IPayConditionFunction PayCondition { get; }
+        IPayeSchemeFunction PayeScheme { get; }
         IPayRateTemplateFunction PayRateTemplate { get; }
-        IPayScheduleFunction PaySchedule { get; }
         IPensionSettingsFunction PensionSettings { get; }
         IPublicHolidayFunction PublicHoliday { get; }
         IQualificationsFunction Qualifications { get; }
         IReportingFunction Reporting { get; }
+        IOtherFunction Other { get; }
         IRosterShiftFunction RosterShift { get; }
         ISubcontractorFunction Subcontractor { get; }
         ITimesheetsFunction Timesheets { get; }
@@ -61,7 +63,6 @@ namespace KeyPayV2.Uk
     {
         public UkApiClient(string baseUrl, AuthenticationDetails authenticationDetails, string userAgent = null) : base(baseUrl, authenticationDetails, userAgent)
         {
-            Other = new OtherFunction(Api);
             Brand = new BrandFunction(Api);
             Invoices = new InvoicesFunction(Api);
             Business = new BusinessFunction(Api);
@@ -70,8 +71,8 @@ namespace KeyPayV2.Uk
             DeductionCategories = new DeductionCategoriesFunction(Api);
             ReportingDimensions = new ReportingDimensionsFunction(Api);
             Employee = new EmployeeFunction(Api);
-            EmployeeAccess = new EmployeeAccessFunction(Api);
             EmployeeRecurringTransactions = new EmployeeRecurringTransactionsFunction(Api);
+            EmployeeAccess = new EmployeeAccessFunction(Api);
             EmployeeBankAccount = new EmployeeBankAccountFunction(Api);
             EmployeeBenefitCategory = new EmployeeBenefitCategoryFunction(Api);
             EmployeeDocument = new EmployeeDocumentFunction(Api);
@@ -90,17 +91,20 @@ namespace KeyPayV2.Uk
             EmployeeGroups = new EmployeeGroupsFunction(Api);
             EmployeeOnboarding = new EmployeeOnboardingFunction(Api);
             EmployerLiabilityCategories = new EmployerLiabilityCategoriesFunction(Api);
+            PaySchedule = new PayScheduleFunction(Api);
             TimeAndAttendance = new TimeAndAttendanceFunction(Api);
             LeaveCategories = new LeaveCategoriesFunction(Api);
             LookupData = new LookupDataFunction(Api);
             Manager = new ManagerFunction(Api);
             PayCategory = new PayCategoryFunction(Api);
+            PayCondition = new PayConditionFunction(Api);
+            PayeScheme = new PayeSchemeFunction(Api);
             PayRateTemplate = new PayRateTemplateFunction(Api);
-            PaySchedule = new PayScheduleFunction(Api);
             PensionSettings = new PensionSettingsFunction(Api);
             PublicHoliday = new PublicHolidayFunction(Api);
             Qualifications = new QualificationsFunction(Api);
             Reporting = new ReportingFunction(Api);
+            Other = new OtherFunction(Api);
             RosterShift = new RosterShiftFunction(Api);
             Subcontractor = new SubcontractorFunction(Api);
             Timesheets = new TimesheetsFunction(Api);
@@ -113,7 +117,6 @@ namespace KeyPayV2.Uk
             WhiteLabel = new WhiteLabelFunction(Api);
         }
 
-        public IOtherFunction Other { get; }
         public IBrandFunction Brand { get; }
         public IInvoicesFunction Invoices { get; }
         public IBusinessFunction Business { get; }
@@ -122,8 +125,8 @@ namespace KeyPayV2.Uk
         public IDeductionCategoriesFunction DeductionCategories { get; }
         public IReportingDimensionsFunction ReportingDimensions { get; }
         public IEmployeeFunction Employee { get; }
-        public IEmployeeAccessFunction EmployeeAccess { get; }
         public IEmployeeRecurringTransactionsFunction EmployeeRecurringTransactions { get; }
+        public IEmployeeAccessFunction EmployeeAccess { get; }
         public IEmployeeBankAccountFunction EmployeeBankAccount { get; }
         public IEmployeeBenefitCategoryFunction EmployeeBenefitCategory { get; }
         public IEmployeeDocumentFunction EmployeeDocument { get; }
@@ -142,17 +145,20 @@ namespace KeyPayV2.Uk
         public IEmployeeGroupsFunction EmployeeGroups { get; }
         public IEmployeeOnboardingFunction EmployeeOnboarding { get; }
         public IEmployerLiabilityCategoriesFunction EmployerLiabilityCategories { get; }
+        public IPayScheduleFunction PaySchedule { get; }
         public ITimeAndAttendanceFunction TimeAndAttendance { get; }
         public ILeaveCategoriesFunction LeaveCategories { get; }
         public ILookupDataFunction LookupData { get; }
         public IManagerFunction Manager { get; }
         public IPayCategoryFunction PayCategory { get; }
+        public IPayConditionFunction PayCondition { get; }
+        public IPayeSchemeFunction PayeScheme { get; }
         public IPayRateTemplateFunction PayRateTemplate { get; }
-        public IPayScheduleFunction PaySchedule { get; }
         public IPensionSettingsFunction PensionSettings { get; }
         public IPublicHolidayFunction PublicHoliday { get; }
         public IQualificationsFunction Qualifications { get; }
         public IReportingFunction Reporting { get; }
+        public IOtherFunction Other { get; }
         public IRosterShiftFunction RosterShift { get; }
         public ISubcontractorFunction Subcontractor { get; }
         public ITimesheetsFunction Timesheets { get; }

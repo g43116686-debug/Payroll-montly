@@ -22,6 +22,11 @@ namespace KeyPayV2.My.Enums
         FailuresTenantNotSupplied,
         FailureNoJournalId,
         FailureAPIError,
+        FailureMissingTaxInfo,
+        FailureRecordingJournalReference,
+        FailureNoProviderFound,
+        FailureUsingManuallyEnteredDimension,
+        FailureICLExportUsedForNonICLJournal,
         ResultUnknown
     }
 }

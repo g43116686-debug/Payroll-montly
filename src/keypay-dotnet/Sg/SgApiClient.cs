@@ -14,8 +14,8 @@ namespace KeyPayV2.Sg
         IDeductionCategoriesFunction DeductionCategories { get; }
         IReportingDimensionsFunction ReportingDimensions { get; }
         IEmployeeFunction Employee { get; }
-        IEmployeeAccessFunction EmployeeAccess { get; }
         IEmployeeRecurringTransactionsFunction EmployeeRecurringTransactions { get; }
+        IEmployeeAccessFunction EmployeeAccess { get; }
         IEmployeeBankAccountFunction EmployeeBankAccount { get; }
         IEmployeeBenefitsInKindFunction EmployeeBenefitsInKind { get; }
         IEmployeeDocumentFunction EmployeeDocument { get; }
@@ -45,6 +45,7 @@ namespace KeyPayV2.Sg
         ILookupDataFunction LookupData { get; }
         IManagerFunction Manager { get; }
         IPayCategoryFunction PayCategory { get; }
+        IPayConditionFunction PayCondition { get; }
         IPayRateTemplateFunction PayRateTemplate { get; }
         IPayScheduleFunction PaySchedule { get; }
         IPublicHolidayFunction PublicHoliday { get; }
@@ -73,8 +74,8 @@ namespace KeyPayV2.Sg
             DeductionCategories = new DeductionCategoriesFunction(Api);
             ReportingDimensions = new ReportingDimensionsFunction(Api);
             Employee = new EmployeeFunction(Api);
-            EmployeeAccess = new EmployeeAccessFunction(Api);
             EmployeeRecurringTransactions = new EmployeeRecurringTransactionsFunction(Api);
+            EmployeeAccess = new EmployeeAccessFunction(Api);
             EmployeeBankAccount = new EmployeeBankAccountFunction(Api);
             EmployeeBenefitsInKind = new EmployeeBenefitsInKindFunction(Api);
             EmployeeDocument = new EmployeeDocumentFunction(Api);
@@ -104,6 +105,7 @@ namespace KeyPayV2.Sg
             LookupData = new LookupDataFunction(Api);
             Manager = new ManagerFunction(Api);
             PayCategory = new PayCategoryFunction(Api);
+            PayCondition = new PayConditionFunction(Api);
             PayRateTemplate = new PayRateTemplateFunction(Api);
             PaySchedule = new PayScheduleFunction(Api);
             PublicHoliday = new PublicHolidayFunction(Api);
@@ -129,8 +131,8 @@ namespace KeyPayV2.Sg
         public IDeductionCategoriesFunction DeductionCategories { get; }
         public IReportingDimensionsFunction ReportingDimensions { get; }
         public IEmployeeFunction Employee { get; }
-        public IEmployeeAccessFunction EmployeeAccess { get; }
         public IEmployeeRecurringTransactionsFunction EmployeeRecurringTransactions { get; }
+        public IEmployeeAccessFunction EmployeeAccess { get; }
         public IEmployeeBankAccountFunction EmployeeBankAccount { get; }
         public IEmployeeBenefitsInKindFunction EmployeeBenefitsInKind { get; }
         public IEmployeeDocumentFunction EmployeeDocument { get; }
@@ -160,6 +162,7 @@ namespace KeyPayV2.Sg
         public ILookupDataFunction LookupData { get; }
         public IManagerFunction Manager { get; }
         public IPayCategoryFunction PayCategory { get; }
+        public IPayConditionFunction PayCondition { get; }
         public IPayRateTemplateFunction PayRateTemplate { get; }
         public IPayScheduleFunction PaySchedule { get; }
         public IPublicHolidayFunction PublicHoliday { get; }

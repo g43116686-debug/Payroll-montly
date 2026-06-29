@@ -37,6 +37,9 @@ namespace KeyPayV2.Uk.Enums
         JobKeeper,
         JobMaker,
         SelfManagedSuperFunds,
-        CisSubcontractor
+        CisSubcontractor,
+        ContractorTaxDetails,
+        TaxDeclaration,
+        PayConditionComparison
     }
 }

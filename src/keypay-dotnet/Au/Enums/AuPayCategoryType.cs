@@ -19,6 +19,7 @@ namespace KeyPayV2.Au.Enums
         EtpSuperableTypeOTaxable,
         EtpSuperableTypeOTaxFree,
         EtpTypeOUnusedLeavePayment,
+        GST,
         EtpTypeSTaxable,
         EtpTypeSTaxFree,
         EtpTypePTaxable,
@@ -26,9 +27,24 @@ namespace KeyPayV2.Au.Enums
         EtpSuperableTypePTaxable,
         EtpSuperableTypePTaxFree,
         EtpTypePUnusedLeavePayment,
+        JobKeeperTier,
+        JobKeeperCancelTier,
+        JobMakerNomination,
+        JobMakerRenomination,
+        JobMakerPeriod,
+        JobMakerCancelNomination,
+        JobMakerCancelRenomination,
+        JobMakerCancelPeriod,
         NormalTerminationLeaveLoading,
+        PublicHolidayWorked,
+        PublicHolidayNotWorked,
         UnusedLeavePaymentNormalTermination,
         BackPayment,
-        PaidFamilyAndDomesticViolenceLeave
+        PaidFamilyAndDomesticViolenceLeave,
+        EtpTypeD,
+        EtpTypeN,
+        EtpTypeB,
+        EtpTypeT,
+        EtpSuperableLumpSumD
     }
 }

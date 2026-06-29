@@ -19,22 +19,22 @@ namespace KeyPayV2.Uk.Functions
         Task<List<PensionSchemeApiModel>> ListPensionSchemesAsync(int businessId, CancellationToken cancellationToken = default);
         PensionSchemeApiModel CreatePensionScheme(int businessId, PensionSchemeApiModel model);
         Task<PensionSchemeApiModel> CreatePensionSchemeAsync(int businessId, PensionSchemeApiModel model, CancellationToken cancellationToken = default);
+        PensionSchemeStagingModel SetPensionSchemeDates(int businessId, PensionSchemeStagingModel model);
+        Task<PensionSchemeStagingModel> SetPensionSchemeDatesAsync(int businessId, PensionSchemeStagingModel model, CancellationToken cancellationToken = default);
         PensionSchemeApiModel GetPensionScheme(int businessId, int id);
         Task<PensionSchemeApiModel> GetPensionSchemeAsync(int businessId, int id, CancellationToken cancellationToken = default);
         PensionSchemeApiModel UpdatePensionScheme(int businessId, int id, PensionSchemeApiModel model);
         Task<PensionSchemeApiModel> UpdatePensionSchemeAsync(int businessId, int id, PensionSchemeApiModel model, CancellationToken cancellationToken = default);
-        void DeletePensionScheme(int businessId, int id);
-        Task DeletePensionSchemeAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        List<PensionSchemeContributionPlanApiModel> ListPensionSchemeContributionPlans(int businessId, int schemeId);
-        Task<List<PensionSchemeContributionPlanApiModel>> ListPensionSchemeContributionPlansAsync(int businessId, int schemeId, CancellationToken cancellationToken = default);
+        ProblemDetails DeletePensionScheme(int businessId, int id);
+        Task<ProblemDetails> DeletePensionSchemeAsync(int businessId, int id, CancellationToken cancellationToken = default);
         PensionSchemeContributionPlanApiModel CreatePensionSchemeContributionPlan(int businessId, int schemeId, PensionSchemeContributionPlanApiModel contributionPlan);
         Task<PensionSchemeContributionPlanApiModel> CreatePensionSchemeContributionPlanAsync(int businessId, int schemeId, PensionSchemeContributionPlanApiModel contributionPlan, CancellationToken cancellationToken = default);
-        PensionSchemeContributionPlanApiModel GetPensionSchemeContributionPlan(int businessId, int schemeId, int planId);
-        Task<PensionSchemeContributionPlanApiModel> GetPensionSchemeContributionPlanAsync(int businessId, int schemeId, int planId, CancellationToken cancellationToken = default);
+        List<PensionSchemeContributionPlanApiModel> ListPensionSchemeContributionPlans(int businessId, int schemeId);
+        Task<List<PensionSchemeContributionPlanApiModel>> ListPensionSchemeContributionPlansAsync(int businessId, int schemeId, CancellationToken cancellationToken = default);
         PensionSchemeContributionPlanApiModel UpdatePensionSchemeContributionPlan(int businessId, int schemeId, int planId, PensionSchemeContributionPlanApiModel contributionPlan);
         Task<PensionSchemeContributionPlanApiModel> UpdatePensionSchemeContributionPlanAsync(int businessId, int schemeId, int planId, PensionSchemeContributionPlanApiModel contributionPlan, CancellationToken cancellationToken = default);
-        PensionSchemeStagingModel SetPensionSchemeDates(int businessId, PensionSchemeStagingModel model);
-        Task<PensionSchemeStagingModel> SetPensionSchemeDatesAsync(int businessId, PensionSchemeStagingModel model, CancellationToken cancellationToken = default);
+        PensionSchemeContributionPlanApiModel GetPensionSchemeContributionPlan(int businessId, int schemeId, int planId);
+        Task<PensionSchemeContributionPlanApiModel> GetPensionSchemeContributionPlanAsync(int businessId, int schemeId, int planId, CancellationToken cancellationToken = default);
     }
     public class PensionSettingsFunction : BaseFunction, IPensionSettingsFunction
     {
@@ -82,6 +82,28 @@ namespace KeyPayV2.Uk.Functions
         public Task<PensionSchemeApiModel> CreatePensionSchemeAsync(int businessId, PensionSchemeApiModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<PensionSchemeApiModel,PensionSchemeApiModel>($"/business/{businessId}/pensionscheme", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Set Pension Scheme Dates
+        /// </summary>
+        /// <remarks>
+        /// Save auto enrollment staging and re-enrolment dates for business
+        /// </remarks>
+        public PensionSchemeStagingModel SetPensionSchemeDates(int businessId, PensionSchemeStagingModel model)
+        {
+            return ApiRequest<PensionSchemeStagingModel,PensionSchemeStagingModel>($"/business/{businessId}/pensionscheme/dates", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Set Pension Scheme Dates
+        /// </summary>
+        /// <remarks>
+        /// Save auto enrollment staging and re-enrolment dates for business
+        /// </remarks>
+        public Task<PensionSchemeStagingModel> SetPensionSchemeDatesAsync(int businessId, PensionSchemeStagingModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PensionSchemeStagingModel,PensionSchemeStagingModel>($"/business/{businessId}/pensionscheme/dates", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -134,9 +156,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Delete Pension Scheme for business
         /// </remarks>
-        public void DeletePensionScheme(int businessId, int id)
+        public ProblemDetails DeletePensionScheme(int businessId, int id)
         {
-            ApiRequest($"/business/{businessId}/pensionscheme/{id}", Method.Delete);
+            return ApiRequest<ProblemDetails>($"/business/{businessId}/pensionscheme/{id}", Method.Delete);
         }
 
         /// <summary>
@@ -145,31 +167,9 @@ namespace KeyPayV2.Uk.Functions
         /// <remarks>
         /// Delete Pension Scheme for business
         /// </remarks>
-        public Task DeletePensionSchemeAsync(int businessId, int id, CancellationToken cancellationToken = default)
+        public Task<ProblemDetails> DeletePensionSchemeAsync(int businessId, int id, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/pensionscheme/{id}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Pension Scheme Contribution Plans
-        /// </summary>
-        /// <remarks>
-        /// List all Contribution Plans for a Pension Scheme
-        /// </remarks>
-        public List<PensionSchemeContributionPlanApiModel> ListPensionSchemeContributionPlans(int businessId, int schemeId)
-        {
-            return ApiRequest<List<PensionSchemeContributionPlanApiModel>>($"/business/{businessId}/pensionscheme/{schemeId}/plan", Method.Get);
-        }
-
-        /// <summary>
-        /// List Pension Scheme Contribution Plans
-        /// </summary>
-        /// <remarks>
-        /// List all Contribution Plans for a Pension Scheme
-        /// </remarks>
-        public Task<List<PensionSchemeContributionPlanApiModel>> ListPensionSchemeContributionPlansAsync(int businessId, int schemeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<PensionSchemeContributionPlanApiModel>>($"/business/{businessId}/pensionscheme/{schemeId}/plan", Method.Get, cancellationToken);
+            return ApiRequestAsync<ProblemDetails>($"/business/{businessId}/pensionscheme/{id}", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -195,25 +195,25 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Get Pension Scheme Contribution Plan
+        /// List Pension Scheme Contribution Plans
         /// </summary>
         /// <remarks>
-        /// Get specified Pension Scheme Contribution Plan for business
+        /// List all Contribution Plans for a Pension Scheme
         /// </remarks>
-        public PensionSchemeContributionPlanApiModel GetPensionSchemeContributionPlan(int businessId, int schemeId, int planId)
+        public List<PensionSchemeContributionPlanApiModel> ListPensionSchemeContributionPlans(int businessId, int schemeId)
         {
-            return ApiRequest<PensionSchemeContributionPlanApiModel>($"/business/{businessId}/pensionscheme/{schemeId}/plan/{planId}", Method.Get);
+            return ApiRequest<List<PensionSchemeContributionPlanApiModel>>($"/business/{businessId}/pensionscheme/{schemeId}/plan", Method.Get);
         }
 
         /// <summary>
-        /// Get Pension Scheme Contribution Plan
+        /// List Pension Scheme Contribution Plans
         /// </summary>
         /// <remarks>
-        /// Get specified Pension Scheme Contribution Plan for business
+        /// List all Contribution Plans for a Pension Scheme
         /// </remarks>
-        public Task<PensionSchemeContributionPlanApiModel> GetPensionSchemeContributionPlanAsync(int businessId, int schemeId, int planId, CancellationToken cancellationToken = default)
+        public Task<List<PensionSchemeContributionPlanApiModel>> ListPensionSchemeContributionPlansAsync(int businessId, int schemeId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<PensionSchemeContributionPlanApiModel>($"/business/{businessId}/pensionscheme/{schemeId}/plan/{planId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<PensionSchemeContributionPlanApiModel>>($"/business/{businessId}/pensionscheme/{schemeId}/plan", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -239,25 +239,25 @@ namespace KeyPayV2.Uk.Functions
         }
 
         /// <summary>
-        /// Set Pension Scheme Dates
+        /// Get Pension Scheme Contribution Plan
         /// </summary>
         /// <remarks>
-        /// Save auto enrollment staging and re-enrolment dates for business
+        /// Get specified Pension Scheme Contribution Plan for business
         /// </remarks>
-        public PensionSchemeStagingModel SetPensionSchemeDates(int businessId, PensionSchemeStagingModel model)
+        public PensionSchemeContributionPlanApiModel GetPensionSchemeContributionPlan(int businessId, int schemeId, int planId)
         {
-            return ApiRequest<PensionSchemeStagingModel,PensionSchemeStagingModel>($"/business/{businessId}/pensionscheme/dates", model, Method.Post);
+            return ApiRequest<PensionSchemeContributionPlanApiModel>($"/business/{businessId}/pensionscheme/{schemeId}/plan/{planId}", Method.Get);
         }
 
         /// <summary>
-        /// Set Pension Scheme Dates
+        /// Get Pension Scheme Contribution Plan
         /// </summary>
         /// <remarks>
-        /// Save auto enrollment staging and re-enrolment dates for business
+        /// Get specified Pension Scheme Contribution Plan for business
         /// </remarks>
-        public Task<PensionSchemeStagingModel> SetPensionSchemeDatesAsync(int businessId, PensionSchemeStagingModel model, CancellationToken cancellationToken = default)
+        public Task<PensionSchemeContributionPlanApiModel> GetPensionSchemeContributionPlanAsync(int businessId, int schemeId, int planId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<PensionSchemeStagingModel,PensionSchemeStagingModel>($"/business/{businessId}/pensionscheme/dates", model, Method.Post, cancellationToken);
+            return ApiRequestAsync<PensionSchemeContributionPlanApiModel>($"/business/{businessId}/pensionscheme/{schemeId}/plan/{planId}", Method.Get, cancellationToken);
         }
     }
 }

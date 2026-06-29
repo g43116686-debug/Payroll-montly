@@ -20,6 +20,10 @@ namespace KeyPayV2.My.Enums
         StatutoryContributions,
         PayrolledBenefits,
         BenefitsInKindAdjustments,
-        StatutoryDetails
+        StatutoryDetails,
+        CompanyBenefits,
+        CraAdjustments,
+        TaxableGrossEarnings,
+        NonTaxableEarnings
     }
 }

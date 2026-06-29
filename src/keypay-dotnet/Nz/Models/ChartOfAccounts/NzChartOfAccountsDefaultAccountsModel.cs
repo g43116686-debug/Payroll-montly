@@ -19,7 +19,19 @@ namespace KeyPayV2.Nz.Models.ChartOfAccounts
         public bool KiwiSaverEmployerExpenseSplitByLocation { get; set; }
         public bool KiwiSaverEmployerLiabilitySplitByLocation { get; set; }
         public bool KiwiSaverEmployeeLiabilitySplitByLocation { get; set; }
-        public int? StudentLoanLiabilitySplitByLocation { get; set; }
+        public bool StudentLoanLiabilitySplitByLocation { get; set; }
+        public bool? PaymentAccountSplitByEmployingEntity { get; set; }
+        public bool? DefaultExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployeeExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityLiabilitySplitByEmployingEntity { get; set; }
+        public bool? DefaultLiabilitySplitByEmployingEntity { get; set; }
+        public bool? PayeLiabilityAccountSplitByEmployingEntity { get; set; }
+        public bool? PayeExpenseSplitByEmployingEntity { get; set; }
+        public bool? KiwiSaverEmployerExpenseSplitByEmployingEntity { get; set; }
+        public bool? KiwiSaverEmployerLiabilitySplitByEmployingEntity { get; set; }
+        public bool? KiwiSaverEmployeeLiabilitySplitByEmployingEntity { get; set; }
+        public bool? StudentLoanLiabilitySplitByEmployingEntity { get; set; }
         public int? PayeLiabilityAccountId { get; set; }
         public int? PayeExpenseAccountId { get; set; }
         public int? KiwiSaverEmployerExpenseAccountId { get; set; }

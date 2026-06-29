@@ -15,6 +15,14 @@ namespace KeyPayV2.Au.Functions
 {
     public interface IEssFunction
     {
+        void RegisterDeviceToken(DeviceTokenModel model);
+        Task RegisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default);
+        void UnregisterDeviceToken(DeviceTokenModel model);
+        Task UnregisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default);
+        List<AvailableEmployeeModel> GetEmployees();
+        Task<List<AvailableEmployeeModel>> GetEmployeesAsync(CancellationToken cancellationToken = default);
+        void RecoverForgottenPassword(RecoverPasswordModel model);
+        Task RecoverForgottenPasswordAsync(RecoverPasswordModel model, CancellationToken cancellationToken = default);
         List<AuEssBankAccountModel> ListBankAccounts(int employeeId);
         Task<List<AuEssBankAccountModel>> ListBankAccountsAsync(int employeeId, CancellationToken cancellationToken = default);
         AuEssSaveBankAccountResponseModel CreateBankAccount(int employeeId, AuEssBankAccountModel model);
@@ -27,16 +35,14 @@ namespace KeyPayV2.Au.Functions
         Task<AuEssSaveBankAccountResponseModel> UpdateBankAccountAsync(int employeeId, int id, AuEssBankAccountModel model, CancellationToken cancellationToken = default);
         AuDashboardModel GetDashboard(int employeeId);
         Task<AuDashboardModel> GetDashboardAsync(int employeeId, CancellationToken cancellationToken = default);
-        EssEmployeeDetailsModel GetDetails(int employeeId);
-        Task<EssEmployeeDetailsModel> GetDetailsAsync(int employeeId, CancellationToken cancellationToken = default);
         AuUnstructuredEmployeeModel SaveDetails(int employeeId, EmployeePartialEditModel model);
         Task<AuUnstructuredEmployeeModel> SaveDetailsAsync(int employeeId, EmployeePartialEditModel model, CancellationToken cancellationToken = default);
+        EssEmployeeDetailsModel GetDetails(int employeeId);
+        Task<EssEmployeeDetailsModel> GetDetailsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<EssDocumentModel> ListAllDocuments(int employeeId);
         Task<List<EssDocumentModel>> ListAllDocumentsAsync(int employeeId, CancellationToken cancellationToken = default);
-        EssDocumentModel GetDocumentDetailsById(int employeeId, string documentId);
-        Task<EssDocumentModel> GetDocumentDetailsByIdAsync(int employeeId, string documentId, CancellationToken cancellationToken = default);
-        EssDocumentModel AcknowledgeDocument(int employeeId, string documentId);
-        Task<EssDocumentModel> AcknowledgeDocumentAsync(int employeeId, string documentId, CancellationToken cancellationToken = default);
+        EssAcnowledgeDocumentModel AcknowledgeDocument(int employeeId, string documentId);
+        Task<EssAcnowledgeDocumentModel> AcknowledgeDocumentAsync(int employeeId, string documentId, CancellationToken cancellationToken = default);
         byte[] DownloadDocument(int employeeId, string documentId);
         Task<byte[]> DownloadDocumentAsync(int employeeId, string documentId, CancellationToken cancellationToken = default);
         List<EssPaymentSummaryModel> GetPaymentSummaries(int employeeId);
@@ -47,48 +53,42 @@ namespace KeyPayV2.Au.Functions
         Task<List<EssPayslipModel>> ListPaySlipsAsync(int employeeId, CancellationToken cancellationToken = default);
         byte[] GetPaySlipByPayRunId(int employeeId, int payrunId);
         Task<byte[]> GetPaySlipByPayRunIdAsync(int employeeId, int payrunId, CancellationToken cancellationToken = default);
+        EssDocumentModel GetDocumentDetailsById(int employeeId, string documentId);
+        Task<EssDocumentModel> GetDocumentDetailsByIdAsync(int employeeId, string documentId, CancellationToken cancellationToken = default);
         EmployeeEmergencyContactsEditModel GetEmergencyContacts(int employeeId);
         Task<EmployeeEmergencyContactsEditModel> GetEmergencyContactsAsync(int employeeId, CancellationToken cancellationToken = default);
-        EmployeeEmergencyContactsEditModel UpdateEmergencyContacts(int employeeId, EmployeeEmergencyContactsEditModel model);
-        Task<EmployeeEmergencyContactsEditModel> UpdateEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default);
         EmployeeEmergencyContactsEditModel SaveEmergencyContacts(int employeeId, EmployeeEmergencyContactsEditModel model);
         Task<EmployeeEmergencyContactsEditModel> SaveEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default);
+        EmployeeEmergencyContactsEditModel UpdateEmergencyContacts(int employeeId, EmployeeEmergencyContactsEditModel model);
+        Task<EmployeeEmergencyContactsEditModel> UpdateEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default);
         List<EssExpenseRequestResponseModel> GetExpenseRequests(int employeeId);
         Task<List<EssExpenseRequestResponseModel>> GetExpenseRequestsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<EssExpenseRequestResponseModel> GetExpenseRequests(int employeeId, GetExpenseRequestsQueryModel request);
         Task<List<EssExpenseRequestResponseModel>> GetExpenseRequestsAsync(int employeeId, GetExpenseRequestsQueryModel request, CancellationToken cancellationToken = default);
-        void CreateExpenseRequest(int employeeId, ExpenseRequestEditModel model);
-        Task CreateExpenseRequestAsync(int employeeId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default);
-        EssExpenseRequestResponseModel GetExpenseRequestById(int employeeId, int expenseRequestId);
-        Task<EssExpenseRequestResponseModel> GetExpenseRequestByIdAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
-        void UpdateExpenseRequest(int employeeId, int expenseRequestId, ExpenseRequestEditModel model);
-        Task UpdateExpenseRequestAsync(int employeeId, int expenseRequestId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default);
-        EssExpenseRequestResponseModel DeleteExpenseRequest(int employeeId, int expenseRequestId);
-        Task<EssExpenseRequestResponseModel> DeleteExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
-        void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request);
-        Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default);
+        EssExpenseRequestResponseModel CreateExpenseRequest(int employeeId, ExpenseRequestEditModel model);
+        Task<EssExpenseRequestResponseModel> CreateExpenseRequestAsync(int employeeId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default);
         List<ExpenseCategoryResponseModel> GetExpenseCategories(int employeeId);
         Task<List<ExpenseCategoryResponseModel>> GetExpenseCategoriesAsync(int employeeId, CancellationToken cancellationToken = default);
         List<EmployeeExpensePaymentSummaryModel> GetExpensePaymentSummary(int employeeId);
         Task<List<EmployeeExpensePaymentSummaryModel>> GetExpensePaymentSummaryAsync(int employeeId, CancellationToken cancellationToken = default);
         List<JournalServiceTaxCode> GetTaxCodes(int employeeId);
         Task<List<JournalServiceTaxCode>> GetTaxCodesAsync(int employeeId, CancellationToken cancellationToken = default);
+        EssExpenseRequestResponseModel GetExpenseRequestById(int employeeId, int expenseRequestId);
+        Task<EssExpenseRequestResponseModel> GetExpenseRequestByIdAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        ProblemDetails UpdateExpenseRequest(int employeeId, int expenseRequestId, ExpenseRequestEditModel model);
+        Task<ProblemDetails> UpdateExpenseRequestAsync(int employeeId, int expenseRequestId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default);
+        EssExpenseRequestResponseModel DeleteExpenseRequest(int employeeId, int expenseRequestId);
+        Task<EssExpenseRequestResponseModel> DeleteExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId);
+        Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default);
+        void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request);
+        Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default);
         List<EssLeaveRequestModel> ListLeaveRequests(int employeeId);
         Task<List<EssLeaveRequestModel>> ListLeaveRequestsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<EssLeaveRequestModel> ListLeaveRequests(int employeeId, ListLeaveRequestsQueryModel request);
         Task<List<EssLeaveRequestModel>> ListLeaveRequestsAsync(int employeeId, ListLeaveRequestsQueryModel request, CancellationToken cancellationToken = default);
-        void CreateLeaveRequest(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication);
-        Task CreateLeaveRequestAsync(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default);
-        EssLeaveRequestModel GetLeaveRequestById(int employeeId, int leaveRequestId);
-        Task<EssLeaveRequestModel> GetLeaveRequestByIdAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        void UpdateLeaveRequest(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication);
-        Task UpdateLeaveRequestAsync(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default);
-        void DeleteLeaveRequest(int employeeId, int leaveRequestId);
-        Task DeleteLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        void UploadAttachmentToLeaveRequest(int employeeId, int leaveRequestId);
-        Task UploadAttachmentToLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
-        void DeleteAttachmentFromLeaveRequest(int employeeId, int leaveRequestId);
-        Task DeleteAttachmentFromLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        EssLeaveRequestModel CreateLeaveRequest(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication);
+        Task<EssLeaveRequestModel> CreateLeaveRequestAsync(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default);
         List<LeaveBalanceModel> GetLeaveBalances(int employeeId);
         Task<List<LeaveBalanceModel>> GetLeaveBalancesAsync(int employeeId, CancellationToken cancellationToken = default);
         List<LeaveBalanceModel> GetLeaveBalances(int employeeId, GetLeaveBalancesQueryModel request);
@@ -97,44 +97,58 @@ namespace KeyPayV2.Au.Functions
         Task<EssLeaveEstimate> EstimateLeaveHoursAsync(int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default);
         List<EssLeaveCategoryModel> GetLeaveCategories(int employeeId);
         Task<List<EssLeaveCategoryModel>> GetLeaveCategoriesAsync(int employeeId, CancellationToken cancellationToken = default);
-        void AuEssLookup_Addresses(int employeeId, int suburbId);
-        Task AuEssLookup_AddressesAsync(int employeeId, int suburbId, CancellationToken cancellationToken = default);
+        EssLeaveRequestModel GetLeaveRequestById(int employeeId, int leaveRequestId);
+        Task<EssLeaveRequestModel> GetLeaveRequestByIdAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        EssLeaveRequestModel UpdateLeaveRequest(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication);
+        Task<EssLeaveRequestModel> UpdateLeaveRequestAsync(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default);
+        EssLeaveRequestModel DeleteLeaveRequest(int employeeId, int leaveRequestId);
+        Task<EssLeaveRequestModel> DeleteLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        void UploadAttachmentToLeaveRequest(int employeeId, int leaveRequestId);
+        Task UploadAttachmentToLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
+        void DeleteAttachmentFromLeaveRequest(int employeeId, int leaveRequestId);
+        Task DeleteAttachmentFromLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default);
         List<LocationModel> GetLocations(int employeeId);
         Task<List<LocationModel>> GetLocationsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<AuWorkTypeModel> GetShiftConditions(int employeeId);
         Task<List<AuWorkTypeModel>> GetShiftConditionsAsync(int employeeId, CancellationToken cancellationToken = default);
+        SuburbResult GetSuburb(int employeeId);
+        Task<SuburbResult> GetSuburbAsync(int employeeId, CancellationToken cancellationToken = default);
         SuburbResult GetSuburb(int employeeId, GetSuburbQueryModel request);
         Task<SuburbResult> GetSuburbAsync(int employeeId, GetSuburbQueryModel request, CancellationToken cancellationToken = default);
+        PagedResultModel<SuburbModel> SearchSuburbs(int employeeId);
+        Task<PagedResultModel<SuburbModel>> SearchSuburbsAsync(int employeeId, CancellationToken cancellationToken = default);
         PagedResultModel<SuburbModel> SearchSuburbs(int employeeId, SearchSuburbsQueryModel request);
         Task<PagedResultModel<SuburbModel>> SearchSuburbsAsync(int employeeId, SearchSuburbsQueryModel request, CancellationToken cancellationToken = default);
         List<TitleViewModel> GetTitles(int employeeId);
         Task<List<TitleViewModel>> GetTitlesAsync(int employeeId, CancellationToken cancellationToken = default);
         List<AuWorkTypeModel> GetWorkTypes(int employeeId);
         Task<List<AuWorkTypeModel>> GetWorkTypesAsync(int employeeId, CancellationToken cancellationToken = default);
-        AuEssEmployeeDetailsViewModel GetPersonalDetails(int employeeId);
-        Task<AuEssEmployeeDetailsViewModel> GetPersonalDetailsAsync(int employeeId, CancellationToken cancellationToken = default);
         AuEssEmployeeDetailsViewModel UpdatePersonalDetails(int employeeId, AuEssEmployeeDetailsEditModel model);
         Task<AuEssEmployeeDetailsViewModel> UpdatePersonalDetailsAsync(int employeeId, AuEssEmployeeDetailsEditModel model, CancellationToken cancellationToken = default);
-        void GetEmployeeProfileImage(int employeeId);
-        Task GetEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default);
+        AuEssEmployeeDetailsViewModel GetPersonalDetails(int employeeId);
+        Task<AuEssEmployeeDetailsViewModel> GetPersonalDetailsAsync(int employeeId, CancellationToken cancellationToken = default);
+        byte[] GetEmployeeProfileImage(int employeeId);
+        Task<byte[]> GetEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default);
         ProfileImageMetadata SetEmployeeProfileImage(int employeeId);
         Task<ProfileImageMetadata> SetEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default);
         void DeleteEmployeeProfileImage(int employeeId);
         Task DeleteEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default);
         List<PublicHolidayModel> GetPublicHolidays(int employeeId, GetPublicHolidaysQueryModel request);
         Task<List<PublicHolidayModel>> GetPublicHolidaysAsync(int employeeId, GetPublicHolidaysQueryModel request, CancellationToken cancellationToken = default);
-        List<EssEmployeeQualificationModel> GetQualificationsForEmployee(int employeeId);
-        Task<List<EssEmployeeQualificationModel>> GetQualificationsForEmployeeAsync(int employeeId, CancellationToken cancellationToken = default);
-        void AddEmployeeQualification(int employeeId, EssEmployeeQualificationModel qualification);
-        Task AddEmployeeQualificationAsync(int employeeId, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default);
-        void UploadAttachmentToQualification(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request);
-        Task UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request, CancellationToken cancellationToken = default);
+        List<EssEmployeeQualificationModel> GetQualificationsForEmployee(int employeeId, ODataQuery oDataQuery = null);
+        Task<List<EssEmployeeQualificationModel>> GetQualificationsForEmployeeAsync(int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        EssEmployeeQualificationModel AddEmployeeQualification(int employeeId, EssEmployeeQualificationModel qualification);
+        Task<EssEmployeeQualificationModel> AddEmployeeQualificationAsync(int employeeId, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default);
+        EssEmployeeQualificationModel UploadAttachmentToQualification(int employeeId, int employeeQualificationId);
+        Task<EssEmployeeQualificationModel> UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, CancellationToken cancellationToken = default);
+        EssEmployeeQualificationModel UploadAttachmentToQualification(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request);
+        Task<EssEmployeeQualificationModel> UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request, CancellationToken cancellationToken = default);
         void DeleteAttachmentFromEmployeequalification(int employeeId, int employeeQualificationId, int documentId);
         Task DeleteAttachmentFromEmployeequalificationAsync(int employeeId, int employeeQualificationId, int documentId, CancellationToken cancellationToken = default);
         EssEmployeeQualificationModel GetQualificationDetails(int employeeId, int id);
         Task<EssEmployeeQualificationModel> GetQualificationDetailsAsync(int employeeId, int id, CancellationToken cancellationToken = default);
-        void UpdateEmployeeQualification(int employeeId, int id, EssEmployeeQualificationModel qualification);
-        Task UpdateEmployeeQualificationAsync(int employeeId, int id, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default);
+        EssEmployeeQualificationModel UpdateEmployeeQualification(int employeeId, int id, EssEmployeeQualificationModel qualification);
+        Task<EssEmployeeQualificationModel> UpdateEmployeeQualificationAsync(int employeeId, int id, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default);
         void DeleteEmployeeQualification(int employeeId, int id);
         Task DeleteEmployeeQualificationAsync(int employeeId, int id, CancellationToken cancellationToken = default);
         List<EssSatisfactionSurvey> GetSatisfactionSurveyResults(int employeeId);
@@ -147,36 +161,30 @@ namespace KeyPayV2.Au.Functions
         Task<AuFeaturesModel> GetEnabledFeaturesAsync(int employeeId, CancellationToken cancellationToken = default);
         List<SelfManagedSuperFundModel> ListSelfManagedSuperFunds(int employeeId, ODataQuery oDataQuery = null);
         Task<List<SelfManagedSuperFundModel>> ListSelfManagedSuperFundsAsync(int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateEssSelfManagedSuperFund(int employeeId, SelfManagedSuperFundModel fund);
-        Task CreateEssSelfManagedSuperFundAsync(int employeeId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
+        SelfManagedSuperFundModel CreateEssSelfManagedSuperFund(int employeeId, SelfManagedSuperFundModel fund);
+        Task<SelfManagedSuperFundModel> CreateEssSelfManagedSuperFundAsync(int employeeId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
         SelfManagedSuperFundModel GetEssSelfManagedSuperFundById(int employeeId, int id);
         Task<SelfManagedSuperFundModel> GetEssSelfManagedSuperFundByIdAsync(int employeeId, int id, CancellationToken cancellationToken = default);
         void UpdateEssSelfManagedSuperFund(int employeeId, int id, SelfManagedSuperFundModel fund);
         Task UpdateEssSelfManagedSuperFundAsync(int employeeId, int id, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default);
+        List<AuEssRosterShiftModel> ListRosterShifts(int employeeId);
+        Task<List<AuEssRosterShiftModel>> ListRosterShiftsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<AuEssRosterShiftModel> ListRosterShifts(int employeeId, ListRosterShiftsQueryModel request);
         Task<List<AuEssRosterShiftModel>> ListRosterShiftsAsync(int employeeId, ListRosterShiftsQueryModel request, CancellationToken cancellationToken = default);
-        AuEssRosterShiftModel GetRosterShiftById(int employeeId, int shiftId);
-        Task<AuEssRosterShiftModel> GetRosterShiftByIdAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        AuAcceptRosterShiftResponseModel AcceptRosterShift(int employeeId, int shiftId);
-        Task<AuAcceptRosterShiftResponseModel> AcceptRosterShiftAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        EssRosterShiftCountModel DeclineRosterShift(int employeeId, int shiftId, EssDeclineRosterShiftModel model);
-        Task<EssRosterShiftCountModel> DeclineRosterShiftAsync(int employeeId, int shiftId, EssDeclineRosterShiftModel model, CancellationToken cancellationToken = default);
-        AuEssRosterShiftActionResponse AcceptShiftSwap(int employeeId, int shiftId);
-        Task<AuEssRosterShiftActionResponse> AcceptShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        AuEssRosterShiftActionResponse CancelShiftSwap(int employeeId, int shiftId);
-        Task<AuEssRosterShiftActionResponse> CancelShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        List<EssShiftSwapCandidate> EmployeesEligibleForShiftSwap(int employeeId, int shiftId);
-        Task<List<EssShiftSwapCandidate>> EmployeesEligibleForShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        AuEssRosterShiftActionResponse DeclineShiftSwap(int employeeId, int shiftId);
-        Task<AuEssRosterShiftActionResponse> DeclineShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
         AuAcceptRosterShiftsResponseModel BulkAcceptRosterShifts(int employeeId, EssBulkAcceptRosterShiftsModel model);
         Task<AuAcceptRosterShiftsResponseModel> BulkAcceptRosterShiftsAsync(int employeeId, EssBulkAcceptRosterShiftsModel model, CancellationToken cancellationToken = default);
         EssRosterShiftCountModel BulkDeclineRosterShifts(int employeeId, EssBulkDeclineRosterShiftsModel model);
         Task<EssRosterShiftCountModel> BulkDeclineRosterShiftsAsync(int employeeId, EssBulkDeclineRosterShiftsModel model, CancellationToken cancellationToken = default);
+        AuRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int employeeId);
+        Task<AuRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int employeeId, CancellationToken cancellationToken = default);
         AuRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int employeeId, FindMatchingClockOffRosterShiftQueryModel request);
         Task<AuRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int employeeId, FindMatchingClockOffRosterShiftQueryModel request, CancellationToken cancellationToken = default);
+        AuRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int employeeId);
+        Task<AuRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int employeeId, CancellationToken cancellationToken = default);
         AuRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int employeeId, FindMatchingClockOnRosterShiftQueryModel request);
         Task<AuRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default);
+        List<AuEssRosterShiftModel> FindNearbyRosterShifts(int employeeId);
+        Task<List<AuEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int employeeId, CancellationToken cancellationToken = default);
         List<AuEssRosterShiftModel> FindNearbyRosterShifts(int employeeId, FindNearbyRosterShiftsQueryModel request);
         Task<List<AuEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int employeeId, FindNearbyRosterShiftsQueryModel request, CancellationToken cancellationToken = default);
         AuEssBulkRosterShiftActionResponse BulkAcceptRosterShiftSwaps(int employeeId, EssBulkRosterShiftSwapModel model);
@@ -187,50 +195,66 @@ namespace KeyPayV2.Au.Functions
         Task<AuEssBulkRosterShiftActionResponse> BulkDeclineRosterShiftSwapsAsync(int employeeId, EssBulkRosterShiftSwapModel model, CancellationToken cancellationToken = default);
         AuEssRosterShiftActionResponse ProposeShiftSwap(int employeeId, SwapShiftModel model);
         Task<AuEssRosterShiftActionResponse> ProposeShiftSwapAsync(int employeeId, SwapShiftModel model, CancellationToken cancellationToken = default);
+        AuEssRosterShiftModel GetRosterShiftById(int employeeId, int rosterShiftId);
+        Task<AuEssRosterShiftModel> GetRosterShiftByIdAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
+        AuAcceptRosterShiftResponseModel AcceptRosterShift(int employeeId, int rosterShiftId);
+        Task<AuAcceptRosterShiftResponseModel> AcceptRosterShiftAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
+        EssRosterShiftCountModel DeclineRosterShift(int employeeId, int rosterShiftId, EssDeclineRosterShiftModel model);
+        Task<EssRosterShiftCountModel> DeclineRosterShiftAsync(int employeeId, int rosterShiftId, EssDeclineRosterShiftModel model, CancellationToken cancellationToken = default);
+        AuEssRosterShiftActionResponse AcceptShiftSwap(int employeeId, int rosterShiftId);
+        Task<AuEssRosterShiftActionResponse> AcceptShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
+        AuEssRosterShiftActionResponse CancelShiftSwap(int employeeId, int rosterShiftId);
+        Task<AuEssRosterShiftActionResponse> CancelShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
+        List<EssShiftSwapCandidate> EmployeesEligibleForShiftSwap(int employeeId, int rosterShiftId);
+        Task<List<EssShiftSwapCandidate>> EmployeesEligibleForShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
+        AuEssRosterShiftActionResponse DeclineShiftSwap(int employeeId, int rosterShiftId);
+        Task<AuEssRosterShiftActionResponse> DeclineShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default);
         List<SuperFundModel> ListSuperFunds(int employeeId);
         Task<List<SuperFundModel>> ListSuperFundsAsync(int employeeId, CancellationToken cancellationToken = default);
         SaveSuperFundResponseModel CreateSuperFund(int employeeId, SaveSuperFundModel model);
         Task<SaveSuperFundResponseModel> CreateSuperFundAsync(int employeeId, SaveSuperFundModel model, CancellationToken cancellationToken = default);
+        List<SuperProductEditModel> SearchSuperFundProducts(int employeeId);
+        Task<List<SuperProductEditModel>> SearchSuperFundProductsAsync(int employeeId, CancellationToken cancellationToken = default);
+        List<SuperProductEditModel> SearchSuperFundProducts(int employeeId, SearchSuperFundProductsQueryModel request);
+        Task<List<SuperProductEditModel>> SearchSuperFundProductsAsync(int employeeId, SearchSuperFundProductsQueryModel request, CancellationToken cancellationToken = default);
         SaveSuperFundResponseModel UpdateSuperFund(int employeeId, int id, SaveSuperFundModel model);
         Task<SaveSuperFundResponseModel> UpdateSuperFundAsync(int employeeId, int id, SaveSuperFundModel model, CancellationToken cancellationToken = default);
         SaveSuperFundResponseModel DeleteSuperFund(int employeeId, int superfundId);
         Task<SaveSuperFundResponseModel> DeleteSuperFundAsync(int employeeId, int superfundId, CancellationToken cancellationToken = default);
         SuperFundModel GetSuperFundById(int employeeId, int superFundId);
         Task<SuperFundModel> GetSuperFundByIdAsync(int employeeId, int superFundId, CancellationToken cancellationToken = default);
-        List<SuperProductEditModel> AuEssSuperFund_ProductSearch(int employeeId, AuEssSuperFund_ProductSearchQueryModel request);
-        Task<List<SuperProductEditModel>> AuEssSuperFund_ProductSearchAsync(int employeeId, AuEssSuperFund_ProductSearchQueryModel request, CancellationToken cancellationToken = default);
-        void ClockOutEmployee(int employeeId, ClockOffModel request);
-        Task ClockOutEmployeeAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel ClockOutEmployee(int employeeId, ClockOffModel request);
+        Task<KioskEmployeeModel> ClockOutEmployeeAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default);
         KioskEmployeeModel ClockInEmployee(int employeeId, AuClockOnModel model);
         Task<KioskEmployeeModel> ClockInEmployeeAsync(int employeeId, AuClockOnModel model, CancellationToken cancellationToken = default);
-        void DiscardCurrentShift(int employeeId, ClockOffModel request);
-        Task DiscardCurrentShiftAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default);
-        void EndBreak(int employeeId, EndBreakModel request);
-        Task EndBreakAsync(int employeeId, EndBreakModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel DiscardCurrentShift(int employeeId, ClockOffModel request);
+        Task<KioskEmployeeModel> DiscardCurrentShiftAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel EndBreak(int employeeId, EndBreakModel request);
+        Task<KioskEmployeeModel> EndBreakAsync(int employeeId, EndBreakModel request, CancellationToken cancellationToken = default);
         AuTimeAndAttendanceLookupDataModel GetLookupData(int employeeId);
         Task<AuTimeAndAttendanceLookupDataModel> GetLookupDataAsync(int employeeId, CancellationToken cancellationToken = default);
-        void GetShiftNotes(int employeeId, int shiftId);
-        Task GetShiftNotesAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
-        void GetShiftNotes(int employeeId, int shiftId, GetShiftNotesQueryModel request);
-        Task GetShiftNotesAsync(int employeeId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default);
-        void AddNoteToShift(int employeeId, int shiftId, AddNoteModel model);
-        Task AddNoteToShiftAsync(int employeeId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default);
-        void MarkShiftNotesRead(int employeeId, MarkNotesReadViewModel model, string shiftId);
-        Task MarkShiftNotesReadAsync(int employeeId, MarkNotesReadViewModel model, string shiftId, CancellationToken cancellationToken = default);
+        ShiftNoteViewModel AddNoteToShift(int employeeId, int shiftId, AddNoteModel model);
+        Task<ShiftNoteViewModel> AddNoteToShiftAsync(int employeeId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default);
+        List<ShiftNoteViewModel> GetShiftNotes(int employeeId, int shiftId);
+        Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default);
+        List<ShiftNoteViewModel> GetShiftNotes(int employeeId, int shiftId, GetShiftNotesQueryModel request);
+        Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int employeeId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default);
+        void MarkShiftNotesRead(int employeeId, string shiftId, MarkNotesReadViewModel model);
+        Task MarkShiftNotesReadAsync(int employeeId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default);
         List<AuTimeAndAttendanceShiftModel> Shifts(int employeeId, GetShiftsModel model);
         Task<List<AuTimeAndAttendanceShiftModel>> ShiftsAsync(int employeeId, GetShiftsModel model, CancellationToken cancellationToken = default);
-        void StartBreak(int employeeId, StartBreakModel request);
-        Task StartBreakAsync(int employeeId, StartBreakModel request, CancellationToken cancellationToken = default);
+        KioskEmployeeModel StartBreak(int employeeId, StartBreakModel request);
+        Task<KioskEmployeeModel> StartBreakAsync(int employeeId, StartBreakModel request, CancellationToken cancellationToken = default);
         List<EssTimesheetModel> ListTimesheets(int employeeId, ListTimesheetsQueryModel request);
         Task<List<EssTimesheetModel>> ListTimesheetsAsync(int employeeId, ListTimesheetsQueryModel request, CancellationToken cancellationToken = default);
-        void SubmitOrUpdateTimesheet(int employeeId, EssTimesheetModel timesheet);
-        Task SubmitOrUpdateTimesheetAsync(int employeeId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default);
-        void EditTimesheet(int employeeId, int timesheetId, EssTimesheetModel timesheet);
-        Task EditTimesheetAsync(int employeeId, int timesheetId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default);
-        void DeleteTimesheet(int employeeId, int timesheetId);
-        Task DeleteTimesheetAsync(int employeeId, int timesheetId, CancellationToken cancellationToken = default);
+        EssTimesheetAndSummaryModel SubmitOrUpdateTimesheet(int employeeId, EssTimesheetModel timesheet);
+        Task<EssTimesheetAndSummaryModel> SubmitOrUpdateTimesheetAsync(int employeeId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default);
         AuEssTimesheetDataModel GetTimesheetCreationData(int employeeId, GetTimesheetCreationDataQueryModel request);
         Task<AuEssTimesheetDataModel> GetTimesheetCreationDataAsync(int employeeId, GetTimesheetCreationDataQueryModel request, CancellationToken cancellationToken = default);
+        EssTimesheetAndSummaryModel EditTimesheet(int employeeId, int timesheetId, EssTimesheetModel timesheet);
+        Task<EssTimesheetAndSummaryModel> EditTimesheetAsync(int employeeId, int timesheetId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default);
+        EssCurrentTimesheetsModel DeleteTimesheet(int employeeId, int timesheetId);
+        Task<EssCurrentTimesheetsModel> DeleteTimesheetAsync(int employeeId, int timesheetId, CancellationToken cancellationToken = default);
         List<EssUnavailabilityModel> ListUnavailabilities(int employeeId);
         Task<List<EssUnavailabilityModel>> ListUnavailabilitiesAsync(int employeeId, CancellationToken cancellationToken = default);
         List<EssUnavailabilityModel> ListUnavailabilities(int employeeId, ListUnavailabilitiesQueryModel request);
@@ -239,22 +263,102 @@ namespace KeyPayV2.Au.Functions
         Task<EssUnavailabilityModel> CreateUnavailabilityAsync(int employeeId, UnavailabilityEditModel unavailability, CancellationToken cancellationToken = default);
         EssUnavailabilityModel GetUnavailabilityById(int employeeId, int unavailabilityId);
         Task<EssUnavailabilityModel> GetUnavailabilityByIdAsync(int employeeId, int unavailabilityId, CancellationToken cancellationToken = default);
-        void UpdateUnavailability(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability);
-        Task UpdateUnavailabilityAsync(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability, CancellationToken cancellationToken = default);
+        EssUnavailabilityModel UpdateUnavailability(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability);
+        Task<EssUnavailabilityModel> UpdateUnavailabilityAsync(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability, CancellationToken cancellationToken = default);
         void DeleteUnavailability(int employeeId, int unavailabilityId);
         Task DeleteUnavailabilityAsync(int employeeId, int unavailabilityId, CancellationToken cancellationToken = default);
-        void RegisterDeviceToken(DeviceTokenModel model);
-        Task RegisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default);
-        void UnregisterDeviceToken(DeviceTokenModel model);
-        Task UnregisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default);
-        List<AvailableEmployeeModel> GetEmployees();
-        Task<List<AvailableEmployeeModel>> GetEmployeesAsync(CancellationToken cancellationToken = default);
-        void RecoverForgottenPassword(RecoverPasswordModel model);
-        Task RecoverForgottenPasswordAsync(RecoverPasswordModel model, CancellationToken cancellationToken = default);
     }
     public class EssFunction : BaseFunction, IEssFunction
     {
         public EssFunction(ApiRequestExecutor api) : base(api) {}
+
+        /// <summary>
+        /// Register Device Token
+        /// </summary>
+        /// <remarks>
+        /// Registers a device token.
+        /// </remarks>
+        public void RegisterDeviceToken(DeviceTokenModel model)
+        {
+            ApiRequest($"/ess/devicetoken/register", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Register Device Token
+        /// </summary>
+        /// <remarks>
+        /// Registers a device token.
+        /// </remarks>
+        public Task RegisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/devicetoken/register", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Unregister Device Token
+        /// </summary>
+        /// <remarks>
+        /// Unregisters a device token.
+        /// </remarks>
+        public void UnregisterDeviceToken(DeviceTokenModel model)
+        {
+            ApiRequest($"/ess/devicetoken/unregister", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Unregister Device Token
+        /// </summary>
+        /// <remarks>
+        /// Unregisters a device token.
+        /// </remarks>
+        public Task UnregisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/devicetoken/unregister", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employees
+        /// </summary>
+        /// <remarks>
+        /// Returns all the employees the user can access.
+        /// </remarks>
+        public List<AvailableEmployeeModel> GetEmployees()
+        {
+            return ApiRequest<List<AvailableEmployeeModel>>($"/ess/security/employees", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employees
+        /// </summary>
+        /// <remarks>
+        /// Returns all the employees the user can access.
+        /// </remarks>
+        public Task<List<AvailableEmployeeModel>> GetEmployeesAsync(CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<AvailableEmployeeModel>>($"/ess/security/employees", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Recover Forgotten Password
+        /// </summary>
+        /// <remarks>
+        /// Sends an email so that the user can reset their password
+        /// </remarks>
+        public void RecoverForgottenPassword(RecoverPasswordModel model)
+        {
+            ApiRequest($"/ess/security/forgottenpassword", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Recover Forgotten Password
+        /// </summary>
+        /// <remarks>
+        /// Sends an email so that the user can reset their password
+        /// </remarks>
+        public Task RecoverForgottenPasswordAsync(RecoverPasswordModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/security/forgottenpassword", model, Method.Post, cancellationToken);
+        }
 
         /// <summary>
         /// List Bank Accounts
@@ -389,28 +493,6 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Get Details
-        /// </summary>
-        /// <remarks>
-        /// Gets ESS details for the specified employee.
-        /// </remarks>
-        public EssEmployeeDetailsModel GetDetails(int employeeId)
-        {
-            return ApiRequest<EssEmployeeDetailsModel>($"/ess/{employeeId}/details", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Details
-        /// </summary>
-        /// <remarks>
-        /// Gets ESS details for the specified employee.
-        /// </remarks>
-        public Task<EssEmployeeDetailsModel> GetDetailsAsync(int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssEmployeeDetailsModel>($"/ess/{employeeId}/details", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Save Details
         /// </summary>
         /// <remarks>
@@ -430,6 +512,28 @@ namespace KeyPayV2.Au.Functions
         public Task<AuUnstructuredEmployeeModel> SaveDetailsAsync(int employeeId, EmployeePartialEditModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<AuUnstructuredEmployeeModel,EmployeePartialEditModel>($"/ess/{employeeId}/details", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Details
+        /// </summary>
+        /// <remarks>
+        /// Gets ESS details for the specified employee.
+        /// </remarks>
+        public EssEmployeeDetailsModel GetDetails(int employeeId)
+        {
+            return ApiRequest<EssEmployeeDetailsModel>($"/ess/{employeeId}/details", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Details
+        /// </summary>
+        /// <remarks>
+        /// Gets ESS details for the specified employee.
+        /// </remarks>
+        public Task<EssEmployeeDetailsModel> GetDetailsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssEmployeeDetailsModel>($"/ess/{employeeId}/details", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -455,25 +559,14 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Get Document Details by ID
+        /// Acknowledge Document
         /// </summary>
         /// <remarks>
-        /// Gets details for the specified document which is visible to the employee.
+        /// Acknowledges the document with the specified ID as having been read by the employee.
         /// </remarks>
-        public EssDocumentModel GetDocumentDetailsById(int employeeId, string documentId)
+        public EssAcnowledgeDocumentModel AcknowledgeDocument(int employeeId, string documentId)
         {
-            return ApiRequest<EssDocumentModel>($"/ess/{employeeId}/document/{documentId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Document Details by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets details for the specified document which is visible to the employee.
-        /// </remarks>
-        public Task<EssDocumentModel> GetDocumentDetailsByIdAsync(int employeeId, string documentId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssDocumentModel>($"/ess/{employeeId}/document/{documentId}", Method.Get, cancellationToken);
+            return ApiRequest<EssAcnowledgeDocumentModel>($"/ess/{employeeId}/document/acknowledge/{documentId}", Method.Post);
         }
 
         /// <summary>
@@ -482,20 +575,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Acknowledges the document with the specified ID as having been read by the employee.
         /// </remarks>
-        public EssDocumentModel AcknowledgeDocument(int employeeId, string documentId)
+        public Task<EssAcnowledgeDocumentModel> AcknowledgeDocumentAsync(int employeeId, string documentId, CancellationToken cancellationToken = default)
         {
-            return ApiRequest<EssDocumentModel>($"/ess/{employeeId}/document/acknowledge/{documentId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Acknowledge Document
-        /// </summary>
-        /// <remarks>
-        /// Acknowledges the document with the specified ID as having been read by the employee.
-        /// </remarks>
-        public Task<EssDocumentModel> AcknowledgeDocumentAsync(int employeeId, string documentId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssDocumentModel>($"/ess/{employeeId}/document/acknowledge/{documentId}", Method.Post, cancellationToken);
+            return ApiRequestAsync<EssAcnowledgeDocumentModel>($"/ess/{employeeId}/document/acknowledge/{documentId}", Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -609,6 +691,28 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
+        /// Get Document Details by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets details for the specified document which is visible to the employee.
+        /// </remarks>
+        public EssDocumentModel GetDocumentDetailsById(int employeeId, string documentId)
+        {
+            return ApiRequest<EssDocumentModel>($"/ess/{employeeId}/document/{documentId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Document Details by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets details for the specified document which is visible to the employee.
+        /// </remarks>
+        public Task<EssDocumentModel> GetDocumentDetailsByIdAsync(int employeeId, string documentId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssDocumentModel>($"/ess/{employeeId}/document/{documentId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
         /// Get Emergency Contacts
         /// </summary>
         /// <remarks>
@@ -631,28 +735,6 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Update Emergency Contacts
-        /// </summary>
-        /// <remarks>
-        /// Saves the employee's emergency contact details.
-        /// </remarks>
-        public EmployeeEmergencyContactsEditModel UpdateEmergencyContacts(int employeeId, EmployeeEmergencyContactsEditModel model)
-        {
-            return ApiRequest<EmployeeEmergencyContactsEditModel,EmployeeEmergencyContactsEditModel>($"/ess/{employeeId}/emergencycontacts", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update Emergency Contacts
-        /// </summary>
-        /// <remarks>
-        /// Saves the employee's emergency contact details.
-        /// </remarks>
-        public Task<EmployeeEmergencyContactsEditModel> UpdateEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeEmergencyContactsEditModel,EmployeeEmergencyContactsEditModel>($"/ess/{employeeId}/emergencycontacts", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
         /// Save Emergency Contacts
         /// </summary>
         /// <remarks>
@@ -672,6 +754,28 @@ namespace KeyPayV2.Au.Functions
         public Task<EmployeeEmergencyContactsEditModel> SaveEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<EmployeeEmergencyContactsEditModel,EmployeeEmergencyContactsEditModel>($"/ess/{employeeId}/emergencycontacts", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Emergency Contacts
+        /// </summary>
+        /// <remarks>
+        /// Saves the employee's emergency contact details.
+        /// </remarks>
+        public EmployeeEmergencyContactsEditModel UpdateEmergencyContacts(int employeeId, EmployeeEmergencyContactsEditModel model)
+        {
+            return ApiRequest<EmployeeEmergencyContactsEditModel,EmployeeEmergencyContactsEditModel>($"/ess/{employeeId}/emergencycontacts", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Emergency Contacts
+        /// </summary>
+        /// <remarks>
+        /// Saves the employee's emergency contact details.
+        /// </remarks>
+        public Task<EmployeeEmergencyContactsEditModel> UpdateEmergencyContactsAsync(int employeeId, EmployeeEmergencyContactsEditModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeEmergencyContactsEditModel,EmployeeEmergencyContactsEditModel>($"/ess/{employeeId}/emergencycontacts", model, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -724,9 +828,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new expense request for the employee.
         /// </remarks>
-        public void CreateExpenseRequest(int employeeId, ExpenseRequestEditModel model)
+        public EssExpenseRequestResponseModel CreateExpenseRequest(int employeeId, ExpenseRequestEditModel model)
         {
-            ApiRequest($"/ess/{employeeId}/expense", model, Method.Post);
+            return ApiRequest<EssExpenseRequestResponseModel,ExpenseRequestEditModel>($"/ess/{employeeId}/expense", model, Method.Post);
         }
 
         /// <summary>
@@ -735,99 +839,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new expense request for the employee.
         /// </remarks>
-        public Task CreateExpenseRequestAsync(int employeeId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default)
+        public Task<EssExpenseRequestResponseModel> CreateExpenseRequestAsync(int employeeId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/expense", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Expense Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the expense request with the specified ID.
-        /// </remarks>
-        public EssExpenseRequestResponseModel GetExpenseRequestById(int employeeId, int expenseRequestId)
-        {
-            return ApiRequest<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Expense Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the expense request with the specified ID.
-        /// </remarks>
-        public Task<EssExpenseRequestResponseModel> GetExpenseRequestByIdAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the expense request with the specified ID.
-        /// </remarks>
-        public void UpdateExpenseRequest(int employeeId, int expenseRequestId, ExpenseRequestEditModel model)
-        {
-            ApiRequest($"/ess/{employeeId}/expense/{expenseRequestId}", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the expense request with the specified ID.
-        /// </remarks>
-        public Task UpdateExpenseRequestAsync(int employeeId, int expenseRequestId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/expense/{expenseRequestId}", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the expense request with the specified ID.
-        /// </remarks>
-        public EssExpenseRequestResponseModel DeleteExpenseRequest(int employeeId, int expenseRequestId)
-        {
-            return ApiRequest<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the expense request with the specified ID.
-        /// </remarks>
-        public Task<EssExpenseRequestResponseModel> DeleteExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads an attachment to the expense request with the specified ID.
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request)
-        {
-            ApiRequest($"/ess/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", Method.Put);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Expense Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads an attachment to the expense request with the specified ID.
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EssExpenseRequestResponseModel,ExpenseRequestEditModel>($"/ess/{employeeId}/expense", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -897,6 +911,120 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
+        /// Get Expense Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the expense request with the specified ID.
+        /// </remarks>
+        public EssExpenseRequestResponseModel GetExpenseRequestById(int employeeId, int expenseRequestId)
+        {
+            return ApiRequest<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Expense Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the expense request with the specified ID.
+        /// </remarks>
+        public Task<EssExpenseRequestResponseModel> GetExpenseRequestByIdAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the expense request with the specified ID.
+        /// </remarks>
+        public ProblemDetails UpdateExpenseRequest(int employeeId, int expenseRequestId, ExpenseRequestEditModel model)
+        {
+            return ApiRequest<ProblemDetails,ExpenseRequestEditModel>($"/ess/{employeeId}/expense/{expenseRequestId}", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the expense request with the specified ID.
+        /// </remarks>
+        public Task<ProblemDetails> UpdateExpenseRequestAsync(int employeeId, int expenseRequestId, ExpenseRequestEditModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<ProblemDetails,ExpenseRequestEditModel>($"/ess/{employeeId}/expense/{expenseRequestId}", model, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the expense request with the specified ID.
+        /// </remarks>
+        public EssExpenseRequestResponseModel DeleteExpenseRequest(int employeeId, int expenseRequestId)
+        {
+            return ApiRequest<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the expense request with the specified ID.
+        /// </remarks>
+        public Task<EssExpenseRequestResponseModel> DeleteExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssExpenseRequestResponseModel>($"/ess/{employeeId}/expense/{expenseRequestId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId)
+        {
+            ApiRequest($"/ess/{employeeId}/expense/{expenseRequestId}/attachment", Method.Put);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/{employeeId}/expense/{expenseRequestId}/attachment", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public void UploadAttachmentToExpenseRequest(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request)
+        {
+            ApiRequest($"/ess/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", Method.Put);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Expense Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the expense request with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task UploadAttachmentToExpenseRequestAsync(int employeeId, int expenseRequestId, UploadAttachmentToExpenseRequestQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/{employeeId}/expense/{expenseRequestId}/attachment?fileName={request.FileName}", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
         /// List Leave Requests
         /// </summary>
         /// <remarks>
@@ -926,7 +1054,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public List<EssLeaveRequestModel> ListLeaveRequests(int employeeId, ListLeaveRequestsQueryModel request)
         {
-            return ApiRequest<List<EssLeaveRequestModel>>($"/ess/{employeeId}/leave?showOtherEmployees={request.ShowOtherEmployees}&approvedOnly={request.ApprovedOnly}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
+            return ApiRequest<List<EssLeaveRequestModel>>($"/ess/{employeeId}/leave?ShowOtherEmployees={request.ShowOtherEmployees}&ApprovedOnly={request.ApprovedOnly}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
         }
 
         /// <summary>
@@ -937,7 +1065,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<List<EssLeaveRequestModel>> ListLeaveRequestsAsync(int employeeId, ListLeaveRequestsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EssLeaveRequestModel>>($"/ess/{employeeId}/leave?showOtherEmployees={request.ShowOtherEmployees}&approvedOnly={request.ApprovedOnly}&fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EssLeaveRequestModel>>($"/ess/{employeeId}/leave?ShowOtherEmployees={request.ShowOtherEmployees}&ApprovedOnly={request.ApprovedOnly}&FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -946,9 +1074,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new leave request for the employee.
         /// </remarks>
-        public void CreateLeaveRequest(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication)
+        public EssLeaveRequestModel CreateLeaveRequest(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication)
         {
-            ApiRequest($"/ess/{employeeId}/leave", leaveApplication, Method.Post);
+            return ApiRequest<EssLeaveRequestModel,LeaveApplicationWithAttachmentModel>($"/ess/{employeeId}/leave", leaveApplication, Method.Post);
         }
 
         /// <summary>
@@ -957,121 +1085,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a new leave request for the employee.
         /// </remarks>
-        public Task CreateLeaveRequestAsync(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default)
+        public Task<EssLeaveRequestModel> CreateLeaveRequestAsync(int employeeId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/leave", leaveApplication, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Leave Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a leave request with the specified ID.
-        /// </remarks>
-        public EssLeaveRequestModel GetLeaveRequestById(int employeeId, int leaveRequestId)
-        {
-            return ApiRequest<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Leave Request by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the details for a leave request with the specified ID.
-        /// </remarks>
-        public Task<EssLeaveRequestModel> GetLeaveRequestByIdAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the leave request with the specified ID.
-        /// </remarks>
-        public void UpdateLeaveRequest(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication)
-        {
-            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}", leaveApplication, Method.Post);
-        }
-
-        /// <summary>
-        /// Update Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Updates the leave request with the specified ID.
-        /// </remarks>
-        public Task UpdateLeaveRequestAsync(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}", leaveApplication, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the leave request with the specified ID.
-        /// </remarks>
-        public void DeleteLeaveRequest(int employeeId, int leaveRequestId)
-        {
-            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the leave request with the specified ID.
-        /// </remarks>
-        public Task DeleteLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads a file as a new employee document, and attaches it to the leave request with the specified ID. 
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public void UploadAttachmentToLeaveRequest(int employeeId, int leaveRequestId)
-        {
-            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Put);
-        }
-
-        /// <summary>
-        /// Upload Attachment to Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Uploads a file as a new employee document, and attaches it to the leave request with the specified ID. 
-        /// The request should be a MIME multipart file upload request.
-        /// </remarks>
-        public Task UploadAttachmentToLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Attachment from Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the attachment on the leave request with the specified ID.
-        /// </remarks>
-        public void DeleteAttachmentFromLeaveRequest(int employeeId, int leaveRequestId)
-        {
-            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Attachment from Leave Request
-        /// </summary>
-        /// <remarks>
-        /// Deletes the attachment on the leave request with the specified ID.
-        /// </remarks>
-        public Task DeleteAttachmentFromLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Delete, cancellationToken);
+            return ApiRequestAsync<EssLeaveRequestModel,LeaveApplicationWithAttachmentModel>($"/ess/{employeeId}/leave", leaveApplication, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -1126,7 +1142,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public EssLeaveEstimate EstimateLeaveHours(int employeeId, EstimateLeaveHoursQueryModel request)
         {
-            return ApiRequest<EssLeaveEstimate>($"/ess/{employeeId}/leave/estimate?leaveCategoryId={request.LeaveCategoryId}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<EssLeaveEstimate>($"/ess/{employeeId}/leave/estimate?LeaveCategoryId={request.LeaveCategoryId}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
         }
 
         /// <summary>
@@ -1137,7 +1153,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<EssLeaveEstimate> EstimateLeaveHoursAsync(int employeeId, EstimateLeaveHoursQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<EssLeaveEstimate>($"/ess/{employeeId}/leave/estimate?leaveCategoryId={request.LeaveCategoryId}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+            return ApiRequestAsync<EssLeaveEstimate>($"/ess/{employeeId}/leave/estimate?LeaveCategoryId={request.LeaveCategoryId}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1162,14 +1178,116 @@ namespace KeyPayV2.Au.Functions
             return ApiRequestAsync<List<EssLeaveCategoryModel>>($"/ess/{employeeId}/leave/leavecategories", Method.Get, cancellationToken);
         }
 
-        public void AuEssLookup_Addresses(int employeeId, int suburbId)
+        /// <summary>
+        /// Get Leave Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a leave request with the specified ID.
+        /// </remarks>
+        public EssLeaveRequestModel GetLeaveRequestById(int employeeId, int leaveRequestId)
         {
-            ApiRequest($"/ess/{employeeId}/lookup/addresses/{suburbId}", Method.Get);
+            return ApiRequest<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Get);
         }
 
-        public Task AuEssLookup_AddressesAsync(int employeeId, int suburbId, CancellationToken cancellationToken = default)
+        /// <summary>
+        /// Get Leave Request by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the details for a leave request with the specified ID.
+        /// </remarks>
+        public Task<EssLeaveRequestModel> GetLeaveRequestByIdAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/lookup/addresses/{suburbId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the leave request with the specified ID.
+        /// </remarks>
+        public EssLeaveRequestModel UpdateLeaveRequest(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication)
+        {
+            return ApiRequest<EssLeaveRequestModel,LeaveApplicationWithAttachmentModel>($"/ess/{employeeId}/leave/{leaveRequestId}", leaveApplication, Method.Post);
+        }
+
+        /// <summary>
+        /// Update Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Updates the leave request with the specified ID.
+        /// </remarks>
+        public Task<EssLeaveRequestModel> UpdateLeaveRequestAsync(int employeeId, int leaveRequestId, LeaveApplicationWithAttachmentModel leaveApplication, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssLeaveRequestModel,LeaveApplicationWithAttachmentModel>($"/ess/{employeeId}/leave/{leaveRequestId}", leaveApplication, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the leave request with the specified ID.
+        /// </remarks>
+        public EssLeaveRequestModel DeleteLeaveRequest(int employeeId, int leaveRequestId)
+        {
+            return ApiRequest<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the leave request with the specified ID.
+        /// </remarks>
+        public Task<EssLeaveRequestModel> DeleteLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssLeaveRequestModel>($"/ess/{employeeId}/leave/{leaveRequestId}", Method.Delete, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads a file as a new employee document, and attaches it to the leave request with the specified ID. 
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public void UploadAttachmentToLeaveRequest(int employeeId, int leaveRequestId)
+        {
+            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Put);
+        }
+
+        /// <summary>
+        /// Upload Attachment to Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Uploads a file as a new employee document, and attaches it to the leave request with the specified ID. 
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task UploadAttachmentToLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Attachment from Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the attachment on the leave request with the specified ID.
+        /// </remarks>
+        public void DeleteAttachmentFromLeaveRequest(int employeeId, int leaveRequestId)
+        {
+            ApiRequest($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Attachment from Leave Request
+        /// </summary>
+        /// <remarks>
+        /// Deletes the attachment on the leave request with the specified ID.
+        /// </remarks>
+        public Task DeleteAttachmentFromLeaveRequestAsync(int employeeId, int leaveRequestId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/ess/{employeeId}/leave/{leaveRequestId}/attachment", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -1222,6 +1340,28 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Gets the suburb for the criteria passed in
         /// </remarks>
+        public SuburbResult GetSuburb(int employeeId)
+        {
+            return ApiRequest<SuburbResult>($"/ess/{employeeId}/lookup/suburb", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Suburb
+        /// </summary>
+        /// <remarks>
+        /// Gets the suburb for the criteria passed in
+        /// </remarks>
+        public Task<SuburbResult> GetSuburbAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<SuburbResult>($"/ess/{employeeId}/lookup/suburb", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Suburb
+        /// </summary>
+        /// <remarks>
+        /// Gets the suburb for the criteria passed in
+        /// </remarks>
         public SuburbResult GetSuburb(int employeeId, GetSuburbQueryModel request)
         {
             return ApiRequest<SuburbResult>($"/ess/{employeeId}/lookup/suburb?suburb={request.Suburb}&state={request.State}&postCode={request.PostCode}&countryId={request.CountryId}", Method.Get);
@@ -1236,6 +1376,28 @@ namespace KeyPayV2.Au.Functions
         public Task<SuburbResult> GetSuburbAsync(int employeeId, GetSuburbQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<SuburbResult>($"/ess/{employeeId}/lookup/suburb?suburb={request.Suburb}&state={request.State}&postCode={request.PostCode}&countryId={request.CountryId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Search Suburbs
+        /// </summary>
+        /// <remarks>
+        /// Gets a list of suburbs that match the search term.
+        /// </remarks>
+        public PagedResultModel<SuburbModel> SearchSuburbs(int employeeId)
+        {
+            return ApiRequest<PagedResultModel<SuburbModel>>($"/ess/{employeeId}/lookup/suburbs", Method.Get);
+        }
+
+        /// <summary>
+        /// Search Suburbs
+        /// </summary>
+        /// <remarks>
+        /// Gets a list of suburbs that match the search term.
+        /// </remarks>
+        public Task<PagedResultModel<SuburbModel>> SearchSuburbsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PagedResultModel<SuburbModel>>($"/ess/{employeeId}/lookup/suburbs", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1305,28 +1467,6 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Get Personal Details
-        /// </summary>
-        /// <remarks>
-        /// Gets Personal details for the specified employee.
-        /// </remarks>
-        public AuEssEmployeeDetailsViewModel GetPersonalDetails(int employeeId)
-        {
-            return ApiRequest<AuEssEmployeeDetailsViewModel>($"/ess/{employeeId}/personaldetails", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Personal Details
-        /// </summary>
-        /// <remarks>
-        /// Gets Personal details for the specified employee.
-        /// </remarks>
-        public Task<AuEssEmployeeDetailsViewModel> GetPersonalDetailsAsync(int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuEssEmployeeDetailsViewModel>($"/ess/{employeeId}/personaldetails", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Update Personal Details
         /// </summary>
         /// <remarks>
@@ -1357,14 +1497,25 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Get Employee Profile Image
+        /// Get Personal Details
         /// </summary>
         /// <remarks>
-        /// Returns the file content for the employee's current profile image.
+        /// Gets Personal details for the specified employee.
         /// </remarks>
-        public void GetEmployeeProfileImage(int employeeId)
+        public AuEssEmployeeDetailsViewModel GetPersonalDetails(int employeeId)
         {
-            ApiRequest($"/ess/{employeeId}/profileimage", Method.Get);
+            return ApiRequest<AuEssEmployeeDetailsViewModel>($"/ess/{employeeId}/personaldetails", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Personal Details
+        /// </summary>
+        /// <remarks>
+        /// Gets Personal details for the specified employee.
+        /// </remarks>
+        public Task<AuEssEmployeeDetailsViewModel> GetPersonalDetailsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuEssEmployeeDetailsViewModel>($"/ess/{employeeId}/personaldetails", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1373,9 +1524,20 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public Task GetEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default)
+        public byte[] GetEmployeeProfileImage(int employeeId)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/profileimage", Method.Get, cancellationToken);
+            return ApiByteArrayRequest($"/ess/{employeeId}/profileimage", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee Profile Image
+        /// </summary>
+        /// <remarks>
+        /// Returns the file content for the employee's current profile image.
+        /// </remarks>
+        public Task<byte[]> GetEmployeeProfileImageAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiByteArrayRequestAsync($"/ess/{employeeId}/profileimage", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1430,7 +1592,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public List<PublicHolidayModel> GetPublicHolidays(int employeeId, GetPublicHolidaysQueryModel request)
         {
-            return ApiRequest<List<PublicHolidayModel>>($"/ess/{employeeId}/publicHolidays?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<List<PublicHolidayModel>>($"/ess/{employeeId}/publicHolidays?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
         }
 
         /// <summary>
@@ -1441,7 +1603,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<List<PublicHolidayModel>> GetPublicHolidaysAsync(int employeeId, GetPublicHolidaysQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<PublicHolidayModel>>($"/ess/{employeeId}/publicHolidays?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<PublicHolidayModel>>($"/ess/{employeeId}/publicHolidays?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1449,10 +1611,11 @@ namespace KeyPayV2.Au.Functions
         /// </summary>
         /// <remarks>
         /// Retrieves the qualification details for a single employee.
+        /// This operation supports OData queries.
         /// </remarks>
-        public List<EssEmployeeQualificationModel> GetQualificationsForEmployee(int employeeId)
+        public List<EssEmployeeQualificationModel> GetQualificationsForEmployee(int employeeId, ODataQuery oDataQuery = null)
         {
-            return ApiRequest<List<EssEmployeeQualificationModel>>($"/ess/{employeeId}/qualification", Method.Get);
+            return ApiRequest<List<EssEmployeeQualificationModel>>($"/ess/{employeeId}/qualification{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
         }
 
         /// <summary>
@@ -1460,10 +1623,11 @@ namespace KeyPayV2.Au.Functions
         /// </summary>
         /// <remarks>
         /// Retrieves the qualification details for a single employee.
+        /// This operation supports OData queries.
         /// </remarks>
-        public Task<List<EssEmployeeQualificationModel>> GetQualificationsForEmployeeAsync(int employeeId, CancellationToken cancellationToken = default)
+        public Task<List<EssEmployeeQualificationModel>> GetQualificationsForEmployeeAsync(int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EssEmployeeQualificationModel>>($"/ess/{employeeId}/qualification", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EssEmployeeQualificationModel>>($"/ess/{employeeId}/qualification{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -1472,9 +1636,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a qualification for an employee.
         /// </remarks>
-        public void AddEmployeeQualification(int employeeId, EssEmployeeQualificationModel qualification)
+        public EssEmployeeQualificationModel AddEmployeeQualification(int employeeId, EssEmployeeQualificationModel qualification)
         {
-            ApiRequest($"/ess/{employeeId}/qualification", qualification, Method.Post);
+            return ApiRequest<EssEmployeeQualificationModel,EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification", qualification, Method.Post);
         }
 
         /// <summary>
@@ -1483,9 +1647,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Creates a qualification for an employee.
         /// </remarks>
-        public Task AddEmployeeQualificationAsync(int employeeId, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default)
+        public Task<EssEmployeeQualificationModel> AddEmployeeQualificationAsync(int employeeId, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/qualification", qualification, Method.Post, cancellationToken);
+            return ApiRequestAsync<EssEmployeeQualificationModel,EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification", qualification, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -1495,9 +1659,9 @@ namespace KeyPayV2.Au.Functions
         /// Uploads an attachment to the qualification with the specified ID.
         /// The request should be a MIME multipart file upload request.
         /// </remarks>
-        public void UploadAttachmentToQualification(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request)
+        public EssEmployeeQualificationModel UploadAttachmentToQualification(int employeeId, int employeeQualificationId)
         {
-            ApiRequest($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment?fileName={request.FileName}", Method.Put);
+            return ApiRequest<EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment", Method.Put);
         }
 
         /// <summary>
@@ -1507,9 +1671,33 @@ namespace KeyPayV2.Au.Functions
         /// Uploads an attachment to the qualification with the specified ID.
         /// The request should be a MIME multipart file upload request.
         /// </remarks>
-        public Task UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request, CancellationToken cancellationToken = default)
+        public Task<EssEmployeeQualificationModel> UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment?fileName={request.FileName}", Method.Put, cancellationToken);
+            return ApiRequestAsync<EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment", Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Upload attachment to qualification
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the qualification with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public EssEmployeeQualificationModel UploadAttachmentToQualification(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request)
+        {
+            return ApiRequest<EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment?fileName={request.FileName}", Method.Put);
+        }
+
+        /// <summary>
+        /// Upload attachment to qualification
+        /// </summary>
+        /// <remarks>
+        /// Uploads an attachment to the qualification with the specified ID.
+        /// The request should be a MIME multipart file upload request.
+        /// </remarks>
+        public Task<EssEmployeeQualificationModel> UploadAttachmentToQualificationAsync(int employeeId, int employeeQualificationId, UploadAttachmentToQualificationQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{employeeQualificationId}/attachment?fileName={request.FileName}", Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -1562,9 +1750,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates a qualification for an employee.
         /// </remarks>
-        public void UpdateEmployeeQualification(int employeeId, int id, EssEmployeeQualificationModel qualification)
+        public EssEmployeeQualificationModel UpdateEmployeeQualification(int employeeId, int id, EssEmployeeQualificationModel qualification)
         {
-            ApiRequest($"/ess/{employeeId}/qualification/{id}", qualification, Method.Put);
+            return ApiRequest<EssEmployeeQualificationModel,EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{id}", qualification, Method.Put);
         }
 
         /// <summary>
@@ -1573,9 +1761,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates a qualification for an employee.
         /// </remarks>
-        public Task UpdateEmployeeQualificationAsync(int employeeId, int id, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default)
+        public Task<EssEmployeeQualificationModel> UpdateEmployeeQualificationAsync(int employeeId, int id, EssEmployeeQualificationModel qualification, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/qualification/{id}", qualification, Method.Put, cancellationToken);
+            return ApiRequestAsync<EssEmployeeQualificationModel,EssEmployeeQualificationModel>($"/ess/{employeeId}/qualification/{id}", qualification, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -1719,9 +1907,9 @@ namespace KeyPayV2.Au.Functions
         /// Create a new self managed super fund for the employee. 
         /// To update existing self managed super funds, please use the PUT method.
         /// </remarks>
-        public void CreateEssSelfManagedSuperFund(int employeeId, SelfManagedSuperFundModel fund)
+        public SelfManagedSuperFundModel CreateEssSelfManagedSuperFund(int employeeId, SelfManagedSuperFundModel fund)
         {
-            ApiRequest($"/ess/{employeeId}/selfmanagedsuperfund", fund, Method.Post);
+            return ApiRequest<SelfManagedSuperFundModel,SelfManagedSuperFundModel>($"/ess/{employeeId}/selfmanagedsuperfund", fund, Method.Post);
         }
 
         /// <summary>
@@ -1731,9 +1919,9 @@ namespace KeyPayV2.Au.Functions
         /// Create a new self managed super fund for the employee. 
         /// To update existing self managed super funds, please use the PUT method.
         /// </remarks>
-        public Task CreateEssSelfManagedSuperFundAsync(int employeeId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default)
+        public Task<SelfManagedSuperFundModel> CreateEssSelfManagedSuperFundAsync(int employeeId, SelfManagedSuperFundModel fund, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/selfmanagedsuperfund", fund, Method.Post, cancellationToken);
+            return ApiRequestAsync<SelfManagedSuperFundModel,SelfManagedSuperFundModel>($"/ess/{employeeId}/selfmanagedsuperfund", fund, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -1786,6 +1974,28 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Gets the employee's roster shifts within the date range.
         /// </remarks>
+        public List<AuEssRosterShiftModel> ListRosterShifts(int employeeId)
+        {
+            return ApiRequest<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift", Method.Get);
+        }
+
+        /// <summary>
+        /// List Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee's roster shifts within the date range.
+        /// </remarks>
+        public Task<List<AuEssRosterShiftModel>> ListRosterShiftsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee's roster shifts within the date range.
+        /// </remarks>
         public List<AuEssRosterShiftModel> ListRosterShifts(int employeeId, ListRosterShiftsQueryModel request)
         {
             return ApiRequest<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
@@ -1800,160 +2010,6 @@ namespace KeyPayV2.Au.Functions
         public Task<List<AuEssRosterShiftModel>> ListRosterShiftsAsync(int employeeId, ListRosterShiftsQueryModel request, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the roster shift with the specified ID (as long as it is assigned to this employee).
-        /// </remarks>
-        public AuEssRosterShiftModel GetRosterShiftById(int employeeId, int shiftId)
-        {
-            return ApiRequest<AuEssRosterShiftModel>($"/ess/{employeeId}/shift/{shiftId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Roster Shift by ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the roster shift with the specified ID (as long as it is assigned to this employee).
-        /// </remarks>
-        public Task<AuEssRosterShiftModel> GetRosterShiftByIdAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuEssRosterShiftModel>($"/ess/{employeeId}/shift/{shiftId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Accept Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// Accepts the roster shift with the specified ID.
-        /// </remarks>
-        public AuAcceptRosterShiftResponseModel AcceptRosterShift(int employeeId, int shiftId)
-        {
-            return ApiRequest<AuAcceptRosterShiftResponseModel>($"/ess/{employeeId}/shift/{shiftId}/accept", Method.Post);
-        }
-
-        /// <summary>
-        /// Accept Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// Accepts the roster shift with the specified ID.
-        /// </remarks>
-        public Task<AuAcceptRosterShiftResponseModel> AcceptRosterShiftAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuAcceptRosterShiftResponseModel>($"/ess/{employeeId}/shift/{shiftId}/accept", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Decline Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// Declines the roster shift with the specified ID.
-        /// </remarks>
-        public EssRosterShiftCountModel DeclineRosterShift(int employeeId, int shiftId, EssDeclineRosterShiftModel model)
-        {
-            return ApiRequest<EssRosterShiftCountModel,EssDeclineRosterShiftModel>($"/ess/{employeeId}/shift/{shiftId}/decline", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Decline Roster Shift
-        /// </summary>
-        /// <remarks>
-        /// Declines the roster shift with the specified ID.
-        /// </remarks>
-        public Task<EssRosterShiftCountModel> DeclineRosterShiftAsync(int employeeId, int shiftId, EssDeclineRosterShiftModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EssRosterShiftCountModel,EssDeclineRosterShiftModel>($"/ess/{employeeId}/shift/{shiftId}/decline", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Accept Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Accept a shift swap
-        /// </remarks>
-        public AuEssRosterShiftActionResponse AcceptShiftSwap(int employeeId, int shiftId)
-        {
-            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/accept", Method.Post);
-        }
-
-        /// <summary>
-        /// Accept Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Accept a shift swap
-        /// </remarks>
-        public Task<AuEssRosterShiftActionResponse> AcceptShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/accept", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Cancel Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Cancel a shift swap
-        /// </remarks>
-        public AuEssRosterShiftActionResponse CancelShiftSwap(int employeeId, int shiftId)
-        {
-            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/cancel", Method.Post);
-        }
-
-        /// <summary>
-        /// Cancel Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Cancel a shift swap
-        /// </remarks>
-        public Task<AuEssRosterShiftActionResponse> CancelShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/cancel", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Employees Eligible For Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// List the employees that are eligible for a shift swap
-        /// </remarks>
-        public List<EssShiftSwapCandidate> EmployeesEligibleForShiftSwap(int employeeId, int shiftId)
-        {
-            return ApiRequest<List<EssShiftSwapCandidate>>($"/ess/{employeeId}/shift/{shiftId}/swap/candidates", Method.Get);
-        }
-
-        /// <summary>
-        /// Employees Eligible For Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// List the employees that are eligible for a shift swap
-        /// </remarks>
-        public Task<List<EssShiftSwapCandidate>> EmployeesEligibleForShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<EssShiftSwapCandidate>>($"/ess/{employeeId}/shift/{shiftId}/swap/candidates", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Decline Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Decline a shift swap
-        /// </remarks>
-        public AuEssRosterShiftActionResponse DeclineShiftSwap(int employeeId, int shiftId)
-        {
-            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/decline", Method.Post);
-        }
-
-        /// <summary>
-        /// Decline Shift Swap
-        /// </summary>
-        /// <remarks>
-        /// Decline a shift swap
-        /// </remarks>
-        public Task<AuEssRosterShiftActionResponse> DeclineShiftSwapAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{shiftId}/swap/decline", Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2009,6 +2065,34 @@ namespace KeyPayV2.Au.Functions
         /// Otherwise, the Shift result will be null.
         /// Note that if the time matches a shift exactly, the Shift result will also be null.
         /// </remarks>
+        public AuRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int employeeId)
+        {
+            return ApiRequest<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockoff", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given ESS settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
+        public Task<AuRosterShiftMatchingResultModel> FindMatchingClockOffRosterShiftAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockoff", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock Off Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock off at this time
+        /// given ESS settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// </remarks>
         public AuRosterShiftMatchingResultModel FindMatchingClockOffRosterShift(int employeeId, FindMatchingClockOffRosterShiftQueryModel request)
         {
             return ApiRequest<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockoff?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
@@ -2036,10 +2120,11 @@ namespace KeyPayV2.Au.Functions
         /// given ESS settings for shift matching, returns that shift.
         /// Otherwise, the Shift result will be null.
         /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// However, if allowNotEnded is set to true, the ongoing shift will be returned.
         /// </remarks>
-        public AuRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int employeeId, FindMatchingClockOnRosterShiftQueryModel request)
+        public AuRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int employeeId)
         {
-            return ApiRequest<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon", Method.Get);
         }
 
         /// <summary>
@@ -2050,10 +2135,63 @@ namespace KeyPayV2.Au.Functions
         /// given ESS settings for shift matching, returns that shift.
         /// Otherwise, the Shift result will be null.
         /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// However, if allowNotEnded is set to true, the ongoing shift will be returned.
+        /// </remarks>
+        public Task<AuRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given ESS settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// However, if allowNotEnded is set to true, the ongoing shift will be returned.
+        /// </remarks>
+        public AuRosterShiftMatchingResultModel FindMatchingClockOnRosterShift(int employeeId, FindMatchingClockOnRosterShiftQueryModel request)
+        {
+            return ApiRequest<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}&allowNotEnded={request.AllowNotEnded}", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Matching Clock On Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// If a roster shift exists that could match for this employee to clock on at this time
+        /// given ESS settings for shift matching, returns that shift.
+        /// Otherwise, the Shift result will be null.
+        /// Note that if the time matches a shift exactly, the Shift result will also be null.
+        /// However, if allowNotEnded is set to true, the ongoing shift will be returned.
         /// </remarks>
         public Task<AuRosterShiftMatchingResultModel> FindMatchingClockOnRosterShiftAsync(int employeeId, FindMatchingClockOnRosterShiftQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+            return ApiRequestAsync<AuRosterShiftMatchingResultModel>($"/ess/{employeeId}/shift/matchingclockon?localTime={request.LocalTime.ToString("yyyy-MM-ddTHH:mm:ss")}&allowNotEnded={request.AllowNotEnded}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public List<AuEssRosterShiftModel> FindNearbyRosterShifts(int employeeId)
+        {
+            return ApiRequest<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift/nearby", Method.Get);
+        }
+
+        /// <summary>
+        /// Find Nearby Roster Shifts
+        /// </summary>
+        /// <remarks>
+        /// Finds any of the employee's roster shifts that are nearby to the specified local time.
+        /// </remarks>
+        public Task<List<AuEssRosterShiftModel>> FindNearbyRosterShiftsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<AuEssRosterShiftModel>>($"/ess/{employeeId}/shift/nearby", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2167,6 +2305,160 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the roster shift with the specified ID (as long as it is assigned to this employee).
+        /// </remarks>
+        public AuEssRosterShiftModel GetRosterShiftById(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<AuEssRosterShiftModel>($"/ess/{employeeId}/shift/{rosterShiftId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Roster Shift by ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the roster shift with the specified ID (as long as it is assigned to this employee).
+        /// </remarks>
+        public Task<AuEssRosterShiftModel> GetRosterShiftByIdAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuEssRosterShiftModel>($"/ess/{employeeId}/shift/{rosterShiftId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Accept Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// Accepts the roster shift with the specified ID.
+        /// </remarks>
+        public AuAcceptRosterShiftResponseModel AcceptRosterShift(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<AuAcceptRosterShiftResponseModel>($"/ess/{employeeId}/shift/{rosterShiftId}/accept", Method.Post);
+        }
+
+        /// <summary>
+        /// Accept Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// Accepts the roster shift with the specified ID.
+        /// </remarks>
+        public Task<AuAcceptRosterShiftResponseModel> AcceptRosterShiftAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuAcceptRosterShiftResponseModel>($"/ess/{employeeId}/shift/{rosterShiftId}/accept", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Decline Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// Declines the roster shift with the specified ID.
+        /// </remarks>
+        public EssRosterShiftCountModel DeclineRosterShift(int employeeId, int rosterShiftId, EssDeclineRosterShiftModel model)
+        {
+            return ApiRequest<EssRosterShiftCountModel,EssDeclineRosterShiftModel>($"/ess/{employeeId}/shift/{rosterShiftId}/decline", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Decline Roster Shift
+        /// </summary>
+        /// <remarks>
+        /// Declines the roster shift with the specified ID.
+        /// </remarks>
+        public Task<EssRosterShiftCountModel> DeclineRosterShiftAsync(int employeeId, int rosterShiftId, EssDeclineRosterShiftModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssRosterShiftCountModel,EssDeclineRosterShiftModel>($"/ess/{employeeId}/shift/{rosterShiftId}/decline", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Accept Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Accept a shift swap
+        /// </remarks>
+        public AuEssRosterShiftActionResponse AcceptShiftSwap(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/accept", Method.Post);
+        }
+
+        /// <summary>
+        /// Accept Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Accept a shift swap
+        /// </remarks>
+        public Task<AuEssRosterShiftActionResponse> AcceptShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/accept", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Cancel Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Cancel a shift swap
+        /// </remarks>
+        public AuEssRosterShiftActionResponse CancelShiftSwap(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/cancel", Method.Post);
+        }
+
+        /// <summary>
+        /// Cancel Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Cancel a shift swap
+        /// </remarks>
+        public Task<AuEssRosterShiftActionResponse> CancelShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/cancel", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Employees Eligible For Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// List the employees that are eligible for a shift swap
+        /// </remarks>
+        public List<EssShiftSwapCandidate> EmployeesEligibleForShiftSwap(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<List<EssShiftSwapCandidate>>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/candidates", Method.Get);
+        }
+
+        /// <summary>
+        /// Employees Eligible For Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// List the employees that are eligible for a shift swap
+        /// </remarks>
+        public Task<List<EssShiftSwapCandidate>> EmployeesEligibleForShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<EssShiftSwapCandidate>>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/candidates", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Decline Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Decline a shift swap
+        /// </remarks>
+        public AuEssRosterShiftActionResponse DeclineShiftSwap(int employeeId, int rosterShiftId)
+        {
+            return ApiRequest<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/decline", Method.Post);
+        }
+
+        /// <summary>
+        /// Decline Shift Swap
+        /// </summary>
+        /// <remarks>
+        /// Decline a shift swap
+        /// </remarks>
+        public Task<AuEssRosterShiftActionResponse> DeclineShiftSwapAsync(int employeeId, int rosterShiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<AuEssRosterShiftActionResponse>($"/ess/{employeeId}/shift/{rosterShiftId}/swap/decline", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
         /// List Super Funds
         /// </summary>
         /// <remarks>
@@ -2208,6 +2500,50 @@ namespace KeyPayV2.Au.Functions
         public Task<SaveSuperFundResponseModel> CreateSuperFundAsync(int employeeId, SaveSuperFundModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<SaveSuperFundResponseModel,SaveSuperFundModel>($"/ess/{employeeId}/superfunds", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Search Super Fund Products
+        /// </summary>
+        /// <remarks>
+        /// Searches for super fund products matching the specified criteria.
+        /// </remarks>
+        public List<SuperProductEditModel> SearchSuperFundProducts(int employeeId)
+        {
+            return ApiRequest<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch", Method.Get);
+        }
+
+        /// <summary>
+        /// Search Super Fund Products
+        /// </summary>
+        /// <remarks>
+        /// Searches for super fund products matching the specified criteria.
+        /// </remarks>
+        public Task<List<SuperProductEditModel>> SearchSuperFundProductsAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Search Super Fund Products
+        /// </summary>
+        /// <remarks>
+        /// Searches for super fund products matching the specified criteria.
+        /// </remarks>
+        public List<SuperProductEditModel> SearchSuperFundProducts(int employeeId, SearchSuperFundProductsQueryModel request)
+        {
+            return ApiRequest<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch?term={request.Term}&searchBy={request.SearchBy}", Method.Get);
+        }
+
+        /// <summary>
+        /// Search Super Fund Products
+        /// </summary>
+        /// <remarks>
+        /// Searches for super fund products matching the specified criteria.
+        /// </remarks>
+        public Task<List<SuperProductEditModel>> SearchSuperFundProductsAsync(int employeeId, SearchSuperFundProductsQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch?term={request.Term}&searchBy={request.SearchBy}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2276,14 +2612,16 @@ namespace KeyPayV2.Au.Functions
             return ApiRequestAsync<SuperFundModel>($"/ess/{employeeId}/superfunds/{superFundId}", Method.Get, cancellationToken);
         }
 
-        public List<SuperProductEditModel> AuEssSuperFund_ProductSearch(int employeeId, AuEssSuperFund_ProductSearchQueryModel request)
+        /// <summary>
+        /// Clock Out Employee
+        /// </summary>
+        /// <remarks>
+        /// Clocks out the employee from their existing shift.
+        /// If they are on a break, it will be ended automatically.
+        /// </remarks>
+        public KioskEmployeeModel ClockOutEmployee(int employeeId, ClockOffModel request)
         {
-            return ApiRequest<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch?term={request.Term}&searchBy={request.SearchBy}", Method.Get);
-        }
-
-        public Task<List<SuperProductEditModel>> AuEssSuperFund_ProductSearchAsync(int employeeId, AuEssSuperFund_ProductSearchQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<SuperProductEditModel>>($"/ess/{employeeId}/superfunds/productsearch?term={request.Term}&searchBy={request.SearchBy}", Method.Get, cancellationToken);
+            return ApiRequest<KioskEmployeeModel,ClockOffModel>($"/ess/{employeeId}/timeandattendance/clockoff", request, Method.Post);
         }
 
         /// <summary>
@@ -2293,21 +2631,9 @@ namespace KeyPayV2.Au.Functions
         /// Clocks out the employee from their existing shift.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public void ClockOutEmployee(int employeeId, ClockOffModel request)
+        public Task<KioskEmployeeModel> ClockOutEmployeeAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/clockoff", request, Method.Post);
-        }
-
-        /// <summary>
-        /// Clock Out Employee
-        /// </summary>
-        /// <remarks>
-        /// Clocks out the employee from their existing shift.
-        /// If they are on a break, it will be ended automatically.
-        /// </remarks>
-        public Task ClockOutEmployeeAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/clockoff", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ClockOffModel>($"/ess/{employeeId}/timeandattendance/clockoff", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2339,9 +2665,9 @@ namespace KeyPayV2.Au.Functions
         /// Discards the current shift for an employee.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public void DiscardCurrentShift(int employeeId, ClockOffModel request)
+        public KioskEmployeeModel DiscardCurrentShift(int employeeId, ClockOffModel request)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/discard", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,ClockOffModel>($"/ess/{employeeId}/timeandattendance/discard", request, Method.Post);
         }
 
         /// <summary>
@@ -2351,9 +2677,9 @@ namespace KeyPayV2.Au.Functions
         /// Discards the current shift for an employee.
         /// If they are on a break, it will be ended automatically.
         /// </remarks>
-        public Task DiscardCurrentShiftAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> DiscardCurrentShiftAsync(int employeeId, ClockOffModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/discard", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,ClockOffModel>($"/ess/{employeeId}/timeandattendance/discard", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2362,9 +2688,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Ends the employee's current break.
         /// </remarks>
-        public void EndBreak(int employeeId, EndBreakModel request)
+        public KioskEmployeeModel EndBreak(int employeeId, EndBreakModel request)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/endbreak", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,EndBreakModel>($"/ess/{employeeId}/timeandattendance/endbreak", request, Method.Post);
         }
 
         /// <summary>
@@ -2373,9 +2699,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Ends the employee's current break.
         /// </remarks>
-        public Task EndBreakAsync(int employeeId, EndBreakModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> EndBreakAsync(int employeeId, EndBreakModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/endbreak", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,EndBreakModel>($"/ess/{employeeId}/timeandattendance/endbreak", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2401,47 +2727,14 @@ namespace KeyPayV2.Au.Functions
         }
 
         /// <summary>
-        /// Get Shift Notes
+        /// Add Note to Shift
         /// </summary>
         /// <remarks>
-        /// Gets shifts based on certain optional criteria.
+        /// Adds a note to an existing shift.
         /// </remarks>
-        public void GetShiftNotes(int employeeId, int shiftId)
+        public ShiftNoteViewModel AddNoteToShift(int employeeId, int shiftId, AddNoteModel model)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Shift Notes
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public Task GetShiftNotesAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Shift Notes
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public void GetShiftNotes(int employeeId, int shiftId, GetShiftNotesQueryModel request)
-        {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Shift Notes
-        /// </summary>
-        /// <remarks>
-        /// Gets shifts based on certain optional criteria.
-        /// </remarks>
-        public Task GetShiftNotesAsync(int employeeId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes?employeeId={request.EmployeeId}&isAdminInitiated={request.IsAdminInitiated}&type={request.Type}&visibility={request.Visibility}", Method.Get, cancellationToken);
+            return ApiRequest<ShiftNoteViewModel,AddNoteModel>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", model, Method.Post);
         }
 
         /// <summary>
@@ -2450,20 +2743,53 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Adds a note to an existing shift.
         /// </remarks>
-        public void AddNoteToShift(int employeeId, int shiftId, AddNoteModel model)
+        public Task<ShiftNoteViewModel> AddNoteToShiftAsync(int employeeId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", model, Method.Post);
+            return ApiRequestAsync<ShiftNoteViewModel,AddNoteModel>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", model, Method.Post, cancellationToken);
         }
 
         /// <summary>
-        /// Add Note to Shift
+        /// Get Shift Notes
         /// </summary>
         /// <remarks>
-        /// Adds a note to an existing shift.
+        /// Gets shifts based on certain optional criteria.
         /// </remarks>
-        public Task AddNoteToShiftAsync(int employeeId, int shiftId, AddNoteModel model, CancellationToken cancellationToken = default)
+        public List<ShiftNoteViewModel> GetShiftNotes(int employeeId, int shiftId)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", model, Method.Post, cancellationToken);
+            return ApiRequest<List<ShiftNoteViewModel>>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Shift Notes
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int employeeId, int shiftId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Shift Notes
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public List<ShiftNoteViewModel> GetShiftNotes(int employeeId, int shiftId, GetShiftNotesQueryModel request)
+        {
+            return ApiRequest<List<ShiftNoteViewModel>>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Shift Notes
+        /// </summary>
+        /// <remarks>
+        /// Gets shifts based on certain optional criteria.
+        /// </remarks>
+        public Task<List<ShiftNoteViewModel>> GetShiftNotesAsync(int employeeId, int shiftId, GetShiftNotesQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<ShiftNoteViewModel>>($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes?EmployeeId={request.EmployeeId}&IsAdminInitiated={request.IsAdminInitiated}&Type={request.Type}&Visibility={request.Visibility}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2472,7 +2798,7 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Marks some shift notes as either read or unread.
         /// </remarks>
-        public void MarkShiftNotesRead(int employeeId, MarkNotesReadViewModel model, string shiftId)
+        public void MarkShiftNotesRead(int employeeId, string shiftId, MarkNotesReadViewModel model)
         {
             ApiRequest($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes/read-state", model, Method.Post);
         }
@@ -2483,7 +2809,7 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Marks some shift notes as either read or unread.
         /// </remarks>
-        public Task MarkShiftNotesReadAsync(int employeeId, MarkNotesReadViewModel model, string shiftId, CancellationToken cancellationToken = default)
+        public Task MarkShiftNotesReadAsync(int employeeId, string shiftId, MarkNotesReadViewModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/shift/{shiftId}/notes/read-state", model, Method.Post, cancellationToken);
         }
@@ -2516,9 +2842,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Starts a break for the employee who is clocked on for a shift.
         /// </remarks>
-        public void StartBreak(int employeeId, StartBreakModel request)
+        public KioskEmployeeModel StartBreak(int employeeId, StartBreakModel request)
         {
-            ApiRequest($"/ess/{employeeId}/timeandattendance/startbreak", request, Method.Post);
+            return ApiRequest<KioskEmployeeModel,StartBreakModel>($"/ess/{employeeId}/timeandattendance/startbreak", request, Method.Post);
         }
 
         /// <summary>
@@ -2527,9 +2853,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Starts a break for the employee who is clocked on for a shift.
         /// </remarks>
-        public Task StartBreakAsync(int employeeId, StartBreakModel request, CancellationToken cancellationToken = default)
+        public Task<KioskEmployeeModel> StartBreakAsync(int employeeId, StartBreakModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/timeandattendance/startbreak", request, Method.Post, cancellationToken);
+            return ApiRequestAsync<KioskEmployeeModel,StartBreakModel>($"/ess/{employeeId}/timeandattendance/startbreak", request, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2540,7 +2866,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public List<EssTimesheetModel> ListTimesheets(int employeeId, ListTimesheetsQueryModel request)
         {
-            return ApiRequest<List<EssTimesheetModel>>($"/ess/{employeeId}/timesheet?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<List<EssTimesheetModel>>($"/ess/{employeeId}/timesheet?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
         }
 
         /// <summary>
@@ -2551,7 +2877,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<List<EssTimesheetModel>> ListTimesheetsAsync(int employeeId, ListTimesheetsQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EssTimesheetModel>>($"/ess/{employeeId}/timesheet?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EssTimesheetModel>>($"/ess/{employeeId}/timesheet?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2561,9 +2887,9 @@ namespace KeyPayV2.Au.Functions
         /// If no ID is specified, create a new timesheet for the employee. 
         /// Otherwise, update the timesheet with the specified ID.
         /// </remarks>
-        public void SubmitOrUpdateTimesheet(int employeeId, EssTimesheetModel timesheet)
+        public EssTimesheetAndSummaryModel SubmitOrUpdateTimesheet(int employeeId, EssTimesheetModel timesheet)
         {
-            ApiRequest($"/ess/{employeeId}/timesheet", timesheet, Method.Post);
+            return ApiRequest<EssTimesheetAndSummaryModel,EssTimesheetModel>($"/ess/{employeeId}/timesheet", timesheet, Method.Post);
         }
 
         /// <summary>
@@ -2573,53 +2899,9 @@ namespace KeyPayV2.Au.Functions
         /// If no ID is specified, create a new timesheet for the employee. 
         /// Otherwise, update the timesheet with the specified ID.
         /// </remarks>
-        public Task SubmitOrUpdateTimesheetAsync(int employeeId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default)
+        public Task<EssTimesheetAndSummaryModel> SubmitOrUpdateTimesheetAsync(int employeeId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/timesheet", timesheet, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Edit Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Edits the timesheet with the specified ID.
-        /// </remarks>
-        public void EditTimesheet(int employeeId, int timesheetId, EssTimesheetModel timesheet)
-        {
-            ApiRequest($"/ess/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post);
-        }
-
-        /// <summary>
-        /// Edit Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Edits the timesheet with the specified ID.
-        /// </remarks>
-        public Task EditTimesheetAsync(int employeeId, int timesheetId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Delete Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Deletes the timesheet with the specified ID.
-        /// </remarks>
-        public void DeleteTimesheet(int employeeId, int timesheetId)
-        {
-            ApiRequest($"/ess/{employeeId}/timesheet/{timesheetId}", Method.Delete);
-        }
-
-        /// <summary>
-        /// Delete Timesheet
-        /// </summary>
-        /// <remarks>
-        /// Deletes the timesheet with the specified ID.
-        /// </remarks>
-        public Task DeleteTimesheetAsync(int employeeId, int timesheetId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/{employeeId}/timesheet/{timesheetId}", Method.Delete, cancellationToken);
+            return ApiRequestAsync<EssTimesheetAndSummaryModel,EssTimesheetModel>($"/ess/{employeeId}/timesheet", timesheet, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -2630,7 +2912,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public AuEssTimesheetDataModel GetTimesheetCreationData(int employeeId, GetTimesheetCreationDataQueryModel request)
         {
-            return ApiRequest<AuEssTimesheetDataModel>($"/ess/{employeeId}/timesheet/data?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
+            return ApiRequest<AuEssTimesheetDataModel>($"/ess/{employeeId}/timesheet/data?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get);
         }
 
         /// <summary>
@@ -2641,7 +2923,51 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<AuEssTimesheetDataModel> GetTimesheetCreationDataAsync(int employeeId, GetTimesheetCreationDataQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<AuEssTimesheetDataModel>($"/ess/{employeeId}/timesheet/data?fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+            return ApiRequestAsync<AuEssTimesheetDataModel>($"/ess/{employeeId}/timesheet/data?FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Edit Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Edits the timesheet with the specified ID.
+        /// </remarks>
+        public EssTimesheetAndSummaryModel EditTimesheet(int employeeId, int timesheetId, EssTimesheetModel timesheet)
+        {
+            return ApiRequest<EssTimesheetAndSummaryModel,EssTimesheetModel>($"/ess/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post);
+        }
+
+        /// <summary>
+        /// Edit Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Edits the timesheet with the specified ID.
+        /// </remarks>
+        public Task<EssTimesheetAndSummaryModel> EditTimesheetAsync(int employeeId, int timesheetId, EssTimesheetModel timesheet, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssTimesheetAndSummaryModel,EssTimesheetModel>($"/ess/{employeeId}/timesheet/{timesheetId}", timesheet, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Delete Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Deletes the timesheet with the specified ID.
+        /// </remarks>
+        public EssCurrentTimesheetsModel DeleteTimesheet(int employeeId, int timesheetId)
+        {
+            return ApiRequest<EssCurrentTimesheetsModel>($"/ess/{employeeId}/timesheet/{timesheetId}", Method.Delete);
+        }
+
+        /// <summary>
+        /// Delete Timesheet
+        /// </summary>
+        /// <remarks>
+        /// Deletes the timesheet with the specified ID.
+        /// </remarks>
+        public Task<EssCurrentTimesheetsModel> DeleteTimesheetAsync(int employeeId, int timesheetId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EssCurrentTimesheetsModel>($"/ess/{employeeId}/timesheet/{timesheetId}", Method.Delete, cancellationToken);
         }
 
         /// <summary>
@@ -2674,7 +3000,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public List<EssUnavailabilityModel> ListUnavailabilities(int employeeId, ListUnavailabilitiesQueryModel request)
         {
-            return ApiRequest<List<EssUnavailabilityModel>>($"/ess/{employeeId}/unavailability?fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
+            return ApiRequest<List<EssUnavailabilityModel>>($"/ess/{employeeId}/unavailability?FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get);
         }
 
         /// <summary>
@@ -2685,7 +3011,7 @@ namespace KeyPayV2.Au.Functions
         /// </remarks>
         public Task<List<EssUnavailabilityModel>> ListUnavailabilitiesAsync(int employeeId, ListUnavailabilitiesQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<EssUnavailabilityModel>>($"/ess/{employeeId}/unavailability?fromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&toDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<EssUnavailabilityModel>>($"/ess/{employeeId}/unavailability?FromDate={(request.FromDate.HasValue ? request.FromDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}&ToDate={(request.ToDate.HasValue ? request.ToDate.Value.ToString("yyyy-MM-ddTHH:mm:ss") : String.Empty)}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -2738,9 +3064,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates the unavailability with the specified ID.
         /// </remarks>
-        public void UpdateUnavailability(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability)
+        public EssUnavailabilityModel UpdateUnavailability(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability)
         {
-            ApiRequest($"/ess/{employeeId}/unavailability/{unavailabilityId}", unavailability, Method.Put);
+            return ApiRequest<EssUnavailabilityModel,UnavailabilityEditModel>($"/ess/{employeeId}/unavailability/{unavailabilityId}", unavailability, Method.Put);
         }
 
         /// <summary>
@@ -2749,9 +3075,9 @@ namespace KeyPayV2.Au.Functions
         /// <remarks>
         /// Updates the unavailability with the specified ID.
         /// </remarks>
-        public Task UpdateUnavailabilityAsync(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability, CancellationToken cancellationToken = default)
+        public Task<EssUnavailabilityModel> UpdateUnavailabilityAsync(int employeeId, int unavailabilityId, UnavailabilityEditModel unavailability, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/ess/{employeeId}/unavailability/{unavailabilityId}", unavailability, Method.Put, cancellationToken);
+            return ApiRequestAsync<EssUnavailabilityModel,UnavailabilityEditModel>($"/ess/{employeeId}/unavailability/{unavailabilityId}", unavailability, Method.Put, cancellationToken);
         }
 
         /// <summary>
@@ -2774,94 +3100,6 @@ namespace KeyPayV2.Au.Functions
         public Task DeleteUnavailabilityAsync(int employeeId, int unavailabilityId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/ess/{employeeId}/unavailability/{unavailabilityId}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Register Device Token
-        /// </summary>
-        /// <remarks>
-        /// Registers a device token.
-        /// </remarks>
-        public void RegisterDeviceToken(DeviceTokenModel model)
-        {
-            ApiRequest($"/ess/devicetoken/register", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Register Device Token
-        /// </summary>
-        /// <remarks>
-        /// Registers a device token.
-        /// </remarks>
-        public Task RegisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/devicetoken/register", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Unregister Device Token
-        /// </summary>
-        /// <remarks>
-        /// Unregisters a device token.
-        /// </remarks>
-        public void UnregisterDeviceToken(DeviceTokenModel model)
-        {
-            ApiRequest($"/ess/devicetoken/unregister", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Unregister Device Token
-        /// </summary>
-        /// <remarks>
-        /// Unregisters a device token.
-        /// </remarks>
-        public Task UnregisterDeviceTokenAsync(DeviceTokenModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/devicetoken/unregister", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employees
-        /// </summary>
-        /// <remarks>
-        /// Returns all the employees the user can access.
-        /// </remarks>
-        public List<AvailableEmployeeModel> GetEmployees()
-        {
-            return ApiRequest<List<AvailableEmployeeModel>>($"/ess/security/employees", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employees
-        /// </summary>
-        /// <remarks>
-        /// Returns all the employees the user can access.
-        /// </remarks>
-        public Task<List<AvailableEmployeeModel>> GetEmployeesAsync(CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<AvailableEmployeeModel>>($"/ess/security/employees", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Recover Forgotten Password
-        /// </summary>
-        /// <remarks>
-        /// Sends an email so that the user can reset their password
-        /// </remarks>
-        public void RecoverForgottenPassword(RecoverPasswordModel model)
-        {
-            ApiRequest($"/ess/security/forgottenpassword", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Recover Forgotten Password
-        /// </summary>
-        /// <remarks>
-        /// Sends an email so that the user can reset their password
-        /// </remarks>
-        public Task RecoverForgottenPasswordAsync(RecoverPasswordModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/ess/security/forgottenpassword", model, Method.Post, cancellationToken);
         }
     }
 }

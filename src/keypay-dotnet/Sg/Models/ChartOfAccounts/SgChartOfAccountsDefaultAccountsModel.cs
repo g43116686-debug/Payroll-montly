@@ -19,11 +19,25 @@ namespace KeyPayV2.Sg.Models.ChartOfAccounts
         public bool CpfEmployeeLiabilitySplitByLocation { get; set; }
         public bool SdlEmployerExpenseSplitByLocation { get; set; }
         public bool SdlEmployerLiabilitySplitByLocation { get; set; }
+        public bool TaxLiabilitySplitByLocation { get; set; }
+        public bool? TaxLiabilitySplitByEmployingEntity { get; set; }
+        public bool? PaymentAccountSplitByEmployingEntity { get; set; }
+        public bool? DefaultExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployeeExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityLiabilitySplitByEmployingEntity { get; set; }
+        public bool? DefaultLiabilitySplitByEmployingEntity { get; set; }
+        public bool? CpfEmployerExpenseSplitByEmployingEntity { get; set; }
+        public bool? CpfEmployerLiabilitySplitByEmployingEntity { get; set; }
+        public bool? CpfEmployeeLiabilitySplitByEmployingEntity { get; set; }
+        public bool? SdlEmployerExpenseSplitByEmployingEntity { get; set; }
+        public bool? SdlEmployerLiabilitySplitByEmployingEntity { get; set; }
         public int? CpfEmployerExpenseAccountId { get; set; }
         public int? CpfEmployerLiabilityAccountId { get; set; }
         public int? CpfEmployeeLiabilityAccountId { get; set; }
         public int? SdlEmployerExpenseAccountId { get; set; }
         public int? SdlEmployerLiabilityAccountId { get; set; }
+        public int? TaxLiabilityAccountId { get; set; }
         public int? PaymentAccountId { get; set; }
         public int? DefaultExpenseAccountId { get; set; }
         public int? EmployeeExpenseAccountId { get; set; }

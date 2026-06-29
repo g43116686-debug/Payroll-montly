@@ -5,6 +5,7 @@ namespace KeyPayV2.Uk.Enums
 {
     public enum TerminationReasonEnum
     {
+        None,
         VoluntaryCessation,
         IllHealth,
         Deceased,
@@ -12,6 +13,34 @@ namespace KeyPayV2.Uk.Enums
         Dismissal,
         ContractCessation,
         Transfer,
-        Other
+        Other,
+        ApprenticeTraining,
+        CompassionateCareFamilyCaregiver,
+        DismissalTerminatedWithinProbationaryPeriod,
+        EmployerBankruptcyOrReceivership,
+        IllnessInjury,
+        LeaveOfAbsence,
+        MandatoryRetirement,
+        Maternity,
+        OtherAtEmployeeRequest,
+        OtherCanadianForcesQueensOrders,
+        OtherChangeOfOwnership,
+        OtherChangeOfPayrollFrequency,
+        OtherChangeOfServiceProvider,
+        OtherRequestedByEmploymentInsurance,
+        Parental,
+        Quit,
+        QuitCareForDependant,
+        QuitEmployerRelocation,
+        QuitFollowSpouse,
+        QuitHealthReasons,
+        QuitReturnToSchool,
+        QuitTakeAnotherJob,
+        QuitBecomeSelfEmployed,
+        QuitVoluntaryRetirement,
+        RetirementApprovedWorkforceReduction,
+        WorkShortageEndOfContractOrSeason,
+        StrikeLockout,
+        WorkSharing
     }
 }

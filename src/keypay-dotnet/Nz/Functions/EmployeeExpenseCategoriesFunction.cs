@@ -9,6 +9,7 @@ using KeyPayV2.Common;
 using KeyPayV2.Common.Models;
 using KeyPayV2.Nz.Enums;
 using KeyPayV2.Nz.Models.Common;
+using KeyPayV2.Nz.Models.EmployeeExpenseCategories;
 
 namespace KeyPayV2.Nz.Functions
 {
@@ -18,14 +19,16 @@ namespace KeyPayV2.Nz.Functions
         Task<List<EmployeeExpenseCategoryModel>> ListEmployeeExpenseCategoriesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         EmployeeExpenseCategoryModel CreateEmployeeExpenseCategory(int businessId, EmployeeExpenseCategoryModel employeeExpenseCategory);
         Task<EmployeeExpenseCategoryModel> CreateEmployeeExpenseCategoryAsync(int businessId, EmployeeExpenseCategoryModel employeeExpenseCategory, CancellationToken cancellationToken = default);
+        PagedResultModel<EmployeeExpenseCategoryModel> ListEmployeeExpenseCategoriesWithPagination(int businessId, ODataQuery oDataQuery = null);
+        Task<PagedResultModel<EmployeeExpenseCategoryModel>> ListEmployeeExpenseCategoriesWithPaginationAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        List<JournalServiceTaxCode> GetTaxCodes(int businessId);
+        Task<List<JournalServiceTaxCode>> GetTaxCodesAsync(int businessId, CancellationToken cancellationToken = default);
         EmployeeExpenseCategoryModel GetEmployeeExpenseCategoryById(int businessId, int id);
         Task<EmployeeExpenseCategoryModel> GetEmployeeExpenseCategoryByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
         void UpdateEmployeeExpenseCategory(int businessId, int id, EmployeeExpenseCategoryModel employeeExpenseCategory);
         Task UpdateEmployeeExpenseCategoryAsync(int businessId, int id, EmployeeExpenseCategoryModel employeeExpenseCategory, CancellationToken cancellationToken = default);
         void DeleteEmployeeExpenseCategory(int businessId, int id);
         Task DeleteEmployeeExpenseCategoryAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        List<JournalServiceTaxCode> GetTaxCodes(int businessId);
-        Task<List<JournalServiceTaxCode>> GetTaxCodesAsync(int businessId, CancellationToken cancellationToken = default);
     }
     public class EmployeeExpenseCategoriesFunction : BaseFunction, IEmployeeExpenseCategoriesFunction
     {
@@ -75,6 +78,52 @@ namespace KeyPayV2.Nz.Functions
         public Task<EmployeeExpenseCategoryModel> CreateEmployeeExpenseCategoryAsync(int businessId, EmployeeExpenseCategoryModel employeeExpenseCategory, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<EmployeeExpenseCategoryModel,EmployeeExpenseCategoryModel>($"/business/{businessId}/employeeexpensecategory", employeeExpenseCategory, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employee Expense Categories with pagination
+        /// </summary>
+        /// <remarks>
+        /// Lists all the employee expense categories for the business with pagination.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public PagedResultModel<EmployeeExpenseCategoryModel> ListEmployeeExpenseCategoriesWithPagination(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<PagedResultModel<EmployeeExpenseCategoryModel>>($"/business/{businessId}/employeeexpensecategory/paged{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employee Expense Categories with pagination
+        /// </summary>
+        /// <remarks>
+        /// Lists all the employee expense categories for the business with pagination.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<PagedResultModel<EmployeeExpenseCategoryModel>> ListEmployeeExpenseCategoriesWithPaginationAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<PagedResultModel<EmployeeExpenseCategoryModel>>($"/business/{businessId}/employeeexpensecategory/paged{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Tax Codes
+        /// </summary>
+        /// <remarks>
+        /// Gets a list of the business' tax codes.
+        /// </remarks>
+        public List<JournalServiceTaxCode> GetTaxCodes(int businessId)
+        {
+            return ApiRequest<List<JournalServiceTaxCode>>($"/business/{businessId}/employeeexpensecategory/taxcodes", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Tax Codes
+        /// </summary>
+        /// <remarks>
+        /// Gets a list of the business' tax codes.
+        /// </remarks>
+        public Task<List<JournalServiceTaxCode>> GetTaxCodesAsync(int businessId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<JournalServiceTaxCode>>($"/business/{businessId}/employeeexpensecategory/taxcodes", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -141,28 +190,6 @@ namespace KeyPayV2.Nz.Functions
         public Task DeleteEmployeeExpenseCategoryAsync(int businessId, int id, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/business/{businessId}/employeeexpensecategory/{id}", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Tax Codes
-        /// </summary>
-        /// <remarks>
-        /// Gets a list of the business' tax codes.
-        /// </remarks>
-        public List<JournalServiceTaxCode> GetTaxCodes(int businessId)
-        {
-            return ApiRequest<List<JournalServiceTaxCode>>($"/business/{businessId}/employeeexpensecategory/taxcodes", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Tax Codes
-        /// </summary>
-        /// <remarks>
-        /// Gets a list of the business' tax codes.
-        /// </remarks>
-        public Task<List<JournalServiceTaxCode>> GetTaxCodesAsync(int businessId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<JournalServiceTaxCode>>($"/business/{businessId}/employeeexpensecategory/taxcodes", Method.Get, cancellationToken);
         }
     }
 }

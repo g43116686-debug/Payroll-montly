@@ -17,6 +17,7 @@ namespace KeyPayV2.Uk.Models.PayRun
         public decimal EmployerNationalInsuranceContribution { get; set; }
         public decimal EmployeePensionContribution { get; set; }
         public decimal EmployerPensionContribution { get; set; }
+        public bool PayRateNetPaymentEarningsLineDeleted { get; set; }
         public string PayCategoryId { get; set; }
         public string PayCategoryName { get; set; }
         public decimal Units { get; set; }
@@ -32,6 +33,7 @@ namespace KeyPayV2.Uk.Models.PayRun
         public IList<Int32> ReportingDimensionValueIds { get; set; }
         public IDictionary<string,IList<string>> ReportingDimensionValueNames { get; set; }
         public decimal NetPayment { get; set; }
+        public bool IsSystemGenerated { get; set; }
         public long Id { get; set; }
         public string ExternalId { get; set; }
         public string LocationId { get; set; }

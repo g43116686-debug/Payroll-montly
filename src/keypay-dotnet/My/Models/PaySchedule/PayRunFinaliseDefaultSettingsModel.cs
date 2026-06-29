@@ -42,5 +42,8 @@ namespace KeyPayV2.My.Models.PaySchedule
         public int RunReportPacksDay { get; set; }
         public TimeSpan? RunReportPacksTimeOfDay { get; set; }
         public List<Int32> ReportPacksToRun { get; set; }
+        public bool SuperPayment { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public PaymentAccountDebitSettingEnum? PaymentAccountDebitSetting { get; set; }
     }
 }

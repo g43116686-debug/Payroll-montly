@@ -27,6 +27,9 @@ namespace KeyPayV2.Sg.Enums
         PayrollGiving,
         SalarySacrificeOtherEmployeeBenefits,
         SalarySacrificeSuperannuation,
-        IrdArrears
+        IrdArrears,
+        UnionDues,
+        CharityDeduction,
+        Custom
     }
 }

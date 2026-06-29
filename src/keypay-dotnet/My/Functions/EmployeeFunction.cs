@@ -15,12 +15,36 @@ namespace KeyPayV2.My.Functions
 {
     public interface IEmployeeFunction
     {
+        void ActivateEmployee(int businessId, int employeeId);
+        Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null);
+        Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        void GrantKioskAccess(int businessId, int employeeId);
+        Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        void RevokeKioskAccess(int businessId, int employeeId);
+        Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null);
+        Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null);
+        Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
+        EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model);
+        Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
+        EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request);
+        Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default);
+        MyUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId);
+        Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default);
+        MyUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source);
+        Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default);
+        MyUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId);
+        Task<MyUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, MyUnstructuredEmployeeModel model);
+        Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
         void DeleteEmployee(int businessId, int employeeId);
         Task DeleteEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         EmployeeDetailsModel GetEmployeeBasicDetailsById(int businessId, int employeeId);
         Task<EmployeeDetailsModel> GetEmployeeBasicDetailsByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void GetEmployeeProfileImage(int businessId, int employeeId);
-        Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
+        byte[] GetEmployeeProfileImage(int businessId, int employeeId);
+        Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         ProfileImageMetadata SetEmployeeProfileImage(int businessId, int employeeId);
         Task<ProfileImageMetadata> SetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         void DeleteEmployeeProfileImage(int businessId, int employeeId);
@@ -41,40 +65,352 @@ namespace KeyPayV2.My.Functions
         Task<List<EmployeePayRateModel>> GetPayRatesAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         List<MyWorkTypeModel> GetEmployeeShiftConditions(int businessId, int employeeId, ODataQuery oDataQuery = null);
         Task<List<MyWorkTypeModel>> GetEmployeeShiftConditionsAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId);
-        Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         StandardHoursModel SetStandardHoursForEmployee(int businessId, int employeeId, StandardHoursModel model);
         Task<StandardHoursModel> SetStandardHoursForEmployeeAsync(int businessId, int employeeId, StandardHoursModel model, CancellationToken cancellationToken = default);
+        StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId);
+        Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
         List<MyWorkTypeModel> GetEmployeeWorkTypes(int businessId, int employeeId, ODataQuery oDataQuery = null);
         Task<List<MyWorkTypeModel>> GetEmployeeWorkTypesAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void ActivateEmployee(int businessId, int employeeId);
-        Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null);
-        Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void GrantKioskAccess(int businessId, int employeeId);
-        Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        void RevokeKioskAccess(int businessId, int employeeId);
-        Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null);
-        Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null);
-        Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model);
-        Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
-        EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request);
-        Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default);
-        MyUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId);
-        Task<MyUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default);
-        EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, MyUnstructuredEmployeeModel model);
-        Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default);
-        MyUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId);
-        Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default);
-        MyUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source);
-        Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default);
     }
     public class EmployeeFunction : BaseFunction, IEmployeeFunction
     {
         public EmployeeFunction(ApiRequestExecutor api) : base(api) {}
+
+        /// <summary>
+        /// Activate Employee
+        /// </summary>
+        /// <remarks>
+        /// Activates the employee with the specified ID.
+        /// </remarks>
+        public void ActivateEmployee(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/activate/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Activate Employee
+        /// </summary>
+        /// <remarks>
+        /// Activates the employee with the specified ID.
+        /// </remarks>
+        public Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/activate/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// List basic details for employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
+        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List basic details for employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
+        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Grant Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Grants kiosk access to the specified employee.
+        /// </remarks>
+        public void GrantKioskAccess(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Grant Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Grants kiosk access to the specified employee.
+        /// </remarks>
+        public Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Revoke Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Revokes kiosk access from the specified employee.
+        /// </remarks>
+        public void RevokeKioskAccess(int businessId, int employeeId)
+        {
+            ApiRequest($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post);
+        }
+
+        /// <summary>
+        /// Revoke Kiosk Access
+        /// </summary>
+        /// <remarks>
+        /// Revokes kiosk access from the specified employee.
+        /// </remarks>
+        public Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null)
+        {
+            return ApiRequest<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?PayScheduleId={request.PayScheduleId}&LocationId={request.LocationId}&options={request.Options}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
+        }
+
+        /// <summary>
+        /// List Employees
+        /// </summary>
+        /// <remarks>
+        /// This endpoint returns the unstructured employee details for all matching employees.
+        /// <p>
+        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
+        /// </p>
+        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
+        /// </remarks>
+        public Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?PayScheduleId={request.PayScheduleId}&LocationId={request.LocationId}&options={request.Options}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
+        ///             </p>
+        /// <p>
+        ///             NOTE: the MatchType parameter currently has no effect
+        ///             </p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// </remarks>
+        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
+        ///             </p>
+        /// <p>
+        ///             NOTE: the MatchType parameter currently has no effect
+        ///             </p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
+        ///             </p>
+        /// <p>
+        ///             NOTE: the MatchType parameter currently has no effect
+        ///             </p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// </remarks>
+        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post);
+        }
+
+        /// <summary>
+        /// Create or Update Employee
+        /// </summary>
+        /// <remarks>
+        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
+        ///             </p>
+        /// <p>
+        ///             NOTE: the MatchType parameter currently has no effect
+        ///             </p>
+        /// <p>
+        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
+        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.
+        ///             For an employee record to be considered 'Complete' the following groups of data are required:
+        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
+        /// <p>
+        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
+        ///             </p>
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By External ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external ID.
+        /// </remarks>
+        public MyUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId)
+        {
+            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By External ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external ID.
+        /// </remarks>
+        public Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By External Reference ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external reference ID.
+        /// </remarks>
+        public MyUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source)
+        {
+            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By External Reference ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified external reference ID.
+        /// </remarks>
+        public Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Employee By ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified ID.
+        /// </remarks>
+        public MyUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId)
+        {
+            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get);
+        }
+
+        /// <summary>
+        /// Get Employee By ID
+        /// </summary>
+        /// <remarks>
+        /// Gets the employee with the specified ID.
+        /// </remarks>
+        public Task<MyUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        /// <remarks>
+        /// Updates the employee with the specified ID.
+        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
+        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
+        /// </remarks>
+        public EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, MyUnstructuredEmployeeModel model)
+        {
+            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put);
+        }
+
+        /// <summary>
+        /// Update Employee
+        /// </summary>
+        /// <remarks>
+        /// Updates the employee with the specified ID.
+        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
+        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
+        /// </remarks>
+        public Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put, cancellationToken);
+        }
 
         /// <summary>
         /// Delete Employee
@@ -126,9 +462,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public void GetEmployeeProfileImage(int businessId, int employeeId)
+        public byte[] GetEmployeeProfileImage(int businessId, int employeeId)
         {
-            ApiRequest($"/business/{businessId}/employee/{employeeId}/image", Method.Get);
+            return ApiByteArrayRequest($"/business/{businessId}/employee/{employeeId}/image", Method.Get);
         }
 
         /// <summary>
@@ -137,9 +473,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Returns the file content for the employee's current profile image.
         /// </remarks>
-        public Task GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        public Task<byte[]> GetEmployeeProfileImageAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/employee/{employeeId}/image", Method.Get, cancellationToken);
+            return ApiByteArrayRequestAsync($"/business/{businessId}/employee/{employeeId}/image", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -365,28 +701,6 @@ namespace KeyPayV2.My.Functions
         }
 
         /// <summary>
-        /// Get standard hours for employee
-        /// </summary>
-        /// <remarks>
-        /// Gets the standard hours for this employee.
-        /// </remarks>
-        public StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId)
-        {
-            return ApiRequest<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get);
-        }
-
-        /// <summary>
-        /// Get standard hours for employee
-        /// </summary>
-        /// <remarks>
-        /// Gets the standard hours for this employee.
-        /// </remarks>
-        public Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
         /// Set standard hours for employee
         /// </summary>
         /// <remarks>
@@ -406,6 +720,28 @@ namespace KeyPayV2.My.Functions
         public Task<StandardHoursModel> SetStandardHoursForEmployeeAsync(int businessId, int employeeId, StandardHoursModel model, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<StandardHoursModel,StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", model, Method.Put, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get standard hours for employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the standard hours for this employee.
+        /// </remarks>
+        public StandardHoursModel GetStandardHoursForEmployee(int businessId, int employeeId)
+        {
+            return ApiRequest<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get);
+        }
+
+        /// <summary>
+        /// Get standard hours for employee
+        /// </summary>
+        /// <remarks>
+        /// Gets the standard hours for this employee.
+        /// </remarks>
+        public Task<StandardHoursModel> GetStandardHoursForEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<StandardHoursModel>($"/business/{businessId}/employee/{employeeId}/standardhours", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -430,342 +766,6 @@ namespace KeyPayV2.My.Functions
         public Task<List<MyWorkTypeModel>> GetEmployeeWorkTypesAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync<List<MyWorkTypeModel>>($"/business/{businessId}/employee/{employeeId}/worktype{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Activate Employee
-        /// </summary>
-        /// <remarks>
-        /// Activates the employee with the specified ID.
-        /// </remarks>
-        public void ActivateEmployee(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/activate/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Activate Employee
-        /// </summary>
-        /// <remarks>
-        /// Activates the employee with the specified ID.
-        /// </remarks>
-        public Task ActivateEmployeeAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/activate/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// List basic details for employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
-        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<EmployeeDetailsModel> ListBasicDetailsForEmployees(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List basic details for employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns a list of employees. The details are a subset of the 'unstructured' employee endpoint.
-        /// This data can be filtered much more efficiently though so if you only need the basic employee details, this endpoint is preferred.
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<EmployeeDetailsModel>> ListBasicDetailsForEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<EmployeeDetailsModel>>($"/business/{businessId}/employee/details{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Grant Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Grants kiosk access to the specified employee.
-        /// </remarks>
-        public void GrantKioskAccess(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Grant Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Grants kiosk access to the specified employee.
-        /// </remarks>
-        public Task GrantKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/grantkioskaccess/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Revoke Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Revokes kiosk access from the specified employee.
-        /// </remarks>
-        public void RevokeKioskAccess(int businessId, int employeeId)
-        {
-            ApiRequest($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post);
-        }
-
-        /// <summary>
-        /// Revoke Kiosk Access
-        /// </summary>
-        /// <remarks>
-        /// Revokes kiosk access from the specified employee.
-        /// </remarks>
-        public Task RevokeKioskAccessAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync($"/business/{businessId}/employee/revokekioskaccess/{employeeId}", Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured{ODataQuery.ToQueryString(oDataQuery, "?")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public List<MyUnstructuredEmployeeModel> ListEmployees(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null)
-        {
-            return ApiRequest<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?payScheduleId={request.PayScheduleId}&locationId={request.LocationId}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get);
-        }
-
-        /// <summary>
-        /// List Employees
-        /// </summary>
-        /// <remarks>
-        /// This endpoint returns the unstructured employee details for all matching employees.
-        /// <p>
-        /// See also: List basic details for employees (which is much more efficient if that is all the information that is required)
-        /// </p>
-        /// This operation supports OData queries (only $filter, $orderby, $top, $skip).
-        /// </remarks>
-        public Task<List<MyUnstructuredEmployeeModel>> ListEmployeesAsync(int businessId, ListEmployeesQueryModel request, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<MyUnstructuredEmployeeModel>>($"/business/{businessId}/employee/unstructured?payScheduleId={request.PayScheduleId}&locationId={request.LocationId}{ODataQuery.ToQueryString(oDataQuery, "&")}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
-        ///             </p>
-        /// <p>
-        ///             NOTE: the MatchType parameter currently has no effect
-        ///             </p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
-        ///             </p>
-        /// <p>
-        ///             NOTE: the MatchType parameter currently has no effect
-        ///             </p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
-        ///             </p>
-        /// <p>
-        ///             NOTE: the MatchType parameter currently has no effect
-        ///             </p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public EmployeeUpdateResponseModel CreateOrUpdateEmployee(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post);
-        }
-
-        /// <summary>
-        /// Create or Update Employee
-        /// </summary>
-        /// <remarks>
-        /// <p>If an ID is passed, the existing employee will be updated, otherwise a new employee will be created.
-        ///             </p>
-        /// <p>
-        ///             NOTE: the MatchType parameter currently has no effect
-        ///             </p>
-        /// <p>
-        ///             An employee may be created with a status of 'Incomplete' by specifying at least the minimum fields;
-        ///             firstName, surname, startDate, employmentType, address details, gender, legalStatus, nationality, coveredByEmploymentAct.<br />
-        ///             For an employee record to be considered 'Complete' the following groups of data are required:
-        ///               <list><li>Basic Details (Name, Start Date, Date of Birth, Gender and Address Details)</li><li>Pay Run Defaults (Default Pay Category, Pay Cycle and Location)</li><li>Locations (at least one)</li><li>Bank Account/s (at least one)</li></list></p>
-        /// <p>
-        ///             If reporting dimensions are enabled for the business, add primary reporting dimension values using "|" as a separator between values.
-        ///             </p>
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> CreateOrUpdateEmployeeAsync(int businessId, MyUnstructuredEmployeeModel model, CreateOrUpdateEmployeeQueryModel request, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured?matchType={request.MatchType}", model, Method.Post, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified ID.
-        /// </remarks>
-        public MyUnstructuredEmployeeModel GetEmployeeById(int businessId, int employeeId)
-        {
-            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified ID.
-        /// </remarks>
-        public Task<MyUnstructuredEmployeeModel> GetEmployeeByIdAsync(int businessId, int employeeId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Update Employee
-        /// </summary>
-        /// <remarks>
-        /// Updates the employee with the specified ID.
-        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
-        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
-        /// </remarks>
-        public EmployeeUpdateResponseModel UpdateEmployee(int businessId, int employeeId, MyUnstructuredEmployeeModel model)
-        {
-            return ApiRequest<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put);
-        }
-
-        /// <summary>
-        /// Update Employee
-        /// </summary>
-        /// <remarks>
-        /// Updates the employee with the specified ID.
-        /// Only fields to be updated need be specified. Fields left unspecified or null will not be changed.
-        /// To update a field provide the new value, to specifically clear a value use the string "(clear)".
-        /// </remarks>
-        public Task<EmployeeUpdateResponseModel> UpdateEmployeeAsync(int businessId, int employeeId, MyUnstructuredEmployeeModel model, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<EmployeeUpdateResponseModel,MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/{employeeId}", model, Method.Put, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By External ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external ID.
-        /// </remarks>
-        public MyUnstructuredEmployeeModel GetEmployeeByExternalId(int businessId, string externalId)
-        {
-            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By External ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external ID.
-        /// </remarks>
-        public Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalIdAsync(int businessId, string externalId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalid/{externalId}", Method.Get, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Employee By External Reference ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external reference ID.
-        /// </remarks>
-        public MyUnstructuredEmployeeModel GetEmployeeByExternalReferenceId(int businessId, string externalReferenceId, ExternalService source)
-        {
-            return ApiRequest<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get);
-        }
-
-        /// <summary>
-        /// Get Employee By External Reference ID
-        /// </summary>
-        /// <remarks>
-        /// Gets the employee with the specified external reference ID.
-        /// </remarks>
-        public Task<MyUnstructuredEmployeeModel> GetEmployeeByExternalReferenceIdAsync(int businessId, string externalReferenceId, ExternalService source, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<MyUnstructuredEmployeeModel>($"/business/{businessId}/employee/unstructured/externalreferenceid/{externalReferenceId}/{source}", Method.Get, cancellationToken);
         }
     }
 }

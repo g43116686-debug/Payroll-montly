@@ -17,10 +17,14 @@ namespace KeyPayV2.Uk.Models.LeaveCategories
         public bool PayoutNegativeBalance { get; set; }
         public LeaveAccrualRuleModel LeaveAccrualRule { get; set; }
         public bool IncludeIn52WeekAverageCalculation { get; set; }
+        public bool Apply30MinuteRoundingRules { get; set; }
+        public bool IsOpenEnded { get; set; }
+        public int? DaysWorkedBeforeRecalculating { get; set; }
+        public int? UnpaidDaysAtStartOfSickPeriod { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public LeaveCategoryUkOccupationalAbsenceServiceBandType OccupationalAbsenceServiceBandType { get; set; }
-        public IList<UkLeaveCategoryUkOccupationalAbsenceServiceBandModel> OccupationalAbsenceServiceBands { get; set; }
-        public IList<UkLeaveCategoryUkOccupationalAbsencePaymentBandModel> OccupationalAbsencePaymentBands { get; set; }
+        public IList<UkLeaveCategoryOccupationalAbsenceServiceBandModel> OccupationalAbsenceServiceBands { get; set; }
+        public IList<UkLeaveCategoryOccupationalAbsencePaymentBandModel> OccupationalAbsencePaymentBands { get; set; }
         public string OccupationalAbsenceServiceBandTypeDescription { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }

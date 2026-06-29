@@ -5,6 +5,8 @@ namespace KeyPayV2.My.Enums
 {
     public enum MyPayCycleFrequencyEnum
     {
-        Monthly
+        Monthly,
+        AdHoc,
+        Initial
     }
 }

@@ -18,6 +18,16 @@ namespace KeyPayV2.Au.Models.ChartOfAccounts
         public bool PaygExpenseSplitByLocation { get; set; }
         public bool SuperannuationExpenseSplitByLocation { get; set; }
         public bool SuperannuationLiabilitySplitByLocation { get; set; }
+        public bool? PaymentAccountSplitByEmployingEntity { get; set; }
+        public bool? DefaultExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployeeExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityExpenseSplitByEmployingEntity { get; set; }
+        public bool? EmployerLiabilityLiabilitySplitByEmployingEntity { get; set; }
+        public bool? DefaultLiabilitySplitByEmployingEntity { get; set; }
+        public bool? PaygLiabilityAccountSplitByEmployingEntity { get; set; }
+        public bool? PaygExpenseSplitByEmployingEntity { get; set; }
+        public bool? SuperannuationExpenseSplitByEmployingEntity { get; set; }
+        public bool? SuperannuationLiabilitySplitByEmployingEntity { get; set; }
         public int? PaygLiabilityAccountId { get; set; }
         public int? PaygExpenseAccountId { get; set; }
         public int? SuperannuationExpenseAccountId { get; set; }

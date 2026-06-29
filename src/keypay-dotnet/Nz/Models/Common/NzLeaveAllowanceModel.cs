@@ -9,6 +9,9 @@ namespace KeyPayV2.Nz.Models.Common
     public class NzLeaveAllowanceModel
     {
         public NzLeaveAccrualRuleModel LeaveAccrualRule { get; set; }
+        public DateTime LeaveAnniversaryDate { get; set; }
+        public bool? IsUsingDefaultAnniversaryDate { get; set; }
+        public DateTime? AdjustedLeaveEntitlementDate { get; set; }
         public string LeaveCategoryId { get; set; }
         public string LeaveCategoryName { get; set; }
         public decimal? Units { get; set; }

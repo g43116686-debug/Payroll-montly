@@ -11,9 +11,11 @@ namespace KeyPayV2.Uk.Models.PaySchedule
     public class UkPayScheduleModel
     {
         public UkAutoPayConfigurationModel AutoPayConfiguration { get; set; }
+        public int? FrequencyId { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public UkPayCycleFrequencyEnum Frequency { get; set; }
         public PayScheduleProRataSettingsModel PayScheduleProRataSettings { get; set; }
+        public int PayeSchemeId { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]

@@ -12,6 +12,11 @@ namespace KeyPayV2.Uk.Enums
         StatutoryPaternityPay,
         StatutorySharedParentalPay,
         KeepingInTouchDay,
-        StatutoryParentalBereavementPay
+        StatutoryParentalBereavementPay,
+        RolledUpHolidayPay,
+        ShppInTouchPay,
+        StatutoryNeonatalCarePay,
+        PensionCommencementExcess,
+        StandAloneLumpSum
     }
 }

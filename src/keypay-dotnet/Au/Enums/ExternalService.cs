@@ -86,6 +86,23 @@ namespace KeyPayV2.Au.Enums
         XeroIdentityPayrollSignUp,
         XeroIdentityHrSignUp,
         SageIntacct,
-        DailyPay
+        InstaPayDaily,
+        Salesforce,
+        AutomatedPublicHolidayNotWorked,
+        EmployeePayRatesUpload,
+        Zapier,
+        StapledSuperFund,
+        Swag,
+        Crezco,
+        KafkaConsumer,
+        EmployeeLeaveRateCalculationMethodUpload,
+        MoneyMovement,
+        PayRunSettingsFlatFileImport,
+        Sage200,
+        RosterCostCalculation,
+        HeroClear,
+        BrightPay,
+        EmployeeLeaveYearStartDatesImport,
+        PayConditionComparisonUpload
     }
 }

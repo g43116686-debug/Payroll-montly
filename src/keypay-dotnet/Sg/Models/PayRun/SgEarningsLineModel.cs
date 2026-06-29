@@ -15,6 +15,7 @@ namespace KeyPayV2.Sg.Models.PayRun
         public decimal EmployerVoluntaryCpfAmount { get; set; }
         public decimal EmployerVoluntaryMediSaveAmount { get; set; }
         public decimal SdlContributionAmount { get; set; }
+        public decimal EarningsVarianceOffset { get; set; }
         public string PayCategoryId { get; set; }
         public string PayCategoryName { get; set; }
         public decimal Units { get; set; }
@@ -30,6 +31,7 @@ namespace KeyPayV2.Sg.Models.PayRun
         public IList<Int32> ReportingDimensionValueIds { get; set; }
         public IDictionary<string,IList<string>> ReportingDimensionValueNames { get; set; }
         public decimal NetPayment { get; set; }
+        public bool IsSystemGenerated { get; set; }
         public long Id { get; set; }
         public string ExternalId { get; set; }
         public string LocationId { get; set; }

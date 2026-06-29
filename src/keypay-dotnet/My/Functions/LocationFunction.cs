@@ -19,12 +19,12 @@ namespace KeyPayV2.My.Functions
         Task<List<MyLocationModel>> ListEmployeeLocationsAsync(int businessId, int employeeId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
         List<MyLocationModel> ListBusinessLocations(int businessId, ODataQuery oDataQuery = null);
         Task<List<MyLocationModel>> ListBusinessLocationsAsync(int businessId, ODataQuery oDataQuery = null, CancellationToken cancellationToken = default);
-        void CreateLocation(int businessId, MyLocationModel location);
-        Task CreateLocationAsync(int businessId, MyLocationModel location, CancellationToken cancellationToken = default);
+        MyLocationModel CreateLocation(int businessId, MyLocationModel location);
+        Task<MyLocationModel> CreateLocationAsync(int businessId, MyLocationModel location, CancellationToken cancellationToken = default);
         MySingleLocationModel GetLocationById(int businessId, int id);
         Task<MySingleLocationModel> GetLocationByIdAsync(int businessId, int id, CancellationToken cancellationToken = default);
-        void UpdateLocation(int businessId, int id, MyLocationModel location);
-        Task UpdateLocationAsync(int businessId, int id, MyLocationModel location, CancellationToken cancellationToken = default);
+        MyLocationModel UpdateLocation(int businessId, int id, MyLocationModel location);
+        Task<MyLocationModel> UpdateLocationAsync(int businessId, int id, MyLocationModel location, CancellationToken cancellationToken = default);
         void DeleteLocation(int businessId, int id);
         Task DeleteLocationAsync(int businessId, int id, CancellationToken cancellationToken = default);
     }
@@ -86,9 +86,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Creates a business location.
         /// </remarks>
-        public void CreateLocation(int businessId, MyLocationModel location)
+        public MyLocationModel CreateLocation(int businessId, MyLocationModel location)
         {
-            ApiRequest($"/business/{businessId}/location", location, Method.Post);
+            return ApiRequest<MyLocationModel,MyLocationModel>($"/business/{businessId}/location", location, Method.Post);
         }
 
         /// <summary>
@@ -97,9 +97,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Creates a business location.
         /// </remarks>
-        public Task CreateLocationAsync(int businessId, MyLocationModel location, CancellationToken cancellationToken = default)
+        public Task<MyLocationModel> CreateLocationAsync(int businessId, MyLocationModel location, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/location", location, Method.Post, cancellationToken);
+            return ApiRequestAsync<MyLocationModel,MyLocationModel>($"/business/{businessId}/location", location, Method.Post, cancellationToken);
         }
 
         /// <summary>
@@ -130,9 +130,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public void UpdateLocation(int businessId, int id, MyLocationModel location)
+        public MyLocationModel UpdateLocation(int businessId, int id, MyLocationModel location)
         {
-            ApiRequest($"/business/{businessId}/location/{id}", location, Method.Put);
+            return ApiRequest<MyLocationModel,MyLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put);
         }
 
         /// <summary>
@@ -141,9 +141,9 @@ namespace KeyPayV2.My.Functions
         /// <remarks>
         /// Updates the business location with the specified ID.
         /// </remarks>
-        public Task UpdateLocationAsync(int businessId, int id, MyLocationModel location, CancellationToken cancellationToken = default)
+        public Task<MyLocationModel> UpdateLocationAsync(int businessId, int id, MyLocationModel location, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
+            return ApiRequestAsync<MyLocationModel,MyLocationModel>($"/business/{businessId}/location/{id}", location, Method.Put, cancellationToken);
         }
 
         /// <summary>

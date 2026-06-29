@@ -17,10 +17,10 @@ namespace KeyPayV2.Sg.Functions
     {
         List<BrandModel> ListBrandLabels();
         Task<List<BrandModel>> ListBrandLabelsAsync(CancellationToken cancellationToken = default);
-        void CancelBusiness(int businessId, string brandId);
-        Task CancelBusinessAsync(int businessId, string brandId, CancellationToken cancellationToken = default);
         List<BusinessTemplateModel> ListBusinessTemplates(string brandId);
         Task<List<BusinessTemplateModel>> ListBusinessTemplatesAsync(string brandId, CancellationToken cancellationToken = default);
+        void CancelBusiness(int businessId, string brandId);
+        Task CancelBusinessAsync(int businessId, string brandId, CancellationToken cancellationToken = default);
         List<CommonActiveEmployeesModel> ActiveEmployeesReport(int brandId);
         Task<List<CommonActiveEmployeesModel>> ActiveEmployeesReportAsync(int brandId, CancellationToken cancellationToken = default);
         List<CommonActiveEmployeesModel> ActiveEmployeesReport(int brandId, ActiveEmployeesReportQueryModel request);
@@ -59,6 +59,22 @@ namespace KeyPayV2.Sg.Functions
         }
 
         /// <summary>
+        /// List Business Templates
+        /// </summary>
+        public List<BusinessTemplateModel> ListBusinessTemplates(string brandId)
+        {
+            return ApiRequest<List<BusinessTemplateModel>>($"/brand/{brandId}/business-templates", Method.Get);
+        }
+
+        /// <summary>
+        /// List Business Templates
+        /// </summary>
+        public Task<List<BusinessTemplateModel>> ListBusinessTemplatesAsync(string brandId, CancellationToken cancellationToken = default)
+        {
+            return ApiRequestAsync<List<BusinessTemplateModel>>($"/brand/{brandId}/business-templates", Method.Get, cancellationToken);
+        }
+
+        /// <summary>
         /// Cancel Business
         /// </summary>
         /// <remarks>
@@ -80,22 +96,6 @@ namespace KeyPayV2.Sg.Functions
         public Task CancelBusinessAsync(int businessId, string brandId, CancellationToken cancellationToken = default)
         {
             return ApiRequestAsync($"/brand/{brandId}/business/{businessId}/cancel", Method.Delete, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Business Templates
-        /// </summary>
-        public List<BusinessTemplateModel> ListBusinessTemplates(string brandId)
-        {
-            return ApiRequest<List<BusinessTemplateModel>>($"/brand/{brandId}/business-templates", Method.Get);
-        }
-
-        /// <summary>
-        /// List Business Templates
-        /// </summary>
-        public Task<List<BusinessTemplateModel>> ListBusinessTemplatesAsync(string brandId, CancellationToken cancellationToken = default)
-        {
-            return ApiRequestAsync<List<BusinessTemplateModel>>($"/brand/{brandId}/business-templates", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace KeyPayV2.Sg.Functions
         /// </remarks>
         public List<CommonActiveEmployeesModel> ActiveEmployeesReport(int brandId, ActiveEmployeesReportQueryModel request)
         {
-            return ApiRequest<List<CommonActiveEmployeesModel>>($"/brand/{brandId}/reports/activeemployees?emailAddresses={request.EmailAddresses}&includeInactiveBusinesses={request.IncludeInactiveBusinesses}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&locationId={request.LocationId}&employingEntityId={request.EmployingEntityId}", Method.Get);
+            return ApiRequest<List<CommonActiveEmployeesModel>>($"/brand/{brandId}/reports/activeemployees?EmailAddresses={request.EmailAddresses}&IncludeInactiveBusinesses={request.IncludeInactiveBusinesses}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&LocationId={request.LocationId}&EmployingEntityId={request.EmployingEntityId}", Method.Get);
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace KeyPayV2.Sg.Functions
         /// </remarks>
         public Task<List<CommonActiveEmployeesModel>> ActiveEmployeesReportAsync(int brandId, ActiveEmployeesReportQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<CommonActiveEmployeesModel>>($"/brand/{brandId}/reports/activeemployees?emailAddresses={request.EmailAddresses}&includeInactiveBusinesses={request.IncludeInactiveBusinesses}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&locationId={request.LocationId}&employingEntityId={request.EmployingEntityId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<CommonActiveEmployeesModel>>($"/brand/{brandId}/reports/activeemployees?EmailAddresses={request.EmailAddresses}&IncludeInactiveBusinesses={request.IncludeInactiveBusinesses}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&LocationId={request.LocationId}&EmployingEntityId={request.EmployingEntityId}", Method.Get, cancellationToken);
         }
 
         /// <summary>
@@ -172,7 +172,7 @@ namespace KeyPayV2.Sg.Functions
         /// </remarks>
         public List<SignupModel> SignupReport(int brandId, SignupReportQueryModel request)
         {
-            return ApiRequest<List<SignupModel>>($"/brand/{brandId}/reports/signups?emailAddresses={request.EmailAddresses}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&locationId={request.LocationId}&employingEntityId={request.EmployingEntityId}", Method.Get);
+            return ApiRequest<List<SignupModel>>($"/brand/{brandId}/reports/signups?EmailAddresses={request.EmailAddresses}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&LocationId={request.LocationId}&EmployingEntityId={request.EmployingEntityId}", Method.Get);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace KeyPayV2.Sg.Functions
         /// </remarks>
         public Task<List<SignupModel>> SignupReportAsync(int brandId, SignupReportQueryModel request, CancellationToken cancellationToken = default)
         {
-            return ApiRequestAsync<List<SignupModel>>($"/brand/{brandId}/reports/signups?emailAddresses={request.EmailAddresses}&fromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&toDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&locationId={request.LocationId}&employingEntityId={request.EmployingEntityId}", Method.Get, cancellationToken);
+            return ApiRequestAsync<List<SignupModel>>($"/brand/{brandId}/reports/signups?EmailAddresses={request.EmailAddresses}&FromDate={request.FromDate.ToString("yyyy-MM-ddTHH:mm:ss")}&ToDate={request.ToDate.ToString("yyyy-MM-ddTHH:mm:ss")}&LocationId={request.LocationId}&EmployingEntityId={request.EmployingEntityId}", Method.Get, cancellationToken);
         }
 
         /// <summary>

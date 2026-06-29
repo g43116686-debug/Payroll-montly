@@ -9,10 +9,6 @@ namespace KeyPayV2.Au.Enums
         Fixed,
         PercentageGross,
         PercentageOTE,
-        PercentageStudentLoan,
-        PercentageNet,
-        Tiered,
-        Custom,
-        PercentageSuperannuation
+        PercentageNet
     }
 }
